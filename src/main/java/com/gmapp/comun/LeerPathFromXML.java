@@ -22,12 +22,15 @@ import org.jdom2.input.SAXBuilder;
  */
 public class LeerPathFromXML {
     
-    final String SysOper = System.getProperty("os.name");
-    final String fileSeparator = System.getProperty("file.separator");
-    final String classPath = System.getProperty("java.class.path")  + fileSeparator;
+    private String SysOper;
+    private String fileSeparator;
+    private String classPath;
 
     public LeerPathFromXML(){
         
+        SysOper = System.getProperty("os.name");
+        fileSeparator = System.getProperty("file.separator");
+        classPath = System.getProperty("java.class.path")  + fileSeparator;        
     }
     
     public String cargarXml(String tipoPathBuscado)
