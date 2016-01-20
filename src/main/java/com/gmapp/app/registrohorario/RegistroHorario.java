@@ -9,6 +9,7 @@ import com.gmapp.comun.CrearPDFWithLibreOffice;
 import com.gmapp.comun.ImprimirWithLibreOffice;
 import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.comun.SaveDocLibreOfficeToTemp;
+import com.gmapp.utilidades.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,8 +24,8 @@ import org.odftoolkit.simple.table.Table;
  */
 public final class RegistroHorario{
     
-    final String SysOp = System.getProperty("os.name");
-    final String userHome = System.getProperty("user.home");
+    private String SysOper;
+    private String userHome;
     private SpreadsheetDocument libroRH;
     private Table hojaRH;
     private String nomFileSave;
@@ -34,6 +35,9 @@ public final class RegistroHorario{
     public RegistroHorario(String mes, String anno, String clienteGM,
             String CCC, String nomEmpleado, String nifEmpleado, String jornada){
         
+        SysOper = System.getProperty("os.name");
+        userHome = System.getProperty("user.home");
+        
         loadRegistroHorario();
         getHojaRH();
         rellenarRegistroHorarioRH(mes, anno, clienteGM, CCC, nomEmpleado, nifEmpleado, jornada);
@@ -41,13 +45,11 @@ public final class RegistroHorario{
     }
     
     public SpreadsheetDocument loadRegistroHorario() {
-       
-        archivoODF = getClass().getResourceAsStream("/ModelosDocumentosLibreOffice/"
-                + "DGM_002_Registro_Horario_Tiempo_Parcial_LO.ods");
-       
+   
+        String hoja = DocODFUtils.getODFdoc(DocODFUtils.ODF_DGM002);
+        archivoODF = RegistroHorario.class.getResourceAsStream(hoja);      
         try {
             libroRH = (SpreadsheetDocument) SpreadsheetDocument.loadDocument(archivoODF);
-            System.out.println("Archivo ODF cargado: " + archivoODF);    
         } catch (Exception e) {
             System.err.println("ERROR: No se ha cargado el archivo "
                     + "\"DGM_002_Registro_Horario_Tiempo_Parcial_LO.ods\"");
@@ -102,7 +104,7 @@ public final class RegistroHorario{
                       sAnno + "_" +  sNombreTrabajador + ".ods";
         
         try {
-            if (SysOp.equals("Linux"))
+            if (SysOper.equals("Linux"))
               nomFileSave = pathToSave + fileName;
             else
                 nomFileSave = userHome + pathToSave + fileName;

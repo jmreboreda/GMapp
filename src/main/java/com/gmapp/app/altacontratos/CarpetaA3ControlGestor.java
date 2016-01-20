@@ -9,6 +9,7 @@ import com.gmapp.comun.CrearPDFWithLibreOffice;
 import com.gmapp.comun.ImprimirWithLibreOffice;
 import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.utilidades.CodeParaEAN13;
+import com.gmapp.utilidades.DocODFUtils;
 import com.gmapp.utilidades.Funciones;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -19,13 +20,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class CarpetaA3ControlGestor {
@@ -56,11 +50,10 @@ public class CarpetaA3ControlGestor {
     }
     
     private SpreadsheetDocument cargaPlantilla(){
-        
-        archivoODF = getClass().getResourceAsStream("/ModelosDocumentosLibreOffice/"
-                     + "DGM_003_Datos_Alta_o_Cambio_Contrato_Trabajo_A3_LO.ods");
+
+        String hoja = DocODFUtils.getODFdoc(DocODFUtils.ODF_DGM003);
+        archivoODF = CarpetaA3ControlGestor.class.getResourceAsStream(hoja);      
         try {
-             
             libroCalcActual = (SpreadsheetDocument) SpreadsheetDocument.loadDocument(archivoODF);
             System.out.println("Archivo ODF cargado: " + archivoODF);    
         } catch (Exception e) {

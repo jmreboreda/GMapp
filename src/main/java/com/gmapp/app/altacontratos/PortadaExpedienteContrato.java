@@ -7,6 +7,7 @@ package com.gmapp.app.altacontratos;
 
 import com.gmapp.comun.ImprimirWithLibreOffice;
 import com.gmapp.comun.LeerPathFromXML;
+import com.gmapp.utilidades.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,9 +21,9 @@ import org.odftoolkit.simple.table.Table;
  */
 public class PortadaExpedienteContrato {
     
-    final String SysOp = System.getProperty("os.name");
-    final String userName = System.getProperty("user.name");
-    final String userHome = System.getProperty("user.home"); 
+    private String SysOp;
+    private String userName;
+    private String userHome; 
     
     private SpreadsheetDocument libroCalc = null;
     private InputStream archivoODF;
@@ -32,6 +33,10 @@ public class PortadaExpedienteContrato {
     PortadaExpedienteContrato(VistaAC vista){   
         
         this.vistaAC = vista;
+        
+        SysOp = System.getProperty("os.name");
+        userName = System.getProperty("user.name");
+        userHome = System.getProperty("user.home"); 
         
         libroCalc = cargaLibroCalcPortadaExpedienteContrato();
         if (libroCalc != null){
@@ -46,9 +51,9 @@ public class PortadaExpedienteContrato {
     }
     
     private SpreadsheetDocument cargaLibroCalcPortadaExpedienteContrato(){
-             
-        archivoODF = getClass().getResourceAsStream("/ModelosDocumentosLibreOffice/"
-                    + "DGM_006_Portada_Expediente_Contrato_Trabajo.ods");
+
+        String hoja = DocODFUtils.getODFdoc(DocODFUtils.ODF_DGM006);
+        archivoODF = PortadaExpedienteContrato.class.getResourceAsStream(hoja);      
         try {
             libroCalc = (SpreadsheetDocument) SpreadsheetDocument.loadDocument(archivoODF);
             } 

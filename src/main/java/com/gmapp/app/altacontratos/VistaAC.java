@@ -660,6 +660,8 @@ public class VistaAC extends JPanel{
         botonAceptar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/GMapp_PNG_64x64.png"))); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Gestoría MOLDES");
 

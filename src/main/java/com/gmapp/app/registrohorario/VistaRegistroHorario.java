@@ -355,6 +355,8 @@ public class VistaRegistroHorario extends JPanel {
         etqCabecera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqCabecera.setText("Impresión de Registros Horarios para contratos de trabajo a tiempo parcial y de formación");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/GMapp_PNG_64x64.png"))); // NOI18N
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Gestoría MOLDES");
 

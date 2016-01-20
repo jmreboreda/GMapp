@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 public class PictureUtils {
     
     private static String ROOT_PATH = "pic/";
-    public static String MAIN_ICON = "GMapp_GIF_64x64.gif";
+    public static String MAIN_ICON = "GMapp_PNG_64x64.png";
     
     public static Image getPicture(String picture){
         ImageIcon icon = new ImageIcon(ROOT_PATH + picture);

@@ -17,7 +17,6 @@ import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.utilidades.BaseDeDatos;
 import com.gmapp.utilidades.PictureUtils;
 import java.io.File;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -42,19 +41,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         classPath = System.getProperty("java.class.path");
         userName = System.getProperty("user.name");
         userHome = System.getProperty("user.home"); 
-        ImageIcon icon = new ImageIcon("../../miscelanea/GMapp_GIF_64x64.gif");
         initComponents();
-        //setIconImage (new ImageIcon(getClass().getResource("../../miscelanea/GMapp_GIF_64x64.gif")).getImage());
-        setIconImage(PictureUtils.getPicture("PictureUtils.MAIN_ICON"));
-        //InformacionEntorno info = new InformacionEntorno();
-        //info.InformacionEntorno();
+        setIconImage(PictureUtils.getPicture(PictureUtils.MAIN_ICON));
         gmoldesActualizaEnVigorDB();
-//        limpiarTemporales();
+        limpiarTemporales();
         iVentanasAbiertas = 0;
-//        System.out.println(classPath);
-//        LeerPathFromXML path = new LeerPathFromXML();
-//        path.cargarXml("PathToPDF");
-//        path.cargarXml("PathToPrint");
     }
     
     
@@ -164,6 +155,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btNewCttoActionPerformed(evt);
             }
         });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/GMapp_PNG_64x64.png"))); // NOI18N
 
         btVariacionCtto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btVariacionCtto.setText("Variación en contrato existente");

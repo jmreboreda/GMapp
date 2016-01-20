@@ -38,7 +38,7 @@ public class LeerPathFromXML {
         //Se crea un SAXBuilder para poder parsear el archivo
         SAXBuilder builder = new SAXBuilder();
         
-        InputStream xmlFile = getClass().getResourceAsStream("/xml/pathFiles.xml");
+        InputStream xmlFile = LeerPathFromXML.class.getResourceAsStream("/xml/pathFiles.xml");
         
         try
         {     
