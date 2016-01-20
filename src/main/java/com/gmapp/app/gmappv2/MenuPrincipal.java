@@ -15,8 +15,9 @@ import com.gmapp.app.variacioncontratos.ModeloVC;
 import com.gmapp.app.variacioncontratos.VistaVariacionContrato;
 import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.utilidades.BaseDeDatos;
-import com.gmapp.utilidades.InformacionEntorno;
+import com.gmapp.utilidades.PictureUtils;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -27,19 +28,26 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     
-    private String SysOp = System.getProperty("os.name");
-    private String userName = System.getProperty("user.name");
-    private String userHome = System.getProperty("user.home"); 
+    final String SysOp;
+
     public int ImpRegHor = 0;
     public Integer iVentanasAbiertas;
-    final String classPath = System.getProperty("java.class.path");
-
+    final String classPath;
+    final String userName;
+    final String userHome;
     
     public MenuPrincipal() {
+        
+        SysOp = System.getProperty("os.name");
+        classPath = System.getProperty("java.class.path");
+        userName = System.getProperty("user.name");
+        userHome = System.getProperty("user.home"); 
+        ImageIcon icon = new ImageIcon("../../miscelanea/GMapp_GIF_64x64.gif");
         initComponents();
-        //setIconImage (new ImageIcon(getClass().getResource("/com/gmapp/miscelanea/GMapp_GIF_64x64.gif")).getImage());
-        InformacionEntorno info = new InformacionEntorno();
-        info.InformacionEntorno();
+        //setIconImage (new ImageIcon(getClass().getResource("../../miscelanea/GMapp_GIF_64x64.gif")).getImage());
+        setIconImage(PictureUtils.getPicture("PictureUtils.MAIN_ICON"));
+        //InformacionEntorno info = new InformacionEntorno();
+        //info.InformacionEntorno();
         gmoldesActualizaEnVigorDB();
 //        limpiarTemporales();
         iVentanasAbiertas = 0;
