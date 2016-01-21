@@ -13,12 +13,15 @@ import org.odftoolkit.simple.SpreadsheetDocument;
  */
 public class SaveDocLibreOfficeToTemp{
     
-    final String fileSeparator = System.getProperty("file.separator"	);
-    final String SysOper = System.getProperty("os.name");
-    final String userHome = System.getProperty("user.home");
+    private String SysOper;
+    private String userHome;
     private String pathFile;
     
     public SaveDocLibreOfficeToTemp(SpreadsheetDocument Document, String nomFile){
+        
+        SysOper = System.getProperty("os.name");
+        userHome = System.getProperty("user.home");
+        
         
         LeerPathFromXML path = new LeerPathFromXML();
         pathFile = path.cargarXml("PathToTemp");
