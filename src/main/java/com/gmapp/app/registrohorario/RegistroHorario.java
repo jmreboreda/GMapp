@@ -40,8 +40,7 @@ public final class RegistroHorario{
         
         loadRegistroHorario();
         getHojaRH();
-        rellenarRegistroHorarioRH(mes, anno, clienteGM, CCC, nomEmpleado, nifEmpleado, jornada);
-        
+        rellenarRegistroHorarioRH(mes, anno, clienteGM, CCC, nomEmpleado, nifEmpleado, jornada); 
     }
     
     public SpreadsheetDocument loadRegistroHorario() {
