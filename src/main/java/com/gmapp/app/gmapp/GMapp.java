@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.app.gmappv2;
+package com.gmapp.app.gmapp;
 
 import javax.swing.UIManager;
 
@@ -11,14 +11,8 @@ import javax.swing.UIManager;
  *
  * @author jmrb
  */
-public class GMappV2 {
+public class GMapp {
 
- 
-    /**
-     * Crea modelo, vista y visualiza una ventana principal con todo.
-     * 
-     * @param args
-     */
     public static void main(String[] args) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -28,7 +22,6 @@ public class GMappV2 {
             {
                 try
                 {
-//                   UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
                    UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceOfficeSilver2007LookAndFeel");
 
                 }

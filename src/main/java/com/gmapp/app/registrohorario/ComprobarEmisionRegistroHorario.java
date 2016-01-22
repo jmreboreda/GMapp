@@ -25,16 +25,16 @@ public class ComprobarEmisionRegistroHorario {
         List <ContratoVO> listaContrato = contrato.readContrato(numcontrato);
         if(listaContrato.size() > 0){
             for (int i = 0; i < listaContrato.size(); i++){
-                 miContrato = listaContrato.get(i);
-                 if (miContrato.getNumvariacion() == numvariacion)
-                 {
-                     if(miContrato.getTipoctto().contains("Formación") ||
+                miContrato = listaContrato.get(i);
+                if (miContrato.getNumvariacion() == numvariacion)
+                {
+                    if(miContrato.getTipoctto().contains("Formación") ||
                         miContrato.getJor_tipo().contains("Parcial") &&
                         miContrato.getTipovariacion() != 300 &&
                         miContrato.getTipovariacion() != 600 &&
                         miContrato.getTipovariacion() != 700)
-                         emisionRH = true;
-                 }
+                            emisionRH = true;
+                }
             }
         }   
         else

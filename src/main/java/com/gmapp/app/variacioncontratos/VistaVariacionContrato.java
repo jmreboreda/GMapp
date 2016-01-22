@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.variacioncontratos;
 
-import com.gmapp.app.gmappv2.MenuPrincipal;
+import com.gmapp.app.gmapp.MenuPrincipal;
 import javax.swing.JButton;
 
 /**
@@ -22,7 +22,7 @@ public class VistaVariacionContrato extends javax.swing.JPanel {
      * Creates new form VistaVariacion
      */
     public VistaVariacionContrato(ModeloVC modelo) {
-        controlador = new ControladorVC(modelo, this); 
+//        controlador = new ControladorVC(modelo, this); 
         initComponents();
     }
 

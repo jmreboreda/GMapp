@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.registrohorario;
 
-import com.gmapp.app.gmappv2.MenuPrincipal;
+import com.gmapp.app.gmapp.MenuPrincipal;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JDialog;

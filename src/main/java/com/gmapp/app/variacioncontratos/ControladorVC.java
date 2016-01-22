@@ -12,13 +12,13 @@ package com.gmapp.app.variacioncontratos;
 public class ControladorVC {
     
     private ModeloVC modelo;
-    private VistaVariacionContrato vista;
+    private VistaVC vistaVC;
     
     
-    public ControladorVC(ModeloVC modelo, VistaVariacionContrato vista) {
+    public ControladorVC(ModeloVC modelo, VistaVC vista) {
         
         this.modelo = modelo;
-        this.vista = vista;
+        this.vistaVC = vista;
       
         
         
@@ -57,6 +57,10 @@ public class ControladorVC {
     }
     
     public void botonAceptarMouseClicked(){
+        
+    }
+    
+    public void botonSalirMouseClicked(){
         
     }
 }

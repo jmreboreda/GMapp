@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.app.gmappv2.MenuPrincipal;
+import com.gmapp.app.gmapp.MenuPrincipal;
 import com.gmapp.utilidades.Funciones;
 import java.awt.Color;
 import java.awt.Font;
@@ -822,7 +822,6 @@ public class VistaAC extends JPanel{
         jPanel10.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqEstadoCivil.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqEstadoCivil.setForeground(new java.awt.Color(154, 0, 0));
         etqEstadoCivil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqEstadoCivil.setText("#Separado Jud#");
 
@@ -843,7 +842,6 @@ public class VistaAC extends JPanel{
         jPanel9.setPreferredSize(new java.awt.Dimension(100, 50));
 
         etqFNacim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqFNacim.setForeground(new java.awt.Color(154, 0, 0));
         etqFNacim.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqFNacim.setText("#19-06-1957#");
 
@@ -861,7 +859,6 @@ public class VistaAC extends JPanel{
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estudios completados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
 
         etqNivEst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNivEst.setForeground(new java.awt.Color(154, 0, 0));
         etqNivEst.setText("Licenciatura universitaria");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -886,7 +883,6 @@ public class VistaAC extends JPanel{
         jPanel8.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNASS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNASS.setForeground(new java.awt.Color(154, 0, 0));
         etqNASS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNASS.setText("123456789012");
 
@@ -907,7 +903,6 @@ public class VistaAC extends JPanel{
         jPanel11.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNacion.setForeground(new java.awt.Color(154, 0, 0));
         etqNacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNacion.setText("#Española#");
 
@@ -931,7 +926,6 @@ public class VistaAC extends JPanel{
         jPanel7.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNIF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNIF.setForeground(new java.awt.Color(154, 0, 0));
         etqNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNIF.setText("#X-36.019.653-C#");
 
@@ -949,7 +943,6 @@ public class VistaAC extends JPanel{
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección completa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
 
         etqDireccion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqDireccion.setForeground(new java.awt.Color(154, 0, 0));
         etqDireccion.setText("Avenida de Bueu, 32 - 3º A (Edificio Alejandría)  36940  Cangas");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -1379,6 +1372,7 @@ public class VistaAC extends JPanel{
 
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Períodos, jornadas y horarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
 
+        tablaHorario.setForeground(new java.awt.Color(0, 0, 204));
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -1788,7 +1782,7 @@ class MiRenderFilaTablaVistaContratos extends DefaultTableCellRenderer
        if (table.getValueAt(row,6).toString().contains("-"))
                 celda.setForeground(Color.RED);   
        else
-                celda.setForeground(Color.BLACK);
+                celda.setForeground(Color.BLUE);
        
        if (isSelected)
        {

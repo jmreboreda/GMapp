@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.app.gmappv2;
+package com.gmapp.app.gmapp;
 
 //import RegistroHorario.frmImpRegHor;
 //import AltaContratos.AltaContratos;
@@ -12,7 +12,7 @@ import com.gmapp.app.altacontratos.VistaAC;
 import com.gmapp.app.registrohorario.ModeloRH;
 import com.gmapp.app.registrohorario.VistaRegistroHorario;
 import com.gmapp.app.variacioncontratos.ModeloVC;
-import com.gmapp.app.variacioncontratos.VistaVariacionContrato;
+import com.gmapp.app.variacioncontratos.VistaVC;
 import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.utilidades.BaseDeDatos;
 import com.gmapp.utilidades.PictureUtils;
@@ -326,9 +326,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (btVariacionCtto.isEnabled())
         {
             btVariacionCtto.setEnabled(false);
-            //iVentanasAbiertas = iVentanasAbiertas + 1;
+            iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloVC modeloVC = new ModeloVC();
-            VistaVariacionContrato vista = new VistaVariacionContrato(modeloVC);
+            VistaVC vista = new VistaVC(modeloVC);
             try{
                 JDialog v = new JDialog();
                 v.setTitle("Gestoría MOLDES - Variación de contratos");
