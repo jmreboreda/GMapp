@@ -16,13 +16,16 @@ import javax.swing.SwingUtilities;
  */
 public class VistaVC extends javax.swing.JPanel {
     
+    String EMPTY_STRING;
     JButton botonLlamante;
     MenuPrincipal menu;
     private ControladorVC controlador;
     
     public VistaVC(ModeloVC modelo) {
-        controlador = new ControladorVC(modelo, this); 
+        controlador = new ControladorVC(modelo, this);
+        EMPTY_STRING = "";
         initComponents();
+        limpiarDatosContrato();
     }
     
     public void setBotonMenuPrincipal(JButton botonOrigen){
@@ -31,6 +34,18 @@ public class VistaVC extends javax.swing.JPanel {
     
     public void setVentanasAbiertas(MenuPrincipal menuP){
         this.menu = menuP;
+    }
+    
+    public void limpiarDatosContrato(){
+        
+        labelNumContrato.setText(EMPTY_STRING);
+        labelTipoContrato.setText(EMPTY_STRING);
+        labelTipoVariacion.setText(EMPTY_STRING);
+        labelCategoria.setText(EMPTY_STRING);
+        labelHorasTrabajo.setText(EMPTY_STRING);
+        
+        
+        
     }
 
     /**
@@ -49,25 +64,25 @@ public class VistaVC extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelNumContrato = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        labelCategoria = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        labelHorasTrabajo = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        labelDiasTrabajo = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        labelTipoContrato = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        labelFechaHasta = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        labelNumContratoINEM = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        labelTipoVariacion = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        labelFechaDesde = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        labelDuracionContrato = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -85,6 +100,9 @@ public class VistaVC extends javax.swing.JPanel {
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(0, 0, 204));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setMaximumSize(new java.awt.Dimension(403, 25));
+        jComboBox1.setMinimumSize(new java.awt.Dimension(403, 25));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(403, 25));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -92,14 +110,14 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, 0, 382, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -123,7 +141,7 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -131,9 +149,12 @@ public class VistaVC extends javax.swing.JPanel {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Número y variación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("185  -  4");
+        labelNumContrato.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        labelNumContrato.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNumContrato.setText("185  -  4");
+        labelNumContrato.setMaximumSize(new java.awt.Dimension(112, 25));
+        labelNumContrato.setMinimumSize(new java.awt.Dimension(112, 25));
+        labelNumContrato.setPreferredSize(new java.awt.Dimension(112, 25));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -141,19 +162,22 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addComponent(labelNumContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelNumContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Categoría", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Cuidadora de niños en guarderías");
+        labelCategoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelCategoria.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelCategoria.setText("Cuidadora de niños en guarderías");
+        labelCategoria.setMaximumSize(new java.awt.Dimension(256, 25));
+        labelCategoria.setMinimumSize(new java.awt.Dimension(256, 25));
+        labelCategoria.setPreferredSize(new java.awt.Dimension(256, 25));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -161,19 +185,22 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Horas de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("22,00 horas/semana");
+        labelHorasTrabajo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelHorasTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelHorasTrabajo.setText("22,00 horas/semana");
+        labelHorasTrabajo.setMaximumSize(new java.awt.Dimension(170, 25));
+        labelHorasTrabajo.setMinimumSize(new java.awt.Dimension(170, 25));
+        labelHorasTrabajo.setPreferredSize(new java.awt.Dimension(170, 25));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -181,19 +208,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addComponent(labelHorasTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelHorasTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Días de trabajo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("1111100");
+        labelDiasTrabajo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelDiasTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiasTrabajo.setText("1111100");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -201,19 +228,22 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(labelDiasTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelDiasTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de contrato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Eventual por circunstancias de la produción");
+        labelTipoContrato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelTipoContrato.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTipoContrato.setText("Eventual por circunstancias de la produción");
+        labelTipoContrato.setMaximumSize(new java.awt.Dimension(240, 25));
+        labelTipoContrato.setMinimumSize(new java.awt.Dimension(240, 25));
+        labelTipoContrato.setPreferredSize(new java.awt.Dimension(240, 25));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -221,19 +251,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha hasta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("01-01-2012");
+        labelFechaHasta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelFechaHasta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFechaHasta.setText("01-01-2012");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -241,19 +271,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFechaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelFechaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Número contrato INEM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("E-36-153254");
+        labelNumContratoINEM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelNumContratoINEM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNumContratoINEM.setText("E-36-153254");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -261,19 +291,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(labelNumContratoINEM, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelNumContratoINEM, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de variación del contrato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("Extinción de contrato: agotamiento de los plazos del tipo de contrato");
+        labelTipoVariacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelTipoVariacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelTipoVariacion.setText("Extinción de contrato: agotamiento de los plazos del tipo de contrato");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -281,19 +311,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(labelTipoVariacion, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelTipoVariacion, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha desde", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("01-01-2012");
+        labelFechaDesde.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelFechaDesde.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFechaDesde.setText("01-01-2012");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -301,19 +331,19 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duración del contrato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Indefinido");
+        labelDuracionContrato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelDuracionContrato.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDuracionContrato.setText("Indefinido");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -321,12 +351,12 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(labelDuracionContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelDuracionContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -392,6 +422,9 @@ public class VistaVC extends javax.swing.JPanel {
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jComboBox3.setForeground(new java.awt.Color(0, 0, 204));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el tipo de variación del contrato ...", "Extinción de contrato: agotamiento de los plazos del tipo de contrato" }));
+        jComboBox3.setMaximumSize(new java.awt.Dimension(455, 25));
+        jComboBox3.setMinimumSize(new java.awt.Dimension(455, 25));
+        jComboBox3.setPreferredSize(new java.awt.Dimension(455, 25));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -399,14 +432,14 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox3, 0, 459, Short.MAX_VALUE)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -585,18 +618,8 @@ public class VistaVC extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -616,5 +639,15 @@ public class VistaVC extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelDiasTrabajo;
+    private javax.swing.JLabel labelDuracionContrato;
+    private javax.swing.JLabel labelFechaDesde;
+    private javax.swing.JLabel labelFechaHasta;
+    private javax.swing.JLabel labelHorasTrabajo;
+    private javax.swing.JLabel labelNumContrato;
+    private javax.swing.JLabel labelNumContratoINEM;
+    private javax.swing.JLabel labelTipoContrato;
+    private javax.swing.JLabel labelTipoVariacion;
     // End of variables declaration//GEN-END:variables
 }
