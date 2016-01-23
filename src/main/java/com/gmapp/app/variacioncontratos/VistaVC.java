@@ -43,9 +43,11 @@ public class VistaVC extends javax.swing.JPanel {
         labelTipoVariacion.setText(EMPTY_STRING);
         labelCategoria.setText(EMPTY_STRING);
         labelHorasTrabajo.setText(EMPTY_STRING);
-        
-        
-        
+        labelDiasTrabajo.setText(EMPTY_STRING);
+        labelFechaDesde.setText(EMPTY_STRING);
+        labelFechaHasta.setText(EMPTY_STRING);
+        labelNumContratoINEM.setText(EMPTY_STRING);
+        labelDuracionContrato.setText(EMPTY_STRING);        
     }
 
     /**
@@ -264,6 +266,9 @@ public class VistaVC extends javax.swing.JPanel {
         labelFechaHasta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelFechaHasta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFechaHasta.setText("01-01-2012");
+        labelFechaHasta.setMaximumSize(new java.awt.Dimension(68, 25));
+        labelFechaHasta.setMinimumSize(new java.awt.Dimension(68, 25));
+        labelFechaHasta.setPreferredSize(new java.awt.Dimension(68, 25));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -271,12 +276,12 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelFechaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelFechaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Número contrato INEM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
@@ -324,6 +329,9 @@ public class VistaVC extends javax.swing.JPanel {
         labelFechaDesde.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelFechaDesde.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFechaDesde.setText("01-01-2012");
+        labelFechaDesde.setMaximumSize(new java.awt.Dimension(68, 25));
+        labelFechaDesde.setMinimumSize(new java.awt.Dimension(68, 25));
+        labelFechaDesde.setPreferredSize(new java.awt.Dimension(68, 25));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -331,12 +339,12 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(labelFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Duración del contrato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(154, 0, 0))); // NOI18N
