@@ -5,8 +5,8 @@
  */
 package com.gmapp.app.variacioncontratos;
 
-import com.gmapp.dao.ClienteWithCCCDAO;
-import com.gmapp.vo.ClienteWithCCCVO;
+import com.gmapp.dao.ClienteDAO;
+import com.gmapp.vo.ClienteVO;
 import java.util.List;
 
 /**
@@ -19,10 +19,10 @@ public class ModeloVC {
     
     
     
-    public List<ClienteWithCCCVO> getAllClientesWithCCC(){
+    public List<ClienteVO> getAllClientesWithCCC(){
         
-        ClienteWithCCCDAO cliente = new ClienteWithCCCDAO();
-        List <ClienteWithCCCVO> listaClientes = cliente.listAllWithCCC();
+        ClienteDAO cliente = new ClienteDAO();
+        List <ClienteVO> listaClientes = cliente.listAllWithCCC();
         
         return listaClientes;
     }

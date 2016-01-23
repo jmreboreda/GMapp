@@ -138,6 +138,35 @@ public class ClienteDAO {
         
         return lista;
     }
+    
+    
+    public List<ClienteVO> readClienteCCC(int idcliente){
+        
+        List<ClienteVO> lista = new ArrayList<>();
+        String sqlQuery = "SELECT * FROM clientes_ccc_inss WHERE idcliente = " + idcliente + ";";
+        
+        BaseDeDatos gmoldes = new BaseDeDatos();
+       try
+        {
+            gmoldes.estableceConexion();
+            ResultSet rs = gmoldes.seleccionarDatosTabla(sqlQuery);
+            while (rs.next()){
+                ClienteVO datosCCC = new ClienteVO();
+                datosCCC.setIdcliente(rs.getInt("idcliente"));
+                datosCCC.setCcc_inss(rs.getString("ccc_inss"));
+                lista.add(datosCCC);
+            }
+        }
+        catch (Exception e){
+        }
+        
+        gmoldes.cierraConexion();
+        
+        return lista;
+    }
+    
+    
+    
 
     
     public void create(List datosCliente) {

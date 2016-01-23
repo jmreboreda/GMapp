@@ -10,7 +10,7 @@ import com.gmapp.app.registrohorario.ComprobarEmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
 import com.gmapp.utilidades.Funciones;
-import com.gmapp.vo.ClienteWithCCCVO;
+import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.EstudiosVO;
 import com.gmapp.vo.PersonaVO;
 import com.gmapp.vo.TipoContratoVO;
@@ -36,8 +36,7 @@ public class ControladorAC {
 
     private boolean cargandoClientes = false;
     private boolean cargandoTrabajadores = false;
-    
-    //private ArrayList <ClienteVO> lista = new ArrayList();
+
     private List<String> listaNombresClientes = new ArrayList<>();
     private List <Integer> listaIDClientes = new ArrayList();
     private List <String> listaNombresTrabajadores = new ArrayList<>();    
@@ -58,8 +57,8 @@ public class ControladorAC {
         // *******************************************************
         cargandoClientes = true;
 
-        ClienteWithCCCVO miClienteConCCC;
-        List <ClienteWithCCCVO> listaClientes = modelo.getAllClientesWithCCC();
+        ClienteVO miClienteConCCC;
+        List <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
             for (int i = 0; i < listaClientes.size(); i++){
                 miClienteConCCC = listaClientes.get(i);
@@ -127,8 +126,8 @@ public class ControladorAC {
         
         int idCliente =  listaIDClientes.get(indexSelected -1);
         
-        List<ClienteWithCCCVO> cccEncontrados;
-        ClienteWithCCCVO miCCCVO = null;
+        List<ClienteVO> cccEncontrados;
+        ClienteVO miCCCVO = null;
         List listaCCC = new Vector();
         
         cccEncontrados = modeloAC.getClienteCCC(idCliente);

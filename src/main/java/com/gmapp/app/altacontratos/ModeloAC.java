@@ -6,12 +6,10 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.dao.ClienteDAO;
-import com.gmapp.dao.ClienteWithCCCDAO;
 import com.gmapp.dao.ContratoDAO;
 import com.gmapp.dao.PersonaDAO;
 import com.gmapp.dao.TipoContratoDAO;
 import com.gmapp.vo.ClienteVO;
-import com.gmapp.vo.ClienteWithCCCVO;
 import com.gmapp.vo.PersonaVO;
 import com.gmapp.vo.TipoContratoVO;
 import java.util.ArrayList;
@@ -35,10 +33,10 @@ public class ModeloAC {
         return listaClientes;
     }
     
-    public List<ClienteWithCCCVO> getAllClientesWithCCC(){
+    public List<ClienteVO> getAllClientesWithCCC(){
         
-        ClienteWithCCCDAO cliente = new ClienteWithCCCDAO();
-        List <ClienteWithCCCVO> listaClientes = cliente.listAllWithCCC();
+        ClienteDAO cliente = new ClienteDAO();
+        List <ClienteVO> listaClientes = cliente.listAllWithCCC();
         
         return listaClientes;
     }
@@ -69,10 +67,10 @@ public class ModeloAC {
         return lista;
     }
     
-    public List<ClienteWithCCCVO> getClienteCCC(int idcliente){
+    public List<ClienteVO> getClienteCCC(int idcliente){
         
-        List<ClienteWithCCCVO> lista;
-        ClienteWithCCCDAO ccc = new ClienteWithCCCDAO();
+        List<ClienteVO> lista;
+        ClienteDAO ccc = new ClienteDAO();
         lista = ccc.readClienteCCC(idcliente);
         return lista;
     }

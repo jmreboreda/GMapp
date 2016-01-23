@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.variacioncontratos;
 
-import com.gmapp.vo.ClienteWithCCCVO;
+import com.gmapp.vo.ClienteVO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +31,8 @@ public class ControladorVC {
         // *******************************************************
         // Pasa a la vista los items del combo de clientes con CCC
         // *******************************************************
-
-        ClienteWithCCCVO miCliente;
-        List <ClienteWithCCCVO> listaClientes = modeloVC.getAllClientesWithCCC();
+        ClienteVO miCliente;
+        List <ClienteVO> listaClientes = modeloVC.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
             for (int i = 0; i < listaClientes.size(); i++){
                 miCliente = listaClientes.get(i);
