@@ -11,14 +11,14 @@ package com.gmapp.app.variacioncontratos;
  */
 public class ControladorVC {
     
-    private ModeloVC modelo;
-    private VistaVariacionContrato vista;
+    private ModeloVC modeloVC;
+    private VistaVC vistaVC;
     
     
-    public ControladorVC(ModeloVC modelo, VistaVariacionContrato vista) {
+    public ControladorVC(ModeloVC modelo, VistaVC vista) {
         
-        this.modelo = modelo;
-        this.vista = vista;
+        this.modeloVC = modelo;
+        this.vistaVC = vista;
       
         
         

@@ -12,7 +12,7 @@ import com.gmapp.app.altacontratos.VistaAC;
 import com.gmapp.app.registrohorario.ModeloRH;
 import com.gmapp.app.registrohorario.VistaRH;
 import com.gmapp.app.variacioncontratos.ModeloVC;
-import com.gmapp.app.variacioncontratos.VistaVariacionContrato;
+import com.gmapp.app.variacioncontratos.VistaVC;
 import com.gmapp.comun.LeerPathFromXML;
 import com.gmapp.utilidades.BaseDeDatos;
 import com.gmapp.utilidades.PictureUtils;
@@ -20,7 +20,6 @@ import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
@@ -329,7 +328,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             btVariacionCtto.setEnabled(false);
             //iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloVC modeloVC = new ModeloVC();
-            VistaVariacionContrato vista = new VistaVariacionContrato(modeloVC);
+            VistaVC vista = new VistaVC(modeloVC);
             try{
                 JDialog v = new JDialog();
                 v.setTitle("Gestoría MOLDES - Variación de contratos");

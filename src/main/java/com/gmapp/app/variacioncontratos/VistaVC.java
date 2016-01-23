@@ -12,7 +12,7 @@ import javax.swing.JButton;
  *
  * @author jmrb
  */
-public class VistaVariacionContrato extends javax.swing.JPanel {
+public class VistaVC extends javax.swing.JPanel {
     
     JButton botonLlamante;
     MenuPrincipal menu;
@@ -21,7 +21,7 @@ public class VistaVariacionContrato extends javax.swing.JPanel {
     /**
      * Creates new form VistaVariacion
      */
-    public VistaVariacionContrato(ModeloVC modelo) {
+    public VistaVC(ModeloVC modelo) {
         controlador = new ControladorVC(modelo, this); 
         initComponents();
     }
