@@ -10,7 +10,7 @@ package com.gmapp.app.gmapp;
 import com.gmapp.app.altacontratos.ModeloAC;
 import com.gmapp.app.altacontratos.VistaAC;
 import com.gmapp.app.registrohorario.ModeloRH;
-import com.gmapp.app.registrohorario.VistaRegistroHorario;
+import com.gmapp.app.registrohorario.VistaRH;
 import com.gmapp.app.variacioncontratos.ModeloVC;
 import com.gmapp.app.variacioncontratos.VistaVC;
 import com.gmapp.comun.LeerPathFromXML;
@@ -303,7 +303,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             btImpRegHor.setEnabled(false);
             iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloRH modeloRH = new ModeloRH();
-            VistaRegistroHorario vistaRH = new VistaRegistroHorario(modeloRH);
+            VistaRH vistaRH = new VistaRH(modeloRH);
             try{
                 JDialog v = new JDialog();
                 v.setTitle("Gestoría MOLDES - Impresión de Registros Horarios");
