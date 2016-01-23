@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.app.gmappv2;
+package com.gmapp.app.gmapp;
 
 //import RegistroHorario.frmImpRegHor;
 //import AltaContratos.AltaContratos;
 import com.gmapp.app.altacontratos.ModeloAC;
 import com.gmapp.app.altacontratos.VistaAC;
 import com.gmapp.app.registrohorario.ModeloRH;
-import com.gmapp.app.registrohorario.VistaRegistroHorario;
+import com.gmapp.app.registrohorario.VistaRH;
 import com.gmapp.app.variacioncontratos.ModeloVC;
 import com.gmapp.app.variacioncontratos.VistaVariacionContrato;
 import com.gmapp.comun.LeerPathFromXML;
@@ -20,6 +20,7 @@ import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
@@ -303,7 +304,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             btImpRegHor.setEnabled(false);
             iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloRH modeloRH = new ModeloRH();
-            VistaRegistroHorario vistaRH = new VistaRegistroHorario(modeloRH);
+            VistaRH vistaRH = new VistaRH(modeloRH);
             try{
                 JDialog v = new JDialog();
                 v.setTitle("Gestoría MOLDES - Impresión de Registros Horarios");

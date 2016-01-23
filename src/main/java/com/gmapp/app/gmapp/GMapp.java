@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.app.gmappv2;
+package com.gmapp.app.gmapp;
 
 import javax.swing.UIManager;
 
@@ -11,7 +11,7 @@ import javax.swing.UIManager;
  *
  * @author jmrb
  */
-public class GMappV2 {
+public class GMapp {
 
  
     /**

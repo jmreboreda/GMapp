@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.app.gmappv2.MenuPrincipal;
+import com.gmapp.app.gmapp.MenuPrincipal;
 import com.gmapp.utilidades.Funciones;
 import java.awt.Color;
 import java.awt.Font;

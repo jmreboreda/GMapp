@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.variacioncontratos;
 
-import com.gmapp.app.gmappv2.MenuPrincipal;
+import com.gmapp.app.gmapp.MenuPrincipal;
 import javax.swing.JButton;
 
 /**
