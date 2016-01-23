@@ -59,7 +59,7 @@ public class ControladorAC {
         cargandoClientes = true;
 
         ClienteWithCCCVO miClienteConCCC;
-        ArrayList <ClienteWithCCCVO> listaClientes = modelo.getAllClientesWithCCC();
+        List <ClienteWithCCCVO> listaClientes = modelo.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
             for (int i = 0; i < listaClientes.size(); i++){
                 miClienteConCCC = listaClientes.get(i);
@@ -77,7 +77,7 @@ public class ControladorAC {
         // ****************************************************
         cargandoTrabajadores = true;
         PersonaVO miTrabajador;
-        ArrayList <PersonaVO> listaTrabajadores = modelo.getAllPersonas();
+        List <PersonaVO> listaTrabajadores = modelo.getAllPersonas();
         if(listaTrabajadores.size() > 0){
              for (int i = 0; i < listaTrabajadores.size(); i++){
                  miTrabajador = listaTrabajadores.get(i);
@@ -97,7 +97,7 @@ public class ControladorAC {
         // Pasa a la vista los items del combo de tipos de contratos.
         // *********************************************************
         TipoContratoVO miTipoContrato;
-        ArrayList <TipoContratoVO> listaTiposContrato = modelo.getAllTiposContratos();
+        List <TipoContratoVO> listaTiposContrato = modelo.getAllTiposContratos();
         if(listaTiposContrato.size() > 0){
              for (int i = 0; i < listaTiposContrato.size(); i++){
                  miTipoContrato = listaTiposContrato.get(i);
@@ -127,7 +127,7 @@ public class ControladorAC {
         
         int idCliente =  listaIDClientes.get(indexSelected -1);
         
-        ArrayList<ClienteWithCCCVO> cccEncontrados;
+        List<ClienteWithCCCVO> cccEncontrados;
         ClienteWithCCCVO miCCCVO = null;
         List listaCCC = new Vector();
         
@@ -170,7 +170,7 @@ public class ControladorAC {
         
         int idTrabajador =  listaIDTrabajadores.get(indexSelected -1);
 
-        ArrayList<PersonaVO> personaEncontrada;
+        List<PersonaVO> personaEncontrada;
         PersonaVO miTrabajador;
         
         Funciones funcion = new Funciones();

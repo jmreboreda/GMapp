@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jmrb
  */
-public class VistaRegistroHorario extends JPanel {
+public class VistaRH extends JPanel {
 
     JButton botonLlamante;
     MenuPrincipal menu;
@@ -26,7 +26,7 @@ public class VistaRegistroHorario extends JPanel {
     final double[][]mDoubleHorasHorario = new double[8][7];
     private DefaultTableModel tablaContratosModelo;
  
-    public VistaRegistroHorario(ModeloRH modelo) {
+    public VistaRH(ModeloRH modelo) {
         initComponents();
         etqCabecera.setText("<html><p ALIGN=center>Impresión de Registros Horarios</p><p> para contratos de trabajo a tiempo parcial y de formación</p></html>");
         controlador = new ControladorRH(modelo, this); 

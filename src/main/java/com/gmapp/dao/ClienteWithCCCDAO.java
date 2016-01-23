@@ -21,9 +21,9 @@ public class ClienteWithCCCDAO {
         
     }
     
-    public ArrayList<ClienteWithCCCVO> listAllWithCCC(){
+    public List<ClienteWithCCCVO> listAllWithCCC(){
         
-        ArrayList <ClienteWithCCCVO> lista = new ArrayList<>();
+        List <ClienteWithCCCVO> lista = new ArrayList<>();
         
         StringBuilder query = new StringBuilder();
         
@@ -72,9 +72,9 @@ public class ClienteWithCCCDAO {
         return lista;
     }
     
-        public ArrayList<ClienteWithCCCVO> readClienteCCC(int idcliente){
+        public List<ClienteWithCCCVO> readClienteCCC(int idcliente){
         
-        ArrayList<ClienteWithCCCVO> lista = new ArrayList<>();
+        List<ClienteWithCCCVO> lista = new ArrayList<>();
         String sqlQuery = "SELECT * FROM clientes_ccc_inss WHERE idcliente = " + idcliente + ";";
         
         BaseDeDatos gmoldes = new BaseDeDatos();

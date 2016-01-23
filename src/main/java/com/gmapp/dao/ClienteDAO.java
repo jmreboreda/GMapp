@@ -21,9 +21,9 @@ public class ClienteDAO {
 
     }
     
-    public ArrayList<ClienteVO> listAllActivos(){
+    public List<ClienteVO> listAllActivos(){
         
-        ArrayList <ClienteVO> lista = new ArrayList<>();
+        List <ClienteVO> lista = new ArrayList<>();
         String sqlQuery = "SELECT * FROM clientes WHERE fhasta IS NULL ORDER BY 5 ASC ;";  // Ordenado por nom_rzsoc
 
         BaseDeDatos gmoldes = new BaseDeDatos();
@@ -55,9 +55,9 @@ public class ClienteDAO {
         return lista;
     }
     
-    public ArrayList<ClienteVO> listAllWithCCC(){
+    public List<ClienteVO> listAllWithCCC(){
         
-        ArrayList <ClienteVO> lista = new ArrayList<>();
+        List <ClienteVO> lista = new ArrayList<>();
         
         StringBuilder query = new StringBuilder();
         
@@ -106,9 +106,9 @@ public class ClienteDAO {
         return lista;
     }
     
-    public ArrayList<ClienteVO> readCliente(int idcliente) {
+    public List<ClienteVO> readCliente(int idcliente) {
         
-        ArrayList<ClienteVO> lista = new ArrayList<>();
+        List<ClienteVO> lista = new ArrayList<>();
         String sqlQuery = "SELECT * FROM clientes WHERE idcliente = " + idcliente + ";";
         BaseDeDatos gmoldes = new BaseDeDatos();
         
