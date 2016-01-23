@@ -6,6 +6,7 @@
 package com.gmapp.app.variacioncontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
@@ -49,6 +50,11 @@ public class VistaVC extends javax.swing.JPanel {
         labelNumContratoINEM.setText(EMPTY_STRING);
         labelDuracionContrato.setText(EMPTY_STRING);        
     }
+    
+    public void cargaComboClientes(List<String> listaClientes){
+        for (String nombre: listaClientes)
+            comboCliente.addItem(nombre);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +67,7 @@ public class VistaVC extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboCliente = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
@@ -98,13 +104,13 @@ public class VistaVC extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 204));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 204));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMaximumSize(new java.awt.Dimension(403, 25));
-        jComboBox1.setMinimumSize(new java.awt.Dimension(403, 25));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(403, 25));
+        comboCliente.setBackground(new java.awt.Color(255, 255, 204));
+        comboCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboCliente.setForeground(new java.awt.Color(0, 0, 204));
+        comboCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCliente.setMaximumSize(new java.awt.Dimension(403, 25));
+        comboCliente.setMinimumSize(new java.awt.Dimension(403, 25));
+        comboCliente.setPreferredSize(new java.awt.Dimension(403, 25));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -112,14 +118,14 @@ public class VistaVC extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -623,7 +629,7 @@ public class VistaVC extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboCliente;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel11;

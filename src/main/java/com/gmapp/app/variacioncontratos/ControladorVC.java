@@ -5,22 +5,46 @@
  */
 package com.gmapp.app.variacioncontratos;
 
+import com.gmapp.vo.ClienteWithCCCVO;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author jmrb
  */
 public class ControladorVC {
     
-    private ModeloVC modelo;
+    private ModeloVC modeloVC;
     private VistaVC vistaVC;
     
+    private List<String> listaNombresClientes = new ArrayList<>();
+    private List <Integer> listaIDClientes = new ArrayList();
+    private List <String> listaNombresTrabajadores = new ArrayList<>();    
+    private List <Integer> listaIDTrabajadores = new ArrayList();
     
     public ControladorVC(ModeloVC modelo, VistaVC vista) {
         
-        this.modelo = modelo;
+        this.modeloVC = modelo;
         this.vistaVC = vista;
       
-        
+        // *******************************************************
+        // Pasa a la vista los items del combo de clientes con CCC
+        // *******************************************************
+
+        ClienteWithCCCVO miCliente;
+        List <ClienteWithCCCVO> listaClientes = modeloVC.getAllClientesWithCCC();
+        if (listaClientes.size() > 0){
+            for (int i = 0; i < listaClientes.size(); i++){
+                miCliente = listaClientes.get(i);
+                listaNombresClientes.add(miCliente.getNom_rzsoc());
+                listaIDClientes.add(miCliente.getIdcliente());
+            }
+        }
+        else{
+            System.out.println("No se ha podido cargar el comboBox de Clientes");
+        }
+        vistaVC.cargaComboClientes(listaNombresClientes);    
         
     }
     
