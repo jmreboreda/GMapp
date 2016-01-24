@@ -6,6 +6,7 @@
 package com.gmapp.app.registrohorario;
 
 import com.gmapp.dao.ContratoDAO;
+import com.gmapp.utilidades.StringUtils;
 import com.gmapp.vo.ContratoVO;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -16,9 +17,20 @@ import java.util.List;
  */
 public class EmisionRegistroHorario {
     
-    public Boolean Emision(int numcontrato, int numvariacion){
+        private String sFormacion;
+        private String sParcial;
+        private String sEnILT;
+        private String sEnExcedencia;
+        private String sMaternidad;
+    
+        public Boolean Emision(int numcontrato, int numvariacion){
         
         Boolean emisionRH = false;
+        sFormacion = StringUtils.getString(StringUtils.FORMACION);
+        sParcial = StringUtils.getString(StringUtils.PARCIAL);
+        sEnILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
+        sEnExcedencia = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
+        sMaternidad = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
         
         ContratoDAO contrato = new ContratoDAO();
         ContratoVO miContrato;
@@ -28,11 +40,11 @@ public class EmisionRegistroHorario {
                 miContrato = listaContrato.get(i);
                 if (miContrato.getNumvariacion() == numvariacion)
                 {
-                    if(miContrato.getTipoctto().contains("Formación") ||
-                        miContrato.getJor_tipo().contains("Parcial") &&
-                        miContrato.getTipovariacion() != 300 &&
-                        miContrato.getTipovariacion() != 600 &&
-                        miContrato.getTipovariacion() != 700)
+                    if(miContrato.getTipoctto().contains(sFormacion) ||
+                        miContrato.getJor_tipo().contains(sParcial) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
                             emisionRH = true;
                 }
             }
@@ -61,11 +73,11 @@ public class EmisionRegistroHorario {
             miContrato = listaContrato.get(0);
             if (miContrato.getNumvariacion() == numvariacion)
             {
-               if(miContrato.getTipoctto().contains("Formación") ||
-                   miContrato.getJor_tipo().contains("Parcial") &&
-                   miContrato.getTipovariacion() != 300 &&
-                   miContrato.getTipovariacion() != 600 &&
-                   miContrato.getTipovariacion() != 700)
+               if(miContrato.getTipoctto().contains(sFormacion) ||
+                   miContrato.getJor_tipo().contains(sParcial) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
                {
                     annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
                     if(miContrato.getF_hasta() == null)

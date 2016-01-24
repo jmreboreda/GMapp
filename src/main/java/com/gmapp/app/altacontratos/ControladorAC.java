@@ -431,8 +431,6 @@ public class ControladorAC {
         // Tipo contrato
         datosContrato.add(vistaAC.getTipoContrato());
         
-//        if(vistaAC.getTipoContrato().contains("Formación"))
-//            emisionRegistroHorario = true;
         // Fecha inicio contrato
         datosContrato.add(funcion.formatoFecha_us(vistaAC.getFechaInicioContrato()));
         // Fecha fin contrato
