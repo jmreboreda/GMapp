@@ -5,13 +5,13 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.comun.CreacionPDFWithLibreOffice;
-import com.gmapp.comun.PrintWithLibreOffice;
-import com.gmapp.comun.ReadPathFromXML;
-import com.gmapp.utilidades.CodeParaEAN13;
-import com.gmapp.utilidades.DocODFUtils;
-import com.gmapp.utilidades.Funciones;
-import com.gmapp.utilidades.StringUtils;
+import com.gmapp.common.CreacionPDFWithLibreOffice;
+import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.utilities.CodeParaEAN13;
+import com.gmapp.utilities.DocODFUtils;
+import com.gmapp.utilities.Funciones;
+import com.gmapp.utilities.StringUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

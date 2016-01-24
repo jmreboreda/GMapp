@@ -5,11 +5,11 @@
  */
 package com.gmapp.app.registrohorario;
 
-import com.gmapp.comun.CreacionPDFWithLibreOffice;
-import com.gmapp.comun.PrintWithLibreOffice;
-import com.gmapp.comun.ReadPathFromXML;
-import com.gmapp.comun.SaveDocLibreOfficeToTemp;
-import com.gmapp.utilidades.DocODFUtils;
+import com.gmapp.common.CreacionPDFWithLibreOffice;
+import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.common.SaveDocLibreOfficeToTemp;
+import com.gmapp.utilities.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

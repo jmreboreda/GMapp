@@ -5,7 +5,7 @@
  */
 package com.gmapp.dao;
 
-import com.gmapp.utilidades.BaseDeDatos;
+import com.gmapp.utilities.BaseDeDatos;
 import com.gmapp.vo.PersonaVO;
 import java.sql.ResultSet;
 import java.util.ArrayList;

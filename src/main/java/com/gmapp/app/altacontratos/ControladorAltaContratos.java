@@ -9,7 +9,7 @@ package com.gmapp.app.altacontratos;
 import com.gmapp.app.registrohorario.EmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
-import com.gmapp.utilidades.Funciones;
+import com.gmapp.utilities.Funciones;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.EstudiosVO;
 import com.gmapp.vo.PersonaVO;

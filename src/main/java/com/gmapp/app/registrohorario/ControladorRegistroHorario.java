@@ -6,8 +6,8 @@
 package com.gmapp.app.registrohorario;
 
 
-import com.gmapp.utilidades.Funciones;
-import com.gmapp.utilidades.MesesAnno;
+import com.gmapp.utilities.Funciones;
+import com.gmapp.utilities.MesesAnno;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;

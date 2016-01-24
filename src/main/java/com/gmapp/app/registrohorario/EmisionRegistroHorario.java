@@ -6,7 +6,7 @@
 package com.gmapp.app.registrohorario;
 
 import com.gmapp.dao.ContratoDAO;
-import com.gmapp.utilidades.StringUtils;
+import com.gmapp.utilities.StringUtils;
 import com.gmapp.vo.ContratoVO;
 import java.text.SimpleDateFormat;
 import java.util.List;

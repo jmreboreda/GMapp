@@ -5,9 +5,9 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.comun.PrintWithLibreOffice;
-import com.gmapp.comun.ReadPathFromXML;
-import com.gmapp.utilidades.DocODFUtils;
+import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.utilities.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
