@@ -23,7 +23,7 @@ public class SaveDocLibreOfficeToTemp{
         userHome = System.getProperty("user.home");
         
         
-        LeerPathFromXML path = new LeerPathFromXML();
+        ReadPathFromXML path = new ReadPathFromXML();
         pathFile = path.cargarXml("PathToTemp");
         
         if(SysOper.equals("Linux"))  

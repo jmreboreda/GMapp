@@ -27,22 +27,29 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
-public class VistaAC extends JPanel{
+public class VistaAltaContratos extends JPanel{
     
     private JButton botonLlamante;
     private MenuPrincipal menu;
     private Integer iVentanasAbiertas = 0;
-    private ControladorAC controlador;
+    private ControladorAltaContratos controlador;
     final double[][]mDoubleHorasHorario = new double[8][7];
     private DefaultTableModel tablaHorarioModelo;
     
-    public VistaAC(ModeloAC modelo) {
+    public VistaAltaContratos(ModeloAltaContratos modelo) {
 
         initComponents();
         CargaFechaHoraHoy();
  //       CargarTablaHorario();
-        controlador = new ControladorAC(modelo, this); 
+        controlador = new ControladorAltaContratos(modelo, this); 
         controlador.cambiadoTrabajador();
         
         tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();

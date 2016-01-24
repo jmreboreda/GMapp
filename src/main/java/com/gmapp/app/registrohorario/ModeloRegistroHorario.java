@@ -14,12 +14,12 @@ import com.gmapp.vo.PersonaVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeloRH {
+public class ModeloRegistroHorario {
 
     private List<String> datosCliente;
     private List<String> datosTrabajador;
 
-    public ModeloRH() {
+    public ModeloRegistroHorario() {
         this.datosTrabajador = new ArrayList();
         this.datosCliente = new ArrayList();
     }

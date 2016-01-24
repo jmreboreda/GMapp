@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author jmrb
  */
-public class ModeloVC {
+public class ModeloVariacionesContratos {
    
     
     public List<ClienteVO> getAllClientesWithCCC(){

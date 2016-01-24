@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
  *
  * @author jmrb
  */
-public class ComprobarDatosVistaContratos {
+public class DatosVistaContratos {
     
-    VistaAC vista;
+    VistaAltaContratos vista;
     
-    public Boolean ComprobarDatosVistaContratos(VistaAC vistaOrigen) {
+    public Boolean ComprobarDatosVistaContratos(VistaAltaContratos vistaOrigen) {
         
         this.vista = vistaOrigen;
         

@@ -13,17 +13,17 @@ import java.util.List;
  *
  * @author jmrb
  */
-public class ControladorVC {
+public class ControladorVariacionesContratos {
     
-    private ModeloVC modeloVC;
-    private VistaVC vistaVC;
+    private ModeloVariacionesContratos modeloVC;
+    private VistaVariacionesContratos vistaVC;
     
     private List<String> listaNombresClientes;
     private List <Integer> listaIDClientes;
     private List <String> listaNombresTrabajadores;    
     private List <Integer> listaIDTrabajadores ;
     
-    public ControladorVC(ModeloVC modelo, VistaVC vista) {
+    public ControladorVariacionesContratos(ModeloVariacionesContratos modelo, VistaVariacionesContratos vista) {
         
         modeloVC = modelo;
         vistaVC = vista;

@@ -15,16 +15,16 @@ import javax.swing.SwingUtilities;
  *
  * @author jmrb
  */
-public class VistaVC extends javax.swing.JPanel {
+public class VistaVariacionesContratos extends javax.swing.JPanel {
     
     String EMPTY_STRING;
     JButton botonLlamante;
     MenuPrincipal menu;
-    private ControladorVC controladorVC;
+    private ControladorVariacionesContratos controladorVC;
     
-    public VistaVC(ModeloVC modelo) {
+    public VistaVariacionesContratos(ModeloVariacionesContratos modelo) {
         initComponents();
-        controladorVC = new ControladorVC(modelo, this);
+        controladorVC = new ControladorVariacionesContratos(modelo, this);
         EMPTY_STRING = "";
 
         limpiarDatosContrato();

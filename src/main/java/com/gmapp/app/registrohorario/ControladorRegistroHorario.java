@@ -19,13 +19,27 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class ControladorRH {
+public class ControladorRegistroHorario {
 
-    private ModeloRH modeloRH;
+    private ModeloRegistroHorario modeloRH;
 
-    private VistaRH vistaRH;
+    private VistaRegistroHorario vistaRH;
 
     private Boolean cargandoMeses = false;
     private boolean cargandoClientes = false;
@@ -33,7 +47,7 @@ public class ControladorRH {
     private List <Integer> listaIDClientes = new ArrayList();
     
 
-    public ControladorRH(ModeloRH modelo, VistaRH vista) {
+    public ControladorRegistroHorario(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
         
         this.modeloRH = modelo;
         this.vistaRH = vista;

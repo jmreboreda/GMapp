@@ -15,12 +15,12 @@ import com.gmapp.vo.TipoContratoVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeloAC {
+public class ModeloAltaContratos {
 
     private List<String> datosCliente;
     private List<String> datosTrabajador;
 
-    public ModeloAC() {
+    public ModeloAltaContratos() {
         this.datosTrabajador = new ArrayList();
         this.datosCliente = new ArrayList();
     }

@@ -12,9 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
-public class GrabarHorarioContrato {
+public class HorarioContrato {
 
-    public GrabarHorarioContrato(int idcontrato, VistaAC vista) {
+    public HorarioContrato(int idcontrato, VistaAltaContratos vista) {
  
         ArrayList<HorarioContrlabVO> lista = new ArrayList<>(); 
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -34,7 +34,7 @@ public class GrabarHorarioContrato {
                 if (vista.getTablaHorarioValueAt(fila, 1).toString().trim().length() == 10)  //fecha
                     try{
                         datos.setFecha(formatoFecha.parse(funcion.formatoFecha_us(vista.getTablaHorarioValueAt(fila, 1).toString().trim())));
-                        //System.out.println("GrabarHorarioContrato.Fecha guardada: " + formatoFecha.parse(funcion.formatoFecha_us(vista.getTablaHorarioValueAt(fila, 1).toString().trim())).toString());
+                        //System.out.println("HorarioContrato.Fecha guardada: " + formatoFecha.parse(funcion.formatoFecha_us(vista.getTablaHorarioValueAt(fila, 1).toString().trim())).toString());
                     }
                     catch(Exception e){
                     }

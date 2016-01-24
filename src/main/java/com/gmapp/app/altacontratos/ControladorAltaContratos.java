@@ -27,12 +27,43 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class ControladorAC {
+public class ControladorAltaContratos {
 
-    private ModeloAC modeloAC;
-    private VistaAC vistaAC;
+    private ModeloAltaContratos modeloAC;
+    private VistaAltaContratos vistaAC;
 
     private boolean cargandoClientes = false;
     private boolean cargandoTrabajadores = false;
@@ -48,7 +79,7 @@ public class ControladorAC {
     private Boolean tablaHorarioVaciaEsOK = false;
     private Boolean emisionRegistroHorario = false;
 
-    public ControladorAC(ModeloAC modelo, VistaAC vista) {
+    public ControladorAltaContratos(ModeloAltaContratos modelo, VistaAltaContratos vista) {
         
         this.modeloAC = modelo;
         this.vistaAC = vista;
@@ -380,7 +411,7 @@ public class ControladorAC {
     private boolean comprobarDatosContrato(){
         
         Boolean comprobadoOK = true;
-        ComprobarDatosVistaContratos comprobacion = new ComprobarDatosVistaContratos();
+        DatosVistaContratos comprobacion = new DatosVistaContratos();
         comprobadoOK = comprobacion.ComprobarDatosVistaContratos(vistaAC);
         
         return comprobadoOK;
@@ -464,7 +495,7 @@ public class ControladorAC {
             return;
         }
         // Grabamos el horario, en su caso
-        GrabarHorarioContrato horario = new GrabarHorarioContrato(numcontrato, vistaAC);
+        HorarioContrato horario = new HorarioContrato(numcontrato, vistaAC);
         //
         // Imprimimos la Portada Expediente Contrato
         //
