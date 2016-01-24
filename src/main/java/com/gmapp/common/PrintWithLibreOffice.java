@@ -5,24 +5,25 @@
  */
 package com.gmapp.common;
 
+import com.gmapp.utilities.StringUtils;
 import java.io.IOException;
 /**
  *
  * @author jmrb
  */
 public class PrintWithLibreOffice {
-public String SysOp = System.getProperty("os.name");
+public String SysOper = System.getProperty("os.name");
 public String userName = System.getProperty("user.name");    
  
     
     public PrintWithLibreOffice(String libroGuardado) {
+        
         String programa = "";
-        // Determinamos Path a LO
         try {
-        if (SysOp.equals("Linux"))
-            programa = "/usr/lib/libreoffice/program/soffice --headless --invisible -p " + libroGuardado;
+        if (SysOper.equals("Linux"))
+            programa = StringUtils.getString(StringUtils.LIBREOFFICE_LINUX_PRINT) + libroGuardado;
         else
-            programa = "\"C:\\Program Files (x86)\\LibreOffice 5\\program\\soffice.exe\" --headless --invisible -p " + libroGuardado;
+            programa = StringUtils.getString(StringUtils.LIBREOFFICE_WINDOWS_PRINT) + libroGuardado;
         } catch (Exception e) {
             System.err.println("ERROR: No se ha localizado la instalación de LibreOffice.");
         }
@@ -35,7 +36,7 @@ public String userName = System.getProperty("user.name");
         }
         catch (IOException ex)
         {
-            System.out.println( ex.getMessage() );
+            System.out.println(ex.getMessage());
         }
     }
 }

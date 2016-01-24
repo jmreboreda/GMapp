@@ -11,6 +11,10 @@ package com.gmapp.utilities;
  */
 public class StringUtils {
     
+    
+    public static String LIBREOFFICE_LINUX_PRINT = "/usr/lib/libreoffice/program/soffice --headless --invisible -p ";
+    public static String LIBREOFFICE_WINDOWS_PRINT = "\"C:\\Program Files (x86)\\LibreOffice 5\\program\\soffice.exe\" --headless --invisible -p ";
+    
     public static String NUEVO_CONTRATO = "Nuevo contrato";
     public static String TIEMPO_PARCIAL = "Tiempo parcial";
     public static String FORMACION = "Formación";
@@ -23,5 +27,4 @@ public class StringUtils {
        
         return string;
     }
-    
 }
