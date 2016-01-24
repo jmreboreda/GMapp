@@ -10,6 +10,8 @@ import com.gmapp.utilidades.StringUtils;
 import com.gmapp.vo.ContratoVO;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -17,20 +19,15 @@ import java.util.List;
  */
 public class EmisionRegistroHorario {
     
-        private String sFormacion;
-        private String sParcial;
-        private String sEnILT;
-        private String sEnExcedencia;
-        private String sMaternidad;
+        private String sFormacion = StringUtils.getString(StringUtils.FORMACION);
+        private String sParcial = StringUtils.getString(StringUtils.PARCIAL);
+        private String sEnILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
+        private String sEnExcedencia = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
+        private String  sMaternidad = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
     
         public Boolean Emision(int numcontrato, int numvariacion){
         
         Boolean emisionRH = false;
-        sFormacion = StringUtils.getString(StringUtils.FORMACION);
-        sParcial = StringUtils.getString(StringUtils.PARCIAL);
-        sEnILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
-        sEnExcedencia = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
-        sMaternidad = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
         
         ContratoDAO contrato = new ContratoDAO();
         ContratoVO miContrato;
@@ -79,7 +76,13 @@ public class EmisionRegistroHorario {
                    miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
                    miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
                {
-                    annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
+                    if(miContrato.getF_desde() == null){
+                        String mensaje = "Compruebe las fechas de inicio del contrato número " + numcontrato;
+                        showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
+                    }
+                    else
+                        annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
+                    
                     if(miContrato.getF_hasta() == null)
                         annoMesHasta = 999912;
                     else
