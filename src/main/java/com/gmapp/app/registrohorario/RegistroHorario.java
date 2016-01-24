@@ -5,8 +5,8 @@
  */
 package com.gmapp.app.registrohorario;
 
-import com.gmapp.common.CreacionPDFWithLibreOffice;
-import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.LibreOfficePDFService;
+import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
 import com.gmapp.common.SaveDocLibreOfficeToTemp;
 import com.gmapp.utilities.DocODFUtils;
@@ -135,10 +135,10 @@ public final class RegistroHorario{
     }
       
     public void RegistroHorarioToPrinterWithLibreOffice(String pathFile){    
-        PrintWithLibreOffice print = new PrintWithLibreOffice(pathFile);
+        LibreOfficePrintService print = new LibreOfficePrintService(pathFile);
     }
     
     public void RHtoPDF(String pathFile){    
-        CreacionPDFWithLibreOffice pdf = new CreacionPDFWithLibreOffice(pathFile);
+        LibreOfficePDFService pdf = new LibreOfficePDFService(pathFile);
     }
 }

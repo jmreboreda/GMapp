@@ -11,12 +11,15 @@ import java.io.IOException;
  *
  * @author jmrb
  */
-public class PrintWithLibreOffice {
-public String SysOper = System.getProperty("os.name");
-public String userName = System.getProperty("user.name");    
- 
+public class LibreOfficePrintService {
     
-    public PrintWithLibreOffice(String libroGuardado) {
+    private String SysOper;
+    private String userName;    
+ 
+    public LibreOfficePrintService(String libroGuardado) {
+        
+        SysOper = System.getProperty("os.name");
+        userName = System.getProperty("user.name");    
         
         String programa = "";
         try {
@@ -27,8 +30,7 @@ public String userName = System.getProperty("user.name");
         } catch (Exception e) {
             System.err.println("ERROR: No se ha localizado la instalación de LibreOffice.");
         }
-        // Ejecutamos LO
-        System.out.println(programa);
+
         try
         {
             Runtime app = Runtime.getRuntime();

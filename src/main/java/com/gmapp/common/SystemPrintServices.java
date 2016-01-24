@@ -12,11 +12,11 @@ import javax.print.PrintServiceLookup;
  *
  * @author jmrb
  */
-public class PrintServices {
+public class SystemPrintServices {
     
     public PrintService[] printServices;
 
-    public PrintServices() {
+    public SystemPrintServices() {
         
         printServices = PrintServiceLookup.lookupPrintServices(null, null);
         System.out.println("Número de servicios de impresión: " + printServices.length);

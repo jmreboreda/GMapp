@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
 import com.gmapp.utilities.DocODFUtils;
 import java.io.InputStream;
@@ -132,6 +132,6 @@ public class PortadaExpedienteContrato {
     }
      
     private void ImprimirExpedienteContrato(String pathFile) {    
-        PrintWithLibreOffice print = new PrintWithLibreOffice(pathFile);
+        LibreOfficePrintService print = new LibreOfficePrintService(pathFile);
     }
 }

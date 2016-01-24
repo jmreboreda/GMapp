@@ -10,12 +10,12 @@ import java.io.IOException;
  *
  * @author jmrb
  */
-public class CreacionPDFWithLibreOffice {
+public class LibreOfficePDFService {
 public String SysOp = System.getProperty("os.name");
 public String userName = System.getProperty("user.name");    
  
     
-    public CreacionPDFWithLibreOffice(String libroGuardado) {
+    public LibreOfficePDFService(String libroGuardado) {
         String programa = "";
         // Determinamos Path a LO
         try {

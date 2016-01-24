@@ -5,8 +5,8 @@
  */
 package com.gmapp.app.altacontratos;
 
-import com.gmapp.common.CreacionPDFWithLibreOffice;
-import com.gmapp.common.PrintWithLibreOffice;
+import com.gmapp.common.LibreOfficePDFService;
+import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
 import com.gmapp.utilities.CodeParaEAN13;
 import com.gmapp.utilities.DocODFUtils;
@@ -21,6 +21,54 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -55,12 +103,12 @@ public class CarpetaA3ControlGestor {
         libroCalcActual = cargaPlantilla();
         rellenarDGM_003(libroCalcActual);
         String nomFileToPrint = guardarDGM_003toPrint();
-        PrintWithLibreOffice print = new PrintWithLibreOffice(nomFileToPrint);
+        LibreOfficePrintService print = new LibreOfficePrintService(nomFileToPrint);
         showMessageDialog(null, "Documento A3 para carpetilla de control gestor\n"
                     + "se ha enviado a la impresora","Impresión de documentos",INFORMATION_MESSAGE);   
         
         String nomFileToPDF = guardarDGM_003toPDFparaGestor();
-        CreacionPDFWithLibreOffice pdf = new CreacionPDFWithLibreOffice(nomFileToPDF);
+        LibreOfficePDFService pdf = new LibreOfficePDFService(nomFileToPDF);
         showMessageDialog(null, "PDF de notificación al gestor del nuevo contrato\n"
                     + "se ha guardado en su directorio \"Borrame\"","Creación de PDF",INFORMATION_MESSAGE);   
     }
