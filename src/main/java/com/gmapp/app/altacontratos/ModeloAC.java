@@ -78,7 +78,7 @@ public class ModeloAC {
     public List<TipoContratoVO> getAllTiposContratos(){
         
         TipoContratoDAO tipoContrato = new TipoContratoDAO();
-        List <TipoContratoVO> lista = new ArrayList<>();
+        List <TipoContratoVO> lista;
         lista = tipoContrato.listAll();
         
         return lista;

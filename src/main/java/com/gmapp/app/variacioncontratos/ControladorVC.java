@@ -5,7 +5,7 @@
  */
 package com.gmapp.app.variacioncontratos;
 
-import com.gmapp.vo.ClienteVO;
+import com.gmapp.vo.ContratoVO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,36 +18,66 @@ public class ControladorVC {
     private ModeloVC modeloVC;
     private VistaVC vistaVC;
     
-    private List<String> listaNombresClientes = new ArrayList<>();
-    private List <Integer> listaIDClientes = new ArrayList();
-    private List <String> listaNombresTrabajadores = new ArrayList<>();    
-    private List <Integer> listaIDTrabajadores = new ArrayList();
+    private List<String> listaNombresClientes;
+    private List <Integer> listaIDClientes;
+    private List <String> listaNombresTrabajadores;    
+    private List <Integer> listaIDTrabajadores ;
     
     public ControladorVC(ModeloVC modelo, VistaVC vista) {
         
-        this.modeloVC = modelo;
-        this.vistaVC = vista;
-      
-        // *******************************************************
-        // Pasa a la vista los items del combo de clientes con CCC
-        // *******************************************************
-        ClienteVO miCliente;
-        List <ClienteVO> listaClientes = modeloVC.getAllClientesWithCCC();
-        if (listaClientes.size() > 0){
-            for (int i = 0; i < listaClientes.size(); i++){
-                miCliente = listaClientes.get(i);
-                listaNombresClientes.add(miCliente.getNom_rzsoc());
-                listaIDClientes.add(miCliente.getIdcliente());
+        modeloVC = modelo;
+        vistaVC = vista;
+        
+        listaNombresClientes = new ArrayList<>();
+        listaIDClientes = new ArrayList();
+        listaNombresTrabajadores = new ArrayList<>();    
+        listaIDTrabajadores = new ArrayList();
+
+        ContratoVO miContrato;
+        List <ContratoVO> listaContratos = modeloVC.getClientesConContratosEnVigor();
+        if (listaContratos.size() > 0){
+            for (int i = 0; i < listaContratos.size(); i++){
+                miContrato = listaContratos.get(i);
+                listaNombresClientes.add(miContrato.getClientegm_name());
+                listaIDClientes.add(miContrato.getIdcliente_gm());
             }
         }
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaVC.cargaComboClientes(listaNombresClientes);    
+        vistaVC.cargaComboClientes(listaNombresClientes);
+        vistaVC.comboClienteSetEnabled(true);
         
     }
     
     public void cambiadoCliente(){
+        if(vistaVC.getComboCliente().getSelectedIndex() == 0){
+            vistaVC.limpiarDatosContrato();
+            return;
+        }
+        listaNombresTrabajadores.clear();
+        int indexClienteSeleccionado = vistaVC.getComboCliente().getSelectedIndex();
+        int idClienteSeleccionado = listaIDClientes.get(indexClienteSeleccionado - 1);
+        
+        ContratoVO miContrato;
+        List<ContratoVO> listaContratos = modeloVC.getContratosEnVigorCliente(idClienteSeleccionado);
+        if(listaContratos.size() > 0){
+            if(listaContratos.size() > 1)
+                listaNombresTrabajadores.add("Seleccionar trabajador ...");
+            for (int i = 0; i < listaContratos.size(); i++){
+                 miContrato = listaContratos.get(i);
+                 listaNombresTrabajadores.add(miContrato.getTrabajador_name());
+                 listaIDTrabajadores.add(miContrato.getIdtrabajador());
+             }
+        }
+         else{
+            System.out.println("No se han encontrado contratos en vigor");
+        }
+        vistaVC.cargaComboTrabajadores(listaNombresTrabajadores);
+        
+        
+        
+         
         
     }
     

@@ -18,6 +18,7 @@ import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class ControladorRH {
@@ -130,7 +131,7 @@ public class ControladorRH {
             for (int i = 0; i < contratosEncontrados.size(); i++){
                 
                 miContrato = contratosEncontrados.get(i);
-                ComprobarEmisionRegistroHorario comprobar = new ComprobarEmisionRegistroHorario();
+                EmisionRegistroHorario comprobar = new EmisionRegistroHorario();
 
                 if(comprobar.EmisionAtAnnoMes(miContrato.getNumcontrato(),miContrato.getNumvariacion(),
                         annoMesRH)){

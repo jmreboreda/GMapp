@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author jmrb
  */
-public class ComprobarEmisionRegistroHorario {
+public class EmisionRegistroHorario {
     
     public Boolean Emision(int numcontrato, int numvariacion){
         

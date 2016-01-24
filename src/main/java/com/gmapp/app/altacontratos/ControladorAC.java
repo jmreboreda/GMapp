@@ -6,7 +6,7 @@
 package com.gmapp.app.altacontratos;
 
 
-import com.gmapp.app.registrohorario.ComprobarEmisionRegistroHorario;
+import com.gmapp.app.registrohorario.EmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
 import com.gmapp.utilidades.Funciones;
@@ -58,7 +58,7 @@ public class ControladorAC {
         cargandoClientes = true;
 
         ClienteVO miClienteConCCC;
-        List <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
+        List <ClienteVO> listaClientes = modeloAC.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
             for (int i = 0; i < listaClientes.size(); i++){
                 miClienteConCCC = listaClientes.get(i);
@@ -76,7 +76,7 @@ public class ControladorAC {
         // ****************************************************
         cargandoTrabajadores = true;
         PersonaVO miTrabajador;
-        List <PersonaVO> listaTrabajadores = modelo.getAllPersonas();
+        List <PersonaVO> listaTrabajadores = modeloAC.getAllPersonas();
         if(listaTrabajadores.size() > 0){
              for (int i = 0; i < listaTrabajadores.size(); i++){
                  miTrabajador = listaTrabajadores.get(i);
@@ -96,7 +96,7 @@ public class ControladorAC {
         // Pasa a la vistaAC los items del combo de tipos de contratos.
         // *********************************************************
         TipoContratoVO miTipoContrato;
-        List <TipoContratoVO> listaTiposContrato = modelo.getAllTiposContratos();
+        List <TipoContratoVO> listaTiposContrato = modeloAC.getAllTiposContratos();
         if(listaTiposContrato.size() > 0){
              for (int i = 0; i < listaTiposContrato.size(); i++){
                  miTipoContrato = listaTiposContrato.get(i);
@@ -474,7 +474,7 @@ public class ControladorAC {
         //************************************
         // Control de emisión Registro Horario
         //************************************
-        ComprobarEmisionRegistroHorario comprobarRH = new ComprobarEmisionRegistroHorario();
+        EmisionRegistroHorario comprobarRH = new EmisionRegistroHorario();
         emisionRegistroHorario = comprobarRH.Emision(numcontrato,0);
         if(emisionRegistroHorario){
         
