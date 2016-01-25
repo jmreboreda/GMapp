@@ -69,17 +69,17 @@ public class PortadaExpedienteContrato {
         
         hojaPEC = libroCalc.getSheetByIndex(0);
         
-        hojaPEC.getCellByPosition("B7").setStringValue(vistaAC.getClienteName()); // Cliente GM
-        hojaPEC.getCellByPosition("B15").setStringValue(vistaAC.getComboClienteCCCSelectedItem()); // CCC cliente GM
-        hojaPEC.getCellByPosition("J5").setStringValue(vistaAC.getTrabajadorName()); // Nombre empleado
-        hojaPEC.getCellByPosition("L7").setStringValue(vistaAC.getTrabajadorNIF()); // NIF empleado
-        hojaPEC.getCellByPosition("O7").setStringValue(vistaAC.getTrabajadorNASS()); // NASS empleado
-        hojaPEC.getCellByPosition("L9").setStringValue(vistaAC.getTrabajadorFNacim()); // Fecha nacimiento empleado
-        hojaPEC.getCellByPosition("O9").setStringValue(vistaAC.getTrabajadorEstadoCivil()); // Estado civil empleado
-        hojaPEC.getCellByPosition("L11").setStringValue(vistaAC.getTrabajadorNacionalidad()); // Nacionalidad empleado
-        hojaPEC.getCellByPosition("L13").setStringValue(vistaAC.getTrabajadorDireccion()); // Dirección completa empleado
-        hojaPEC.getCellByPosition("L16").setStringValue(vistaAC.getTrabajadorNivEst()); // Estudios empleado
-        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getFechaInicioContrato()); // Fecha inicio contrato
+        hojaPEC.getCellByPosition("B7").setStringValue(vistaAC.getComboCliente().getSelectedItem().toString());
+        hojaPEC.getCellByPosition("B15").setStringValue(vistaAC.getComboClienteCCC().getSelectedItem().toString());
+        hojaPEC.getCellByPosition("J5").setStringValue(vistaAC.getComboTrabajador().getSelectedItem().toString());
+        hojaPEC.getCellByPosition("L7").setStringValue(vistaAC.getTrabajadorNIF());
+        hojaPEC.getCellByPosition("O7").setStringValue(vistaAC.getTrabajadorNASS());
+        hojaPEC.getCellByPosition("L9").setStringValue(vistaAC.getTrabajadorFNacim());
+        hojaPEC.getCellByPosition("O9").setStringValue(vistaAC.getTrabajadorEstadoCivil());
+        hojaPEC.getCellByPosition("L11").setStringValue(vistaAC.getTrabajadorNacionalidad());
+        hojaPEC.getCellByPosition("L13").setStringValue(vistaAC.getTrabajadorDireccion());
+        hojaPEC.getCellByPosition("L16").setStringValue(vistaAC.getTrabajadorNivEst());
+        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getFechaInicioContrato());
         
         String sDuracionContrato = vistaAC.getEtqDuracionContrato().replace("[", "");
         sDuracionContrato = sDuracionContrato.replace("]","").trim();
@@ -93,13 +93,13 @@ public class PortadaExpedienteContrato {
         else
             sTipoContrato = vistaAC.getTipoContrato();
         
-        if(vistaAC.getComboDuracionContratoSelectedItem().equals("Temporal"))
-            sTipoContrato = sTipoContrato + ", " + vistaAC.getComboDuracionContratoSelectedItem() + " [ hasta "
+        if(vistaAC.getComboDuracionContrato().getSelectedItem().equals("Temporal"))
+            sTipoContrato = sTipoContrato + ", " + vistaAC.getComboDuracionContrato().getSelectedItem() + " [ hasta "
                     + vistaAC.getFechaFinContrato() + " ]";
         else
             sTipoContrato = sTipoContrato + ", Indefinido";
         
-        sTipoContrato = sTipoContrato + ", " + vistaAC.getComboJornadaSelectedItem();
+        sTipoContrato = sTipoContrato + ", " + vistaAC.getComboJornada().getSelectedItem();
         hojaPEC.getCellByPosition("D22").setStringValue(sTipoContrato); // Celda Tipo de contrato
         
         hojaPEC.getCellByPosition("D23").setStringValue(vistaAC.getCategoria()); // Categoría laboral

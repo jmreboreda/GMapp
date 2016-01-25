@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -27,13 +28,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class VistaAltaContratos extends JPanel{
     
@@ -292,199 +286,173 @@ public class VistaAltaContratos extends JPanel{
         this.comboClienteCCC.removeAllItems();
     }
    
-    public void setEtqNIF(String etqNIF) {
-        this.etqNIF.setText(etqNIF);
+    public void setEtqNIF(String nif) {
+        etqNIF.setText(nif);
     }
     
     
-    public void setEtqNASS(String etqNASS) {
-        this.etqNASS.setText(etqNASS);
-    }
-    
-   
-    public void setEtqFechaNacim(String etqFNacim) {
-        this.etqFNacim.setText(etqFNacim);
+    public void setEtqNASS(String nass) {
+        etqNASS.setText(nass);
     }
     
    
-    public void setEtqEstadoCivil(String etqEstadoCivil) {
-        this.etqEstadoCivil.setText(etqEstadoCivil);
+    public void setEtqFechaNacim(String fNacim) {
+        etqFNacim.setText(fNacim);
     }
     
    
-    public void setEtqNacionalidad(String etqNacion) {
-        this.etqNacion.setText(etqNacion);
+    public void setEtqEstadoCivil(String estadoCivil) {
+        etqEstadoCivil.setText(estadoCivil);
+    }
+    
+   
+    public void setEtqNacionalidad(String nacion) {
+        etqNacion.setText(nacion);
     }
 
 
-    public void setEtqDireccion(String etqDireccion) {
-        this.etqDireccion.setText(etqDireccion);
+    public void setEtqDireccion(String direccion) {
+        etqDireccion.setText(direccion);
     }
     
    
-    public void setEtqNivelEstudios(String etqNivEst) {
-        this.etqNivEst.setText(etqNivEst);
+    public void setEtqNivelEstudios(String nivEst) {
+        etqNivEst.setText(nivEst);
     }
         
    
     public void setTipoContratoOtros(String texto){
-        this.tfTipoContratoOtros.setText(texto);
+        tfTipoContratoOtros.setText(texto);
     }
     
    
     public void setFechaDesde(String texto){
-        this.tfFechaDesde.setText(texto);
+        tfFechaDesde.setText(texto);
     }
     
    
     public void setFechaHasta(String texto){
-        this.tfFechaHasta.setText(texto);
+        tfFechaHasta.setText(texto);
     }
     
    
     public void setDiasContrato(String texto){
-        this.etqDuracionContrato.setText(texto);
+        etqDuracionContrato.setText(texto);
     }
     
    
     public void setHorasSemana(String texto){
-        this.tfHorasSemana.setText(texto);
+        tfHorasSemana.setText(texto);
     }
     
    
     public void setEtqStringContrato(String texto){
-        this.etqStringContrato.setText(texto);
+        etqStringContrato.setText(texto);
     }
     
    
     public void settfFechaHastaEnabled(Boolean  bol){
-        this.tfFechaHasta.setEnabled(bol);
+        tfFechaHasta.setEnabled(bol);
     }
 
    
     public void setBotonAceptarEnabled(Boolean bol){
-        this.botonAceptar.setEnabled(bol);
+        botonAceptar.setEnabled(bol);
     }
     
    
     public void settfTipoContratoOtrosEnabled(Boolean bol){
-        this.tfTipoContratoOtros.setEnabled(bol);
+        tfTipoContratoOtros.setEnabled(bol);
     }
     
    
     public void settfHorasSemanaEnabled(Boolean bol){
-        this.tfHorasSemana.setEnabled(bol);
+        tfHorasSemana.setEnabled(bol);
     }
     
-    public int getComboClienteCCCSelectedIndex(){
-        return this.comboClienteCCC.getSelectedIndex();
+    public JComboBox<String> getComboClienteCCC(){
+        return comboClienteCCC;
     }
     
-    public int getComboClienteCCCItemCount(){
-        return this.comboClienteCCC.getItemCount();
-    }
-   
     public String getFechaNotificacion() {
-            return this.tfFechaNotif.getText();
+            return tfFechaNotif.getText();
     }
 
    
     public String getHoraNotificacion() {
-        return this.tfHoraNotif.getText();
+        return tfHoraNotif.getText();
+    }
+    
+    public JComboBox<String> getComboCliente(){
+        return comboCliente;
+    }
+    
+    public JComboBox<String> getComboTrabajador(){
+        return comboTrabajador;
     }
 
-    public String getComboClienteCCCSelectedItem(){
-        
-        return this.comboClienteCCC.getSelectedItem().toString();
-    }
-   
-    public String getClienteName() {
-        return this.comboCliente.getSelectedItem().toString();
-    }
-    
-   
-    public int getComboClienteSelectedIndex(){
-        return this.comboCliente.getSelectedIndex();
-    }
-    
-    public String getTrabajadorName(){
-        return comboTrabajador.getSelectedItem().toString(); 
-    }
-    
-   
-    public int getComboTrabajadorSelectedIndex() {
-        return comboTrabajador.getSelectedIndex();
-    }
-    
-   
     public String  getTrabajadorNIF(){
-        return this.etqNIF.getText();
+        return etqNIF.getText();
     }
     
    
     public String getTrabajadorNASS(){
-        return this.etqNASS.getText();
+        return etqNASS.getText();
     }
     
    
     public String getTrabajadorFNacim(){
-        return this.etqFNacim.getText();
+        return etqFNacim.getText();
     }
    
     public String getTrabajadorEstadoCivil(){
-        return this.etqEstadoCivil.getText();
+        return etqEstadoCivil.getText();
     }
     
    
     public String getTrabajadorNacionalidad(){
-        return this.etqNacion.getText();
+        return etqNacion.getText();
     }
     
    
     public String getTrabajadorDireccion(){
-        return this.etqDireccion.getText();
+        return etqDireccion.getText();
     }
     
    
     public String getTrabajadorNivEst(){
-        return this.etqNivEst.getText();
+        return etqNivEst.getText();
     }
     
    
     public String getTipoContrato() {
-        return this.comboTiposContrato.getSelectedItem().toString();
+        return comboTiposContrato.getSelectedItem().toString();
     }
     
    
     public int getComboTipoContratoSelectedIndex(){
-        return this.comboTiposContrato.getSelectedIndex();
+        return comboTiposContrato.getSelectedIndex();
     }
     
    
     public Object getComboTipoContratoSelectedItem(){
-        return this.comboTiposContrato.getSelectedItem();
+        return comboTiposContrato.getSelectedItem();
     }
     
    
     public String getTipoContratoOtros(){
-        return this.tfTipoContratoOtros.getText();
+        return tfTipoContratoOtros.getText();
     }
     
    
     public String getEtqDuracionContrato() {
-        return this.etqDuracionContrato.getText();
+        return etqDuracionContrato.getText();
     }
 
    
-    public int getComboDuracionContratoSelectedIndex() {
-        return this.comboDuracionContrato.getSelectedIndex();
-    }
-
-   
-    public Object getComboDuracionContratoSelectedItem(){
-        return this.comboDuracionContrato.getSelectedItem();
-    }
-    
+    public JComboBox<String> getComboDuracionContrato() {
+        return comboDuracionContrato;
+    }    
    
     public String getFechaInicioContrato() {
         return this.tfFechaDesde.getText();
@@ -494,17 +462,10 @@ public class VistaAltaContratos extends JPanel{
     public String getFechaFinContrato() {
        return this.tfFechaHasta.getText();
     }
-
-   
-    public Object getComboJornadaSelectedItem() {
-        return this.comboJornada.getSelectedItem();
-    }
     
-   
-    public int getComboJornadaSelectedIndex(){
-        return this.comboJornada.getSelectedIndex();
-    }
-      
+    public JComboBox<String> getComboJornada() {
+        return comboJornada;
+    }    
    
     public String getHorasSemana(){
         return this.tfHorasSemana.getText();
@@ -553,14 +514,9 @@ public class VistaAltaContratos extends JPanel{
         return lista;
     }
     
-    public Object getTablaHorarioValueAt(int row, int column){
-        return this.tablaHorario.getValueAt(row, column);
-    }
-    
-    public int getTablaHorarioRowCount(){
-        return this.tablaHorario.getRowCount();
-    }
-    
+    public JTable getTablaHorario(){
+        return tablaHorario;
+    }  
    
     public String getAreaGestor(){
         return this.taNotasGestor.getText();

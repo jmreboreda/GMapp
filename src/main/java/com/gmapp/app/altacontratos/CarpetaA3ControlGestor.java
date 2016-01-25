@@ -80,24 +80,24 @@ public class CarpetaA3ControlGestor {
         
         Table calcNC = libro.getSheetByIndex(0);
         calcNC.getCellByPosition("B7").setStringValue(NUEVO_CONTRATO);
-        calcNC.getCellByPosition("B12").setStringValue(vistaAC.getClienteName());
-        calcNC.getCellByPosition("B17").setStringValue(vistaAC.getComboClienteCCCSelectedItem()); 
-        calcNC.getCellByPosition("B21").setStringValue(vistaAC.getFechaNotificacion());                     // Día aviso
-        calcNC.getCellByPosition("E21").setStringValue(vistaAC.getHoraNotificacion());                        // Hora aviso
-        calcNC.getCellByPosition("G6").setStringValue(vistaAC.getTrabajadorName());
-        calcNC.getCellByPosition("G9").setStringValue(vistaAC.getTrabajadorNIF());                             // NIF trabajador
-        calcNC.getCellByPosition("I9").setStringValue(vistaAC.getTrabajadorNASS());                           // NASS trabajador
-        calcNC.getCellByPosition("G12").setStringValue(vistaAC.getTrabajadorFNacim());                     // Fecha nacim trabajador
-        calcNC.getCellByPosition("I12").setStringValue(vistaAC.getTrabajadorEstadoCivil());                         // Est Civ trabajador
-        calcNC.getCellByPosition("G15").setStringValue(vistaAC.getTrabajadorNacionalidad());                   // Nacionalidad trabajador
-        calcNC.getCellByPosition("G18").setStringValue(vistaAC.getTrabajadorDireccion());                      // Direcc trabajador
+        calcNC.getCellByPosition("B12").setStringValue(vistaAC.getComboCliente().getSelectedItem().toString());
+        calcNC.getCellByPosition("B17").setStringValue(vistaAC.getComboClienteCCC().getSelectedItem().toString()); 
+        calcNC.getCellByPosition("B21").setStringValue(vistaAC.getFechaNotificacion());
+        calcNC.getCellByPosition("E21").setStringValue(vistaAC.getHoraNotificacion());
+        calcNC.getCellByPosition("G6").setStringValue(vistaAC.getComboTrabajador().getSelectedItem().toString());
+        calcNC.getCellByPosition("G9").setStringValue(vistaAC.getTrabajadorNIF());
+        calcNC.getCellByPosition("I9").setStringValue(vistaAC.getTrabajadorNASS());
+        calcNC.getCellByPosition("G12").setStringValue(vistaAC.getTrabajadorFNacim());
+        calcNC.getCellByPosition("I12").setStringValue(vistaAC.getTrabajadorEstadoCivil());
+        calcNC.getCellByPosition("G15").setStringValue(vistaAC.getTrabajadorNacionalidad());
+        calcNC.getCellByPosition("G18").setStringValue(vistaAC.getTrabajadorDireccion());
         calcNC.getCellByPosition("G23").setStringValue(vistaAC.getTrabajadorNivEst());
 
         String tipoCtto = vistaAC.getTipoContrato();
-        tipoCtto = tipoCtto + ", " + vistaAC.getComboDuracionContratoSelectedItem().toString();
-        tipoCtto = tipoCtto + ", " + vistaAC.getComboJornadaSelectedItem().toString();
+        tipoCtto = tipoCtto + ", " + vistaAC.getComboDuracionContrato().getSelectedItem().toString();
+        tipoCtto = tipoCtto + ", " + vistaAC.getComboJornada().getSelectedItem().toString();
         
-        if(vistaAC.getComboJornadaSelectedItem().toString().equals(TIEMPO_PARCIAL))
+        if(vistaAC.getComboJornada().getSelectedItem().toString().equals(TIEMPO_PARCIAL))
             tipoCtto = tipoCtto + " [" + vistaAC.getHorasSemana() + " horas/semana ]";
 
         calcNC.getCellByPosition("B29").setStringValue(tipoCtto); 
@@ -116,61 +116,61 @@ public class CarpetaA3ControlGestor {
         calcNC.getCellByPosition("H32").setStringValue(dias.get(5).toString());
         calcNC.getCellByPosition("I32").setStringValue(dias.get(6).toString());
 
-        calcNC.getCellByPosition(1,37).setStringValue(vistaAC.getTablaHorarioValueAt(0, 0).toString().trim());
-        calcNC.getCellByPosition(2,37).setStringValue(vistaAC.getTablaHorarioValueAt(0, 1).toString().trim());
-        calcNC.getCellByPosition(4,38).setStringValue(vistaAC.getTablaHorarioValueAt(0, 2).toString().trim());
-        calcNC.getCellByPosition(5,38).setStringValue(vistaAC.getTablaHorarioValueAt(0, 3).toString().trim());     
-        calcNC.getCellByPosition(7,38).setStringValue(vistaAC.getTablaHorarioValueAt(0, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,38).setStringValue(vistaAC.getTablaHorarioValueAt(0, 5).toString().trim());
-        calcNC.getCellByPosition(9,37).setStringValue(vistaAC.getTablaHorarioValueAt(0, 6).toString().trim()); 
+        calcNC.getCellByPosition(1,37).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 0).toString().trim());
+        calcNC.getCellByPosition(2,37).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 1).toString().trim());
+        calcNC.getCellByPosition(4,38).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 2).toString().trim());
+        calcNC.getCellByPosition(5,38).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 3).toString().trim());     
+        calcNC.getCellByPosition(7,38).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,38).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 5).toString().trim());
+        calcNC.getCellByPosition(9,37).setStringValue(vistaAC.getTablaHorario().getValueAt(0, 6).toString().trim()); 
 
-        calcNC.getCellByPosition(1,40).setStringValue(vistaAC.getTablaHorarioValueAt(1, 0).toString().trim());
-        calcNC.getCellByPosition(2,40).setStringValue(vistaAC.getTablaHorarioValueAt(1, 1).toString().trim());
-        calcNC.getCellByPosition(4,41).setStringValue(vistaAC.getTablaHorarioValueAt(1, 2).toString().trim());
-        calcNC.getCellByPosition(5,41).setStringValue(vistaAC.getTablaHorarioValueAt(1, 3).toString().trim());     
-        calcNC.getCellByPosition(7,41).setStringValue(vistaAC.getTablaHorarioValueAt(1, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,41).setStringValue(vistaAC.getTablaHorarioValueAt(1, 5).toString().trim());
-        calcNC.getCellByPosition(9,40).setStringValue(vistaAC.getTablaHorarioValueAt(1, 6).toString().trim());         
+        calcNC.getCellByPosition(1,40).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 0).toString().trim());
+        calcNC.getCellByPosition(2,40).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 1).toString().trim());
+        calcNC.getCellByPosition(4,41).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 2).toString().trim());
+        calcNC.getCellByPosition(5,41).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 3).toString().trim());     
+        calcNC.getCellByPosition(7,41).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,41).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 5).toString().trim());
+        calcNC.getCellByPosition(9,40).setStringValue(vistaAC.getTablaHorario().getValueAt(1, 6).toString().trim());         
 
-        calcNC.getCellByPosition(1,43).setStringValue(vistaAC.getTablaHorarioValueAt(2, 0).toString().trim());
-        calcNC.getCellByPosition(2,43).setStringValue(vistaAC.getTablaHorarioValueAt(2, 1).toString().trim());
-        calcNC.getCellByPosition(4,44).setStringValue(vistaAC.getTablaHorarioValueAt(2, 2).toString().trim());
-        calcNC.getCellByPosition(5,44).setStringValue(vistaAC.getTablaHorarioValueAt(2, 3).toString().trim());     
-        calcNC.getCellByPosition(7,44).setStringValue(vistaAC.getTablaHorarioValueAt(2, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,44).setStringValue(vistaAC.getTablaHorarioValueAt(2, 5).toString().trim());
-        calcNC.getCellByPosition(9,43).setStringValue(vistaAC.getTablaHorarioValueAt(2, 6).toString().trim());        
+        calcNC.getCellByPosition(1,43).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 0).toString().trim());
+        calcNC.getCellByPosition(2,43).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 1).toString().trim());
+        calcNC.getCellByPosition(4,44).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 2).toString().trim());
+        calcNC.getCellByPosition(5,44).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 3).toString().trim());     
+        calcNC.getCellByPosition(7,44).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,44).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 5).toString().trim());
+        calcNC.getCellByPosition(9,43).setStringValue(vistaAC.getTablaHorario().getValueAt(2, 6).toString().trim());        
         
-        calcNC.getCellByPosition(1,46).setStringValue(vistaAC.getTablaHorarioValueAt(3, 0).toString().trim());
-        calcNC.getCellByPosition(2,46).setStringValue(vistaAC.getTablaHorarioValueAt(3, 1).toString().trim());
-        calcNC.getCellByPosition(4,47).setStringValue(vistaAC.getTablaHorarioValueAt(3, 2).toString().trim());
-        calcNC.getCellByPosition(5,47).setStringValue(vistaAC.getTablaHorarioValueAt(3, 3).toString().trim());     
-        calcNC.getCellByPosition(7,47).setStringValue(vistaAC.getTablaHorarioValueAt(3, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,47).setStringValue(vistaAC.getTablaHorarioValueAt(3, 5).toString().trim());
-        calcNC.getCellByPosition(9,46).setStringValue(vistaAC.getTablaHorarioValueAt(3, 6).toString().trim());           
+        calcNC.getCellByPosition(1,46).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 0).toString().trim());
+        calcNC.getCellByPosition(2,46).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 1).toString().trim());
+        calcNC.getCellByPosition(4,47).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 2).toString().trim());
+        calcNC.getCellByPosition(5,47).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 3).toString().trim());     
+        calcNC.getCellByPosition(7,47).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,47).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 5).toString().trim());
+        calcNC.getCellByPosition(9,46).setStringValue(vistaAC.getTablaHorario().getValueAt(3, 6).toString().trim());           
         
-        calcNC.getCellByPosition(1,49).setStringValue(vistaAC.getTablaHorarioValueAt(4, 0).toString().trim());
-        calcNC.getCellByPosition(2,49).setStringValue(vistaAC.getTablaHorarioValueAt(4, 1).toString().trim());
-        calcNC.getCellByPosition(4,50).setStringValue(vistaAC.getTablaHorarioValueAt(4, 2).toString().trim());
-        calcNC.getCellByPosition(5,50).setStringValue(vistaAC.getTablaHorarioValueAt(4, 3).toString().trim());     
-        calcNC.getCellByPosition(7,50).setStringValue(vistaAC.getTablaHorarioValueAt(4, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,50).setStringValue(vistaAC.getTablaHorarioValueAt(4, 5).toString().trim());
-        calcNC.getCellByPosition(9,49).setStringValue(vistaAC.getTablaHorarioValueAt(4, 6).toString().trim());         
+        calcNC.getCellByPosition(1,49).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 0).toString().trim());
+        calcNC.getCellByPosition(2,49).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 1).toString().trim());
+        calcNC.getCellByPosition(4,50).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 2).toString().trim());
+        calcNC.getCellByPosition(5,50).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 3).toString().trim());     
+        calcNC.getCellByPosition(7,50).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,50).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 5).toString().trim());
+        calcNC.getCellByPosition(9,49).setStringValue(vistaAC.getTablaHorario().getValueAt(4, 6).toString().trim());         
         
-        calcNC.getCellByPosition(1,52).setStringValue(vistaAC.getTablaHorarioValueAt(5, 0).toString().trim());
-        calcNC.getCellByPosition(2,52).setStringValue(vistaAC.getTablaHorarioValueAt(5, 1).toString().trim());
-        calcNC.getCellByPosition(4,53).setStringValue(vistaAC.getTablaHorarioValueAt(5, 2).toString().trim());
-        calcNC.getCellByPosition(5,53).setStringValue(vistaAC.getTablaHorarioValueAt(5, 3).toString().trim());     
-        calcNC.getCellByPosition(7,53).setStringValue(vistaAC.getTablaHorarioValueAt(5, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,53).setStringValue(vistaAC.getTablaHorarioValueAt(5, 5).toString().trim());
-        calcNC.getCellByPosition(9,52).setStringValue(vistaAC.getTablaHorarioValueAt(5, 6).toString().trim());       
+        calcNC.getCellByPosition(1,52).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 0).toString().trim());
+        calcNC.getCellByPosition(2,52).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 1).toString().trim());
+        calcNC.getCellByPosition(4,53).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 2).toString().trim());
+        calcNC.getCellByPosition(5,53).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 3).toString().trim());     
+        calcNC.getCellByPosition(7,53).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,53).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 5).toString().trim());
+        calcNC.getCellByPosition(9,52).setStringValue(vistaAC.getTablaHorario().getValueAt(5, 6).toString().trim());       
         
-        calcNC.getCellByPosition(1,55).setStringValue(vistaAC.getTablaHorarioValueAt(6, 0).toString().trim());
-        calcNC.getCellByPosition(2,55).setStringValue(vistaAC.getTablaHorarioValueAt(6, 1).toString().trim());
-        calcNC.getCellByPosition(4,56).setStringValue(vistaAC.getTablaHorarioValueAt(6, 2).toString().trim());
-        calcNC.getCellByPosition(5,56).setStringValue(vistaAC.getTablaHorarioValueAt(6, 3).toString().trim());     
-        calcNC.getCellByPosition(7,56).setStringValue(vistaAC.getTablaHorarioValueAt(6, 4).toString().trim()); 
-        calcNC.getCellByPosition(8,56).setStringValue(vistaAC.getTablaHorarioValueAt(6, 5).toString().trim());
-        calcNC.getCellByPosition(9,55).setStringValue(vistaAC.getTablaHorarioValueAt(6, 6).toString().trim());      
+        calcNC.getCellByPosition(1,55).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 0).toString().trim());
+        calcNC.getCellByPosition(2,55).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 1).toString().trim());
+        calcNC.getCellByPosition(4,56).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 2).toString().trim());
+        calcNC.getCellByPosition(5,56).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 3).toString().trim());     
+        calcNC.getCellByPosition(7,56).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 4).toString().trim()); 
+        calcNC.getCellByPosition(8,56).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 5).toString().trim());
+        calcNC.getCellByPosition(9,55).setStringValue(vistaAC.getTablaHorario().getValueAt(6, 6).toString().trim());      
         //
         calcNC.getCellByPosition("B60").setStringValue(vistaAC.getAreaGestor());
         calcNC.getCellByPosition("B67").setStringValue(vistaAC.getCategoria());
@@ -190,7 +190,7 @@ public class CarpetaA3ControlGestor {
         
         // Registro Horario: registro emitido y fecha de emisión
         
-        if(vistaAC.getComboJornadaSelectedItem().toString().contains(TIEMPO_PARCIAL) ||
+        if(vistaAC.getComboJornada().getSelectedItem().toString().contains(TIEMPO_PARCIAL) ||
                 vistaAC.getTipoContrato().contains(FORMACION))
         {
             SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
@@ -249,11 +249,11 @@ public class CarpetaA3ControlGestor {
         Date fecha = new Date();
         DateFormat formatoHora = new SimpleDateFormat("HHmmss");
         String horaActual = formatoHora.format(fecha);
-        String sCliente = vistaAC.getClienteName();
+        String sCliente = vistaAC.getComboCliente().getSelectedItem().toString();
         sCliente = sCliente.replace(".","");
         sCliente = sCliente.replace(", ","_");
         sCliente = sCliente.replace(" ", "_");
-        String sTrabajador = vistaAC.getTrabajadorName();
+        String sTrabajador = vistaAC.getComboTrabajador().getSelectedItem().toString();
         sTrabajador = sTrabajador.replace(".","");
         sTrabajador = sTrabajador.replace(", ","_");
         sTrabajador = sTrabajador.replace(" ", "_");

@@ -40,9 +40,9 @@ public class DatosVistaContratos {
             }
         
         // Cliente CCC
-        if(vista.getComboClienteCCCItemCount() == 0 ||
-                (vista.getComboClienteCCCItemCount() > 2 &&
-                vista.getComboClienteCCCSelectedIndex() == 0)){
+        if(vista.getComboClienteCCC().getItemCount() == 0 ||
+                (vista.getComboClienteCCC().getItemCount() > 2 &&
+                vista.getComboClienteCCC().getSelectedIndex() == 0)){
             mensajeAviso.append("No se ha establecido el CCC de contratación del cliente.\n");
             comprobadoOK = false;
         }
@@ -54,7 +54,7 @@ public class DatosVistaContratos {
         }  
         
         // Duración
-        if(vista.getComboDuracionContratoSelectedIndex() == 0)
+        if(vista.getComboDuracionContrato().getSelectedIndex() == 0)
         {
             mensajeAviso.append("No se ha establecido la Duración del contrato.\n");
             comprobadoOK = false;
@@ -68,7 +68,7 @@ public class DatosVistaContratos {
         }
         else if (vista.getEtqDuracionContrato() != null)
             {
-                if(!vista.getComboDuracionContratoSelectedItem().toString().equals("Indefinido") && vista.getFechaFinContrato().length() == 0)  
+                if(!vista.getComboDuracionContrato().getSelectedItem().toString().equals("Indefinido") && vista.getFechaFinContrato().length() == 0)  
                 {
                     mensajeAviso.append("No se ha establecido la Fecha de finalización del contrato.\n");
                     comprobadoOK = false;
@@ -76,12 +76,12 @@ public class DatosVistaContratos {
             }
 
         // Jornada
-        if (vista.getComboJornadaSelectedIndex() == 0)
+        if (vista.getComboJornada().getSelectedIndex() == 0)
         {
             mensajeAviso.append("No se ha establecido la Jornada del contrato.\n");
             comprobadoOK = false;
         }
-        else if (vista.getComboJornadaSelectedItem().equals("Tiempo parcial") &&
+        else if (vista.getComboJornada().getSelectedItem().equals("Tiempo parcial") &&
                 vista.getHorasSemana().length() == 0)
         {
             mensajeAviso.append("No se han establecido las horas de la jornada.\n");
