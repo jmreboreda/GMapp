@@ -18,9 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class CarpetaA3ControlGestor {
@@ -28,9 +28,9 @@ public class CarpetaA3ControlGestor {
     VistaAltaContratos vistaAC;
     private SpreadsheetDocument libroCalcActual;
     private InputStream archivoODF;
-    private String SysOper = System.getProperty("os.name");
-    private String userName = System.getProperty("user.name");
-    private String userHome = System.getProperty("user.home");     
+    private String SysOper;
+    private String userName;
+    private String userHome ;     
     private String nomFileSaveToPrint = "";
     private String nomFileSaveToPDF = "";
     private String NUEVO_CONTRATO;
@@ -40,6 +40,11 @@ public class CarpetaA3ControlGestor {
     public CarpetaA3ControlGestor(VistaAltaContratos vistaOrigen) {
         
         vistaAC = vistaOrigen;
+        
+        SysOper = System.getProperty("os.name");
+        userName = System.getProperty("user.name");
+        userHome = System.getProperty("user.home");             
+        
         libroCalcActual = cargaPlantilla();
         rellenarDGM_003(libroCalcActual);
         String nomFileToPrint = guardarDGM_003toPrint();
