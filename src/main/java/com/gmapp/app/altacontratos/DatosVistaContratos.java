@@ -48,7 +48,7 @@ public class DatosVistaContratos {
         }
         
         // Tipo contrato
-        if(vista.getComboTipoContratoSelectedIndex() == 0){
+        if(vista.getComboTiposContrato().getSelectedIndex() == 0){
             mensajeAviso.append("No se ha seleccionado el Tipo de contrato.\n");
             comprobadoOK = false;
         }  

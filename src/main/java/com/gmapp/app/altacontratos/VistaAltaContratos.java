@@ -344,18 +344,18 @@ public class VistaAltaContratos extends JPanel{
     public void setHorasSemana(String texto){
         tfHorasSemana.setText(texto);
     }
+
     
-   
     public void setEtqStringContrato(String texto){
         etqStringContrato.setText(texto);
     }
     
-   
+    
     public void settfFechaHastaEnabled(Boolean  bol){
         tfFechaHasta.setEnabled(bol);
     }
 
-   
+    
     public void setBotonAceptarEnabled(Boolean bol){
         botonAceptar.setEnabled(bol);
     }
@@ -365,56 +365,62 @@ public class VistaAltaContratos extends JPanel{
         tfTipoContratoOtros.setEnabled(bol);
     }
     
-   
+    
     public void settfHorasSemanaEnabled(Boolean bol){
         tfHorasSemana.setEnabled(bol);
     }
+    
     
     public JComboBox<String> getComboClienteCCC(){
         return comboClienteCCC;
     }
     
+    
     public String getFechaNotificacion() {
             return tfFechaNotif.getText();
     }
-
    
+    
     public String getHoraNotificacion() {
         return tfHoraNotif.getText();
     }
+    
     
     public JComboBox<String> getComboCliente(){
         return comboCliente;
     }
     
+    
     public JComboBox<String> getComboTrabajador(){
         return comboTrabajador;
     }
 
+    
     public String  getTrabajadorNIF(){
         return etqNIF.getText();
     }
-    
    
+    
     public String getTrabajadorNASS(){
         return etqNASS.getText();
     }
     
-   
+    
     public String getTrabajadorFNacim(){
         return etqFNacim.getText();
     }
    
+    
     public String getTrabajadorEstadoCivil(){
         return etqEstadoCivil.getText();
     }
     
-   
+    
     public String getTrabajadorNacionalidad(){
         return etqNacion.getText();
     }
     
-   
+    
     public String getTrabajadorDireccion(){
         return etqDireccion.getText();
     }
@@ -424,22 +430,12 @@ public class VistaAltaContratos extends JPanel{
         return etqNivEst.getText();
     }
     
-   
-    public String getTipoContrato() {
-        return comboTiposContrato.getSelectedItem().toString();
-    }
     
-   
-    public int getComboTipoContratoSelectedIndex(){
-        return comboTiposContrato.getSelectedIndex();
-    }
+    public JComboBox<String> getComboTiposContrato(){
+        return comboTiposContrato;
+    }    
+
     
-   
-    public Object getComboTipoContratoSelectedItem(){
-        return comboTiposContrato.getSelectedItem();
-    }
-    
-   
     public String getTipoContratoOtros(){
         return tfTipoContratoOtros.getText();
     }
@@ -514,10 +510,12 @@ public class VistaAltaContratos extends JPanel{
         return lista;
     }
     
+    
     public JTable getTablaHorario(){
         return tablaHorario;
     }  
    
+    
     public String getAreaGestor(){
         return this.taNotasGestor.getText();
     }
@@ -532,13 +530,10 @@ public class VistaAltaContratos extends JPanel{
         return this.taCategoria.getText();
     }
 
-   
-    public Boolean botonAceptarIsEnabled(){
-        if(this.botonAceptar.isEnabled())
-            return true;
-        else
-            return false;
+    public JButton getBotonAceptar(){
+        return botonAceptar;
     }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

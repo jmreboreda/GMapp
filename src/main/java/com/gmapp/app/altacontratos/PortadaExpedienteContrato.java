@@ -85,13 +85,13 @@ public class PortadaExpedienteContrato {
         sDuracionContrato = sDuracionContrato.replace("]","").trim();
         hojaPEC.getCellByPosition("P20").setStringValue(sDuracionContrato); // Duración contrato
         
-        String sTipoContrato = vistaAC.getTipoContrato();
+        String sTipoContrato = vistaAC.getComboTiposContrato().getSelectedItem().toString();
         if(sTipoContrato.contains("["))
             sTipoContrato = sTipoContrato.substring(0,7);
         else if (sTipoContrato.contains("Otros"))
                 sTipoContrato = "Otros contratos: " + vistaAC.getTipoContratoOtros();
         else
-            sTipoContrato = vistaAC.getTipoContrato();
+            sTipoContrato = vistaAC.getComboTiposContrato().getSelectedItem().toString();
         
         if(vistaAC.getComboDuracionContrato().getSelectedItem().equals("Temporal"))
             sTipoContrato = sTipoContrato + ", " + vistaAC.getComboDuracionContrato().getSelectedItem() + " [ hasta "

@@ -93,7 +93,7 @@ public class CarpetaA3ControlGestor {
         calcNC.getCellByPosition("G18").setStringValue(vistaAC.getTrabajadorDireccion());
         calcNC.getCellByPosition("G23").setStringValue(vistaAC.getTrabajadorNivEst());
 
-        String tipoCtto = vistaAC.getTipoContrato();
+        String tipoCtto = vistaAC.getComboTiposContrato().getSelectedItem().toString();
         tipoCtto = tipoCtto + ", " + vistaAC.getComboDuracionContrato().getSelectedItem().toString();
         tipoCtto = tipoCtto + ", " + vistaAC.getComboJornada().getSelectedItem().toString();
         
@@ -191,7 +191,7 @@ public class CarpetaA3ControlGestor {
         // Registro Horario: registro emitido y fecha de emisión
         
         if(vistaAC.getComboJornada().getSelectedItem().toString().contains(TIEMPO_PARCIAL) ||
-                vistaAC.getTipoContrato().contains(FORMACION))
+                vistaAC.getComboTiposContrato().getSelectedItem().toString().contains(FORMACION))
         {
             SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");

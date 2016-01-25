@@ -224,13 +224,13 @@ public class ControladorAltaContratos {
     }
     
     public void cambiadoTipoContrato(){
-        if(vistaAC.getComboTipoContratoSelectedIndex() == 0)
+        if(vistaAC.getComboTiposContrato().getSelectedIndex() == 0)
         {
             vistaAC.setTipoContratoOtros("");
             vistaAC.settfTipoContratoOtrosEnabled(false);
         }
         
-        if(vistaAC.getComboTipoContratoSelectedItem().toString().equals("Otros tipos"))
+        if(vistaAC.getComboTiposContrato().getSelectedItem().toString().equals("Otros tipos"))
             vistaAC.settfTipoContratoOtrosEnabled(true);
         else
         {
@@ -396,7 +396,7 @@ public class ControladorAltaContratos {
         // Número de variación: cero, al ser contrato inicial
         datosContrato.add(0);
         // Tipo variacion: tipo contrato al ser número de variación = 0
-        int indexTipoContratoSelected = vistaAC.getComboTipoContratoSelectedIndex();
+        int indexTipoContratoSelected = vistaAC.getComboTiposContrato().getSelectedIndex();
         int idTipoContrato =  listaIDTiposContratos.get(indexTipoContratoSelected -1);
         datosContrato.add(idTipoContrato);
         // Idcliente GM        
@@ -429,7 +429,7 @@ public class ControladorAltaContratos {
 //            emisionRegistroHorario = true;
         }
         // Tipo contrato
-        datosContrato.add(vistaAC.getTipoContrato());
+        datosContrato.add(vistaAC.getComboTiposContrato().getSelectedItem().toString());
         
         // Fecha inicio contrato
         datosContrato.add(funcion.formatoFecha_us(vistaAC.getFechaInicioContrato()));
@@ -524,10 +524,10 @@ public class ControladorAltaContratos {
     }
     
     public void botonAceptarMouseClicked(){
-        if (vistaAC.botonAceptarIsEnabled())
+        if (vistaAC.getBotonAceptar().isEnabled())
             if(comprobarDatosContrato())
             {
-                vistaAC.setBotonAceptarEnabled(false);
+                vistaAC.getBotonAceptar().setEnabled(false);
                 grabarDatosContrato();
             }
     }
