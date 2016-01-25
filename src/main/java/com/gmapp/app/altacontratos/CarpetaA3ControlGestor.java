@@ -18,71 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
@@ -91,11 +28,14 @@ public class CarpetaA3ControlGestor {
     VistaAltaContratos vistaAC;
     private SpreadsheetDocument libroCalcActual;
     private InputStream archivoODF;
-    private String SysOp = System.getProperty("os.name");
+    private String SysOper = System.getProperty("os.name");
     private String userName = System.getProperty("user.name");
     private String userHome = System.getProperty("user.home");     
     private String nomFileSaveToPrint = "";
     private String nomFileSaveToPDF = "";
+    private String NUEVO_CONTRATO;
+    private String TIEMPO_PARCIAL;
+    private String FORMACION;
 
     public CarpetaA3ControlGestor(VistaAltaContratos vistaOrigen) {
         
@@ -129,12 +69,12 @@ public class CarpetaA3ControlGestor {
    
     private void rellenarDGM_003(SpreadsheetDocument libro)
     {   
-        String sNuevoContrato = StringUtils.getString(StringUtils.NUEVO_CONTRATO);
-        String sTiempoParcial = StringUtils.getString(StringUtils.TIEMPO_PARCIAL);
-        String sFormacion = StringUtils.getString(StringUtils.FORMACION);
+        NUEVO_CONTRATO = StringUtils.getString(StringUtils.NUEVO_CONTRATO);
+        TIEMPO_PARCIAL = StringUtils.getString(StringUtils.TIEMPO_PARCIAL);
+        FORMACION = StringUtils.getString(StringUtils.FORMACION);
         
         Table calcNC = libro.getSheetByIndex(0);
-        calcNC.getCellByPosition("B7").setStringValue(sNuevoContrato);
+        calcNC.getCellByPosition("B7").setStringValue(NUEVO_CONTRATO);
         calcNC.getCellByPosition("B12").setStringValue(vistaAC.getClienteName());
         calcNC.getCellByPosition("B17").setStringValue(vistaAC.getComboClienteCCCSelectedItem()); 
         calcNC.getCellByPosition("B21").setStringValue(vistaAC.getFechaNotificacion());                     // Día aviso
@@ -152,7 +92,7 @@ public class CarpetaA3ControlGestor {
         tipoCtto = tipoCtto + ", " + vistaAC.getComboDuracionContratoSelectedItem().toString();
         tipoCtto = tipoCtto + ", " + vistaAC.getComboJornadaSelectedItem().toString();
         
-        if(vistaAC.getComboJornadaSelectedItem().toString().equals(sTiempoParcial))
+        if(vistaAC.getComboJornadaSelectedItem().toString().equals(TIEMPO_PARCIAL))
             tipoCtto = tipoCtto + " [" + vistaAC.getHorasSemana() + " horas/semana ]";
 
         calcNC.getCellByPosition("B29").setStringValue(tipoCtto); 
@@ -241,12 +181,12 @@ public class CarpetaA3ControlGestor {
         CodeParaEAN13 ean13 = new CodeParaEAN13();
         String sEAN13code = ean13.CodeParaEAN13(sEAN13);
         
-        calcNC.getCellByPosition("I66").setStringValue(sEAN13code);             // EAN 13
+        calcNC.getCellByPosition("I66").setStringValue(sEAN13code);
         
         // Registro Horario: registro emitido y fecha de emisión
         
-        if(vistaAC.getComboJornadaSelectedItem().toString().contains(sTiempoParcial) ||
-                vistaAC.getTipoContrato().contains(sFormacion))
+        if(vistaAC.getComboJornadaSelectedItem().toString().contains(TIEMPO_PARCIAL) ||
+                vistaAC.getTipoContrato().contains(FORMACION))
         {
             SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");
@@ -279,7 +219,7 @@ public class CarpetaA3ControlGestor {
             String myPathToTemp = Path.cargarXml("PathToTemp");
             
             try {
-                if (SysOp.equals("Linux"))
+                if (SysOper.equals("Linux"))
                 nomFileSaveToPrint = myPathToTemp + "ODFtk_DGM_003_Nuevo_Contrato_" + horaActual + "_LO.ods";
                 else
                 nomFileSaveToPrint = userHome + myPathToTemp + "ODFtk_DGM_003_Nuevo_Contrato_" + horaActual + "_LO.ods";
@@ -317,7 +257,7 @@ public class CarpetaA3ControlGestor {
         String myPathToTemp = Path.cargarXml("PathToTemp");
         
         try {
-            if (SysOp.equals("Linux"))
+            if (SysOper.equals("Linux"))
                 nomFileSaveToPDF = myPathToTemp + sCliente + "_Nuevo_Contrato_" + vistaAC.getFechaInicioContrato() + "_" + sTrabajador + ".ods";
             else
                 nomFileSaveToPDF = userHome + myPathToTemp + sCliente + "_Nuevo_Contrato_"

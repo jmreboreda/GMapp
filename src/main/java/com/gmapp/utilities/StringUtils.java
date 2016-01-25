@@ -23,6 +23,8 @@ public class StringUtils {
     public static String TIPOVARIACION_600_EXCEDENCIA_INICIO = "600";
     public static String TIPOVARIACION_700_MATERNIDAD_INICIO = "700";
     
+    public static String EMPTY_STRING = "";
+    
     public static String getString(String string){
        
         return string;

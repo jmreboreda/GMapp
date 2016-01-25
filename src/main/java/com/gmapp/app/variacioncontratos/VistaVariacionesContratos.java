@@ -6,9 +6,11 @@
 package com.gmapp.app.variacioncontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
+import com.gmapp.utilities.StringUtils;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -25,9 +27,8 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     public VistaVariacionesContratos(ModeloVariacionesContratos modelo) {
         initComponents();
         controladorVC = new ControladorVariacionesContratos(modelo, this);
-        EMPTY_STRING = "";
-
-        limpiarDatosContrato();
+        EMPTY_STRING = StringUtils.getString(StringUtils.EMPTY_STRING);
+        componentsClear();
     }
     
     public void setBotonMenuPrincipal(JButton botonOrigen){
@@ -38,7 +39,7 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         this.menu = menuP;
     }
     
-    public void limpiarDatosContrato(){
+    public void componentsClear(){
         
         labelNumContrato.setText(EMPTY_STRING);
         labelTipoContrato.setText(EMPTY_STRING);
@@ -49,30 +50,31 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         labelFechaDesde.setText(EMPTY_STRING);
         labelFechaHasta.setText(EMPTY_STRING);
         labelNumContratoINEM.setText(EMPTY_STRING);
-        labelDuracionContrato.setText(EMPTY_STRING);        
+        labelDuracionContrato.setText(EMPTY_STRING);
+        comboTipoVariacion.setSelectedIndex(0);
+        labelFecha.setText(EMPTY_STRING);
+        labelDescripcion.setText(EMPTY_STRING);
     }
     
-    public void cargaComboClientes(List<String> listaClientes){
+    public void clientComboLoad(List<String> listaClientes){
         for (String nombre: listaClientes)
             comboCliente.addItem(nombre);
     }
     
-    public void cargaComboTrabajadores(List<String> listaTrabajadores){
+    public void workerComboLoad(List<String> listaTrabajadores){
         comboTrabajador.removeAllItems();
         for (String nombre: listaTrabajadores)
             comboTrabajador.addItem(nombre);
     }
     
-    public void comboClienteCambiado(){
-        controladorVC.cambiadoCliente();
+    public void clientChanged(){
+        controladorVC.clientChanged();
     }
     
-    public void comboClienteSetEnabled(Boolean enabled){
-        comboCliente.setEnabled(enabled);
+    public void workerChanged(){
+        controladorVC.workerChanged();
     }
-    
-    
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,11 +112,11 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         labelDuracionContrato = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboTipoVariacion = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        labelDescripcion = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         botonSalir = new javax.swing.JButton();
         botonAceptar = new javax.swing.JButton();
@@ -158,7 +160,11 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         comboTrabajador.setBackground(new java.awt.Color(255, 255, 204));
         comboTrabajador.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         comboTrabajador.setForeground(new java.awt.Color(0, 0, 204));
-        comboTrabajador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTrabajadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -456,13 +462,13 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de variación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jComboBox3.setBackground(new java.awt.Color(255, 255, 204));
-        jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(0, 0, 204));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el tipo de variación del contrato ...", "Extinción de contrato: agotamiento de los plazos del tipo de contrato" }));
-        jComboBox3.setMaximumSize(new java.awt.Dimension(455, 25));
-        jComboBox3.setMinimumSize(new java.awt.Dimension(455, 25));
-        jComboBox3.setPreferredSize(new java.awt.Dimension(455, 25));
+        comboTipoVariacion.setBackground(new java.awt.Color(255, 255, 204));
+        comboTipoVariacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        comboTipoVariacion.setForeground(new java.awt.Color(0, 0, 204));
+        comboTipoVariacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el tipo de variación del contrato ...", "Extinción de contrato: agotamiento de los plazos del tipo de contrato" }));
+        comboTipoVariacion.setMaximumSize(new java.awt.Dimension(455, 25));
+        comboTipoVariacion.setMinimumSize(new java.awt.Dimension(455, 25));
+        comboTipoVariacion.setPreferredSize(new java.awt.Dimension(455, 25));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -470,14 +476,14 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipoVariacion, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipoVariacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -485,10 +491,13 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         jPanel10.setEnabled(false);
         jPanel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("01-01-2012");
+        labelFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelFecha.setForeground(new java.awt.Color(0, 0, 204));
+        labelFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelFecha.setText("01-01-2012");
+        labelFecha.setMaximumSize(new java.awt.Dimension(68, 37));
+        labelFecha.setMinimumSize(new java.awt.Dimension(68, 37));
+        labelFecha.setPreferredSize(new java.awt.Dimension(68, 37));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -496,20 +505,20 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addComponent(labelFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción campo tabla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("22,00 horas/semana");
+        labelDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelDescripcion.setForeground(new java.awt.Color(0, 0, 204));
+        labelDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDescripcion.setText("22,00 horas/semana");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -517,12 +526,12 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addComponent(labelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -650,18 +659,20 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     }//GEN-LAST:event_botonSalirMouseClicked
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
-        comboClienteCambiado();
+        clientChanged();
     }//GEN-LAST:event_comboClienteActionPerformed
+
+    private void comboTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTrabajadorActionPerformed
+        workerChanged();
+    }//GEN-LAST:event_comboTrabajadorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCliente;
+    private javax.swing.JComboBox<String> comboTipoVariacion;
     private javax.swing.JComboBox<String> comboTrabajador;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -682,8 +693,10 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelDiasTrabajo;
     private javax.swing.JLabel labelDuracionContrato;
+    private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelFechaDesde;
     private javax.swing.JLabel labelFechaHasta;
     private javax.swing.JLabel labelHorasTrabajo;
@@ -701,83 +714,83 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         this.comboCliente = comboCliente;
     }
 
-    public javax.swing.JLabel getLabelCategoria() {
+    public JLabel getLabelCategoria() {
         return labelCategoria;
     }
 
-    public void setLabelCategoria(javax.swing.JLabel labelCategoria) {
+    public void setLabelCategoria(JLabel labelCategoria) {
         this.labelCategoria = labelCategoria;
     }
 
-    public javax.swing.JLabel getLabelDiasTrabajo() {
+    public JLabel getLabelDiasTrabajo() {
         return labelDiasTrabajo;
     }
 
-    public void setLabelDiasTrabajo(javax.swing.JLabel labelDiasTrabajo) {
+    public void setLabelDiasTrabajo(JLabel labelDiasTrabajo) {
         this.labelDiasTrabajo = labelDiasTrabajo;
     }
 
-    public javax.swing.JLabel getLabelDuracionContrato() {
+    public JLabel getLabelDuracionContrato() {
         return labelDuracionContrato;
     }
 
-    public void setLabelDuracionContrato(javax.swing.JLabel labelDuracionContrato) {
+    public void setLabelDuracionContrato(JLabel labelDuracionContrato) {
         this.labelDuracionContrato = labelDuracionContrato;
     }
 
-    public javax.swing.JLabel getLabelFechaDesde() {
+    public JLabel getLabelFechaDesde() {
         return labelFechaDesde;
     }
 
-    public void setLabelFechaDesde(javax.swing.JLabel labelFechaDesde) {
+    public void setLabelFechaDesde(JLabel labelFechaDesde) {
         this.labelFechaDesde = labelFechaDesde;
     }
 
-    public javax.swing.JLabel getLabelFechaHasta() {
+    public JLabel getLabelFechaHasta() {
         return labelFechaHasta;
     }
 
-    public void setLabelFechaHasta(javax.swing.JLabel labelFechaHasta) {
+    public void setLabelFechaHasta(JLabel labelFechaHasta) {
         this.labelFechaHasta = labelFechaHasta;
     }
 
-    public javax.swing.JLabel getLabelHorasTrabajo() {
+    public JLabel getLabelHorasTrabajo() {
         return labelHorasTrabajo;
     }
 
-    public void setLabelHorasTrabajo(javax.swing.JLabel labelHorasTrabajo) {
+    public void setLabelHorasTrabajo(JLabel labelHorasTrabajo) {
         this.labelHorasTrabajo = labelHorasTrabajo;
     }
 
-    public javax.swing.JLabel getLabelNumContrato() {
+    public JLabel getLabelNumContrato() {
         return labelNumContrato;
     }
 
-    public void setLabelNumContrato(javax.swing.JLabel labelNumContrato) {
+    public void setLabelNumContrato(JLabel labelNumContrato) {
         this.labelNumContrato = labelNumContrato;
     }
 
-    public javax.swing.JLabel getLabelNumContratoINEM() {
+    public JLabel getLabelNumContratoINEM() {
         return labelNumContratoINEM;
     }
 
-    public void setLabelNumContratoINEM(javax.swing.JLabel labelNumContratoINEM) {
+    public void setLabelNumContratoINEM(JLabel labelNumContratoINEM) {
         this.labelNumContratoINEM = labelNumContratoINEM;
     }
 
-    public javax.swing.JLabel getLabelTipoContrato() {
+    public JLabel getLabelTipoContrato() {
         return labelTipoContrato;
     }
 
-    public void setLabelTipoContrato(javax.swing.JLabel labelTipoContrato) {
+    public void setLabelTipoContrato(JLabel labelTipoContrato) {
         this.labelTipoContrato = labelTipoContrato;
     }
 
-    public javax.swing.JLabel getLabelTipoVariacion() {
+    public JLabel getLabelTipoVariacion() {
         return labelTipoVariacion;
     }
 
-    public void setLabelTipoVariacion(javax.swing.JLabel labelTipoVariacion) {
+    public void setLabelTipoVariacion(JLabel labelTipoVariacion) {
         this.labelTipoVariacion = labelTipoVariacion;
     }
 
@@ -788,6 +801,4 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     public void setComboTrabajador(javax.swing.JComboBox<String> comboTrabajador) {
         this.comboTrabajador = comboTrabajador;
     }
-    
-    
 }

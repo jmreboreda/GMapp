@@ -45,14 +45,13 @@ public class ControladorVariacionesContratos {
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaVC.cargaComboClientes(listaNombresClientes);
-        vistaVC.comboClienteSetEnabled(true);
-        
+        vistaVC.clientComboLoad(listaNombresClientes);
+        vistaVC.getComboCliente().setEnabled(true);
     }
     
-    public void cambiadoCliente(){
+    public void clientChanged(){
         if(vistaVC.getComboCliente().getSelectedIndex() == 0){
-            vistaVC.limpiarDatosContrato();
+            vistaVC.componentsClear();
             return;
         }
         listaNombresTrabajadores.clear();
@@ -73,16 +72,17 @@ public class ControladorVariacionesContratos {
          else{
             System.out.println("No se han encontrado contratos en vigor");
         }
-        vistaVC.cargaComboTrabajadores(listaNombresTrabajadores);
-        
-        
-        
-         
-        
+        vistaVC.getComboTrabajador().setEnabled(false);
+        vistaVC.workerComboLoad(listaNombresTrabajadores);
+        vistaVC.getComboTrabajador().setEnabled(true);       
     }
     
-    public void cambiadoTrabajador(){
+    public void workerChanged(){
         
+        if(vistaVC.getComboTrabajador().getSelectedIndex() == 0){
+            vistaVC.componentsClear();
+            return;
+        }
     }
     
     public void cambiadoTipoContrato(){
