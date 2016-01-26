@@ -390,9 +390,17 @@ public class VistaAltaContratos extends JPanel{
         return comboCliente;
     }
     
+    public String getSelectedClientName(){
+        return comboCliente.getSelectedItem().toString();
+    }
+    
     
     public JComboBox<String> getComboTrabajador(){
         return comboTrabajador;
+    }
+    
+   public String getSelectedEmployeeName(){
+        return comboTrabajador.getSelectedItem().toString();
     }
 
     
