@@ -36,8 +36,8 @@ public class ControladorVariacionesContratos {
         ContratoVO miContrato;
         List <ContratoVO> listaContratos = modeloVC.getClientesConContratosEnVigor();
         if (listaContratos.size() > 0){
-            for (int i = 0; i < listaContratos.size(); i++){
-                miContrato = listaContratos.get(i);
+            for(ContratoVO contrato: listaContratos){
+                miContrato = contrato;
                 listaNombresClientes.add(miContrato.getClientegm_name());
                 listaIDClientes.add(miContrato.getIdcliente_gm());
             }
@@ -51,6 +51,7 @@ public class ControladorVariacionesContratos {
     
     public void clientChanged(){
         if(vistaVC.getComboCliente().getSelectedIndex() == 0){
+            vistaVC.getComboTrabajador().removeAllItems();
             vistaVC.componentsClear();
             return;
         }
@@ -63,8 +64,8 @@ public class ControladorVariacionesContratos {
         if(listaContratos.size() > 0){
             if(listaContratos.size() > 1)
                 listaNombresTrabajadores.add("Seleccionar trabajador ...");
-            for (int i = 0; i < listaContratos.size(); i++){
-                 miContrato = listaContratos.get(i);
+            for (ContratoVO contrato: listaContratos){
+                 miContrato = contrato;
                  listaNombresTrabajadores.add(miContrato.getTrabajador_name());
                  listaIDTrabajadores.add(miContrato.getIdtrabajador());
              }
