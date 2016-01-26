@@ -21,13 +21,13 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class VistaAltaContratos extends JPanel{
     
@@ -375,6 +375,9 @@ public class VistaAltaContratos extends JPanel{
         return comboClienteCCC;
     }
     
+    public String getClientCCC(){
+        return comboCliente.getSelectedItem().toString();
+    }
     
     public String getFechaNotificacion() {
             return tfFechaNotif.getText();
@@ -390,7 +393,7 @@ public class VistaAltaContratos extends JPanel{
         return comboCliente;
     }
     
-    public String getSelectedClientName(){
+    public String getClientName(){
         return comboCliente.getSelectedItem().toString();
     }
     
@@ -399,7 +402,7 @@ public class VistaAltaContratos extends JPanel{
         return comboTrabajador;
     }
     
-   public String getSelectedEmployeeName(){
+   public String getEmployeeName(){
         return comboTrabajador.getSelectedItem().toString();
     }
 
@@ -436,6 +439,10 @@ public class VistaAltaContratos extends JPanel{
    
     public String getTrabajadorNivEst(){
         return etqNivEst.getText();
+    }
+    
+    public String getTypeContract(){
+        return comboTiposContrato.getSelectedItem().toString();
     }
     
     

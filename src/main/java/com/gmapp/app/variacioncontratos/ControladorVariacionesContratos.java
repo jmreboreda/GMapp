@@ -7,7 +7,9 @@ package com.gmapp.app.variacioncontratos;
 
 import com.gmapp.vo.ContratoVO;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,34 +20,34 @@ public class ControladorVariacionesContratos {
     private ModeloVariacionesContratos modeloVC;
     private VistaVariacionesContratos vistaVC;
     
-    private List<String> listaNombresClientes;
-    private List <Integer> listaIDClientes;
-    private List <String> listaNombresTrabajadores;    
-    private List <Integer> listaIDTrabajadores ;
+    private List<String> clientsNamesList;
+    private Map<String,Integer> clientsNameId;
+    private List <String> employeesNamesList;  
+    private Map<String, Integer> employeesNameId;
     
     public ControladorVariacionesContratos(ModeloVariacionesContratos modelo, VistaVariacionesContratos vista) {
         
         modeloVC = modelo;
         vistaVC = vista;
         
-        listaNombresClientes = new ArrayList<>();
-        listaIDClientes = new ArrayList();
-        listaNombresTrabajadores = new ArrayList<>();    
-        listaIDTrabajadores = new ArrayList();
+        clientsNameId = new HashMap<>();
+        employeesNameId = new HashMap<>();
+        clientsNamesList = new ArrayList<>();
+        employeesNamesList = new ArrayList<>();    
 
         ContratoVO miContrato;
         List <ContratoVO> listaContratos = modeloVC.getClientesConContratosEnVigor();
         if (listaContratos.size() > 0){
             for(ContratoVO contrato: listaContratos){
                 miContrato = contrato;
-                listaNombresClientes.add(miContrato.getClientegm_name());
-                listaIDClientes.add(miContrato.getIdcliente_gm());
+                clientsNamesList.add(miContrato.getClientegm_name());
+                clientsNameId.put(miContrato.getClientegm_name(), miContrato.getIdcliente_gm());
             }
         }
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaVC.clientComboLoad(listaNombresClientes);
+        vistaVC.clientComboLoad(clientsNamesList);
         vistaVC.getComboCliente().setEnabled(true);
     }
     
@@ -55,30 +57,28 @@ public class ControladorVariacionesContratos {
             vistaVC.componentsClear();
             return;
         }
-        listaNombresTrabajadores.clear();
-        int indexClienteSeleccionado = vistaVC.getComboCliente().getSelectedIndex();
-        int idClienteSeleccionado = listaIDClientes.get(indexClienteSeleccionado - 1);
-        
+        employeesNamesList.clear();
+        int idSelectedClient = clientsNameId.get(vistaVC.getClientName());
         ContratoVO miContrato;
-        List<ContratoVO> listaContratos = modeloVC.getContratosEnVigorCliente(idClienteSeleccionado);
+        List<ContratoVO> listaContratos = modeloVC.getContratosEnVigorCliente(idSelectedClient);
         if(listaContratos.size() > 0){
             if(listaContratos.size() > 1)
-                listaNombresTrabajadores.add("Seleccionar trabajador ...");
+                employeesNamesList.add("Seleccionar trabajador ...");
             for (ContratoVO contrato: listaContratos){
                  miContrato = contrato;
-                 listaNombresTrabajadores.add(miContrato.getTrabajador_name());
-                 listaIDTrabajadores.add(miContrato.getIdtrabajador());
+                 employeesNamesList.add(miContrato.getTrabajador_name());
+                 employeesNameId.put(miContrato.getTrabajador_name(), miContrato.getIdtrabajador());
              }
         }
          else{
             System.out.println("No se han encontrado contratos en vigor");
         }
         vistaVC.getComboTrabajador().setEnabled(false);
-        vistaVC.workerComboLoad(listaNombresTrabajadores);
+        vistaVC.employeesComboLoad(employeesNamesList);
         vistaVC.getComboTrabajador().setEnabled(true);       
     }
     
-    public void workerChanged(){
+    public void employeeChanged(){
         
         if(vistaVC.getComboTrabajador().getSelectedIndex() == 0){
             vistaVC.componentsClear();
@@ -86,7 +86,7 @@ public class ControladorVariacionesContratos {
         }
     }
     
-    public void cambiadoTipoContrato(){
+    public void typeContractChange(){
         
     }
     

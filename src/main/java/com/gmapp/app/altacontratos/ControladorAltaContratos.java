@@ -38,12 +38,12 @@ public class ControladorAltaContratos {
 
 //    private boolean cargandoTrabajadores = false;
 
-    private List<String> listaNombresClientes = new ArrayList<>();
-    private List <String> listaNombresTrabajadores = new ArrayList<>();    
+    private List<String> listaItemsNombresClientes = new ArrayList<>();
+    private List <String> listaItemsNombresTrabajadores = new ArrayList<>();    
     private List <String> listaNombresTiposContrato = new ArrayList<>();
     private Map<String,Integer> clientesNomId;
     private Map<String, Integer> trabajadoresNomId;
-    private List <Integer> listaIDTiposContratos = new ArrayList();
+    private Map<String, Integer> tiposContratosTipoId;
     private String mensajeAviso;
     
     private Boolean tablaHorarioVaciaEsOK = false;
@@ -64,14 +64,14 @@ public class ControladorAltaContratos {
         if (listaClientes.size() > 0){
             for (int i = 0; i < listaClientes.size(); i++){
                 miClienteConCCC = listaClientes.get(i);
-                listaNombresClientes.add(miClienteConCCC.getNom_rzsoc());
+                listaItemsNombresClientes.add(miClienteConCCC.getNom_rzsoc());
                 clientesNomId.put(miClienteConCCC.getNom_rzsoc(), miClienteConCCC.getIdcliente());
             }
         }
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaAC.cargaComboClientes(listaNombresClientes);
+        vistaAC.cargaComboClientes(listaItemsNombresClientes);
         vista.getComboCliente().setEnabled(true);
         // ****************************************************
         // Pasa a la vistaAC los items del combo de trabajadores.
@@ -84,7 +84,7 @@ public class ControladorAltaContratos {
                  miTrabajador = listaTrabajadores.get(i);
                  if (miTrabajador.getApellidos().contains("PNF"))
                      continue;
-                 listaNombresTrabajadores.add(miTrabajador.getApellidos() + ", "
+                 listaItemsNombresTrabajadores.add(miTrabajador.getApellidos() + ", "
                  + miTrabajador.getNom_rzsoc());
                  trabajadoresNomId.put(miTrabajador.getApellidos() + ", "
                  + miTrabajador.getNom_rzsoc(), miTrabajador.getIdpersona());
@@ -94,18 +94,20 @@ public class ControladorAltaContratos {
          else{
             System.out.println("No se ha podido cargar el comboBox de Trabajadores");
         }
-        vista.cargaComboTrabajadores(listaNombresTrabajadores);
+        vista.cargaComboTrabajadores(listaItemsNombresTrabajadores);
         vistaAC.getComboTrabajador().setEnabled(true);
         // *********************************************************
         // Pasa a la vistaAC los items del combo de tipos de contratos.
         // *********************************************************
+        tiposContratosTipoId = new HashMap<>();
         TipoContratoVO miTipoContrato;
         List <TipoContratoVO> listaTiposContrato = modeloAC.getAllTiposContratos();
         if(listaTiposContrato.size() > 0){
              for (int i = 0; i < listaTiposContrato.size(); i++){
                  miTipoContrato = listaTiposContrato.get(i);
                  listaNombresTiposContrato.add(miTipoContrato.getDescripcttoTipoContrato());
-                 listaIDTiposContratos.add(miTipoContrato.getIdTipoContrato());
+                 tiposContratosTipoId.put(miTipoContrato.getDescripcttoTipoContrato(), miTipoContrato.getIdTipoContrato());
+//                 listaIDTiposContratos.add(miTipoContrato.getIdTipoContrato());
              }
         }
          else{
@@ -132,7 +134,7 @@ public class ControladorAltaContratos {
         ClienteVO miCCCVO = null;
         List listaCCC = new Vector();
         
-        int idCliente = clientesNomId.get(vistaAC.getSelectedClientName());
+        int idCliente = clientesNomId.get(vistaAC.getClientName());
         
         cccEncontrados = modeloAC.getClienteCCC(idCliente);
         if (cccEncontrados.size() > 0 && cccEncontrados.get(0).getCcc_inss() != null)
@@ -169,7 +171,7 @@ public class ControladorAltaContratos {
             return;
         }
 
-        int idTrabajador = trabajadoresNomId.get(vistaAC.getSelectedEmployeeName());
+        int idTrabajador = trabajadoresNomId.get(vistaAC.getEmployeeName());
 
         List<PersonaVO> personaEncontrada;
         PersonaVO miTrabajador;
@@ -398,18 +400,17 @@ public class ControladorAltaContratos {
         // Número de variación: cero, al ser contrato inicial
         datosContrato.add(0);
         // Tipo variacion: tipo contrato al ser número de variación = 0
-        int indexTipoContratoSelected = vistaAC.getComboTiposContrato().getSelectedIndex();
-        int idTipoContrato =  listaIDTiposContratos.get(indexTipoContratoSelected -1);
+        int idTipoContrato =  tiposContratosTipoId.get(vistaAC.getTypeContract());
         datosContrato.add(idTipoContrato);
         // Idcliente GM        
-        datosContrato.add(clientesNomId.get(vistaAC.getSelectedClientName()));
+        datosContrato.add(clientesNomId.get(vistaAC.getClientName()));
         // ClienteGM Nombre
-        datosContrato.add(vistaAC.getComboCliente().getSelectedItem().toString());        
+        datosContrato.add(vistaAC.getClientName());        
         // Cliente CCC
-        datosContrato.add(vistaAC.getComboClienteCCC().getSelectedItem());
+        datosContrato.add(vistaAC.getClientCCC());
         // Id y nombre trabajador
-        datosContrato.add(trabajadoresNomId.get(vistaAC.getSelectedEmployeeName()));
-        datosContrato.add(vistaAC.getSelectedEmployeeName());
+        datosContrato.add(trabajadoresNomId.get(vistaAC.getEmployeeName()));
+        datosContrato.add(vistaAC.getEmployeeName());
         // Categoria
         datosContrato.add(vistaAC.getCategoria());
         // Jornada

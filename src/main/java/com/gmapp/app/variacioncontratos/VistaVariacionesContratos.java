@@ -61,7 +61,7 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
             comboCliente.addItem(nombre);
     }
     
-    public void workerComboLoad(List<String> listaTrabajadores){
+    public void employeesComboLoad(List<String> listaTrabajadores){
         comboTrabajador.removeAllItems();
         for (String nombre: listaTrabajadores)
             comboTrabajador.addItem(nombre);
@@ -72,7 +72,7 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     }
     
     public void workerChanged(){
-        controladorVC.workerChanged();
+        controladorVC.employeeChanged();
     }
    
     /**
@@ -708,6 +708,10 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
 
     public javax.swing.JComboBox<String> getComboCliente() {
         return comboCliente;
+    }
+    
+    public String getClientName(){
+        return comboCliente.getSelectedItem().toString();
     }
 
     public void setComboCliente(javax.swing.JComboBox<String> comboCliente) {
