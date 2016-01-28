@@ -24,7 +24,6 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -62,8 +61,8 @@ public class ControladorAltaContratos {
         ClienteVO miClienteConCCC;
         List <ClienteVO> listaClientes = modeloAC.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
-            for (int i = 0; i < listaClientes.size(); i++){
-                miClienteConCCC = listaClientes.get(i);
+            for(ClienteVO cliente : listaClientes){
+                miClienteConCCC = cliente;
                 listaItemsNombresClientes.add(miClienteConCCC.getNom_rzsoc());
                 clientesNomId.put(miClienteConCCC.getNom_rzsoc(), miClienteConCCC.getIdcliente());
             }
@@ -88,7 +87,6 @@ public class ControladorAltaContratos {
                  + miTrabajador.getNom_rzsoc());
                  trabajadoresNomId.put(miTrabajador.getApellidos() + ", "
                  + miTrabajador.getNom_rzsoc(), miTrabajador.getIdpersona());
-//                 listaIDTrabajadores.add(miTrabajador.getIdpersona());
              }
         }
          else{
@@ -107,7 +105,6 @@ public class ControladorAltaContratos {
                  miTipoContrato = listaTiposContrato.get(i);
                  listaNombresTiposContrato.add(miTipoContrato.getDescripcttoTipoContrato());
                  tiposContratosTipoId.put(miTipoContrato.getDescripcttoTipoContrato(), miTipoContrato.getIdTipoContrato());
-//                 listaIDTiposContratos.add(miTipoContrato.getIdTipoContrato());
              }
         }
          else{
@@ -132,7 +129,7 @@ public class ControladorAltaContratos {
         
         List<ClienteVO> cccEncontrados;
         ClienteVO miCCCVO = null;
-        List listaCCC = new Vector();
+        List listaCCC = new ArrayList();
         
         int idCliente = clientesNomId.get(vistaAC.getClientName());
         

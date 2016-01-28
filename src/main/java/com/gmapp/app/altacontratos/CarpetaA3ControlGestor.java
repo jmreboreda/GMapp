@@ -21,37 +21,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class CarpetaA3ControlGestor {
@@ -111,11 +80,11 @@ public class CarpetaA3ControlGestor {
         
         Table calcNC = libro.getSheetByIndex(0);
         calcNC.getCellByPosition("B7").setStringValue(NUEVO_CONTRATO);
-        calcNC.getCellByPosition("B12").setStringValue(vistaAC.getComboCliente().getSelectedItem().toString());
-        calcNC.getCellByPosition("B17").setStringValue(vistaAC.getComboClienteCCC().getSelectedItem().toString()); 
+        calcNC.getCellByPosition("B12").setStringValue(vistaAC.getClientName());
+        calcNC.getCellByPosition("B17").setStringValue(vistaAC.getClientCCC()); 
         calcNC.getCellByPosition("B21").setStringValue(vistaAC.getFechaNotificacion());
         calcNC.getCellByPosition("E21").setStringValue(vistaAC.getHoraNotificacion());
-        calcNC.getCellByPosition("G6").setStringValue(vistaAC.getComboTrabajador().getSelectedItem().toString());
+        calcNC.getCellByPosition("G6").setStringValue(vistaAC.getEmployeeName());
         calcNC.getCellByPosition("G9").setStringValue(vistaAC.getTrabajadorNIF());
         calcNC.getCellByPosition("I9").setStringValue(vistaAC.getTrabajadorNASS());
         calcNC.getCellByPosition("G12").setStringValue(vistaAC.getTrabajadorFNacim());
