@@ -6,6 +6,7 @@
 package com.gmapp.app.variacioncontratos;
 
 import com.gmapp.vo.ContratoVO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +21,12 @@ public class ControladorVariacionesContratos {
     private ModeloVariacionesContratos modeloVC;
     private VistaVariacionesContratos vistaVC;
     
+    private ContratoVO miContrato;
     private List<String> clientsNamesList;
     private Map<String,Integer> clientsNameId;
     private List <String> employeesNamesList;  
     private Map<String, Integer> employeesNameId;
+    private SimpleDateFormat fecha;
     
     public ControladorVariacionesContratos(ModeloVariacionesContratos modelo, VistaVariacionesContratos vista) {
         
@@ -33,9 +36,9 @@ public class ControladorVariacionesContratos {
         clientsNameId = new HashMap<>();
         employeesNameId = new HashMap<>();
         clientsNamesList = new ArrayList<>();
-        employeesNamesList = new ArrayList<>();    
+        employeesNamesList = new ArrayList<>();
+        fecha = new SimpleDateFormat("dd-MM-yyyy");
 
-        ContratoVO miContrato;
         List <ContratoVO> listaContratos = modeloVC.getClientesConContratosEnVigor();
         if (listaContratos.size() > 0){
             for(ContratoVO contrato: listaContratos){
@@ -59,23 +62,25 @@ public class ControladorVariacionesContratos {
         }
         employeesNamesList.clear();
         int idSelectedClient = clientsNameId.get(vistaVC.getClientName());
-        ContratoVO miContrato;
         List<ContratoVO> listaContratos = modeloVC.getContratosEnVigorCliente(idSelectedClient);
         if(listaContratos.size() > 0){
             if(listaContratos.size() > 1)
                 employeesNamesList.add("Seleccionar trabajador ...");
             for (ContratoVO contrato: listaContratos){
-                 miContrato = contrato;
-                 employeesNamesList.add(miContrato.getTrabajador_name());
-                 employeesNameId.put(miContrato.getTrabajador_name(), miContrato.getIdtrabajador());
-             }
+                miContrato = contrato;
+                employeesNamesList.add(miContrato.getTrabajador_name());
+                employeesNameId.put(miContrato.getTrabajador_name(), miContrato.getIdtrabajador());
+                }
+            vistaVC.getComboTrabajador().setEnabled(false);
+            vistaVC.employeesComboLoad(employeesNamesList);
+            vistaVC.getComboTrabajador().setEnabled(true);
+            
+            if(listaContratos.size() == 1)
+                dataContractShow();    
         }
          else{
             System.out.println("No se han encontrado contratos en vigor");
         }
-        vistaVC.getComboTrabajador().setEnabled(false);
-        vistaVC.employeesComboLoad(employeesNamesList);
-        vistaVC.getComboTrabajador().setEnabled(true);       
     }
     
     public void employeeChanged(){
@@ -115,6 +120,20 @@ public class ControladorVariacionesContratos {
     }
     
     public void botonSalirMouseClicked(){
+        
+    }
+    
+    public void dataContractShow(){
+        
+        vistaVC.getLabelNumContrato().setText(miContrato.getNumcontrato() + " - " + miContrato.getNumvariacion());
+        vistaVC.getLabelTipoContrato().setText(miContrato.getTipoctto());
+        vistaVC.getLabelFechaDesde().setText(fecha.format(miContrato.getF_desde()));
+        if(miContrato.getF_hasta() == null)
+            vistaVC.getLabelFechaHasta().setText("Indefinido");
+        else
+            vistaVC.getLabelFechaHasta().setText(fecha.format(miContrato.getF_hasta()));
+        vistaVC.getLabelCategoria().setText(miContrato.getCategoria());
+        vistaVC.getLabelNumContratoINEM().setText(miContrato.getId_ctto_inem());
         
     }
 }
