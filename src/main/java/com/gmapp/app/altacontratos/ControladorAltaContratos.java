@@ -101,8 +101,8 @@ public class ControladorAltaContratos {
         TipoContratoVO miTipoContrato;
         List <TipoContratoVO> listaTiposContrato = modeloAC.getAllTiposContratos();
         if(listaTiposContrato.size() > 0){
-             for (int i = 0; i < listaTiposContrato.size(); i++){
-                 miTipoContrato = listaTiposContrato.get(i);
+            for(TipoContratoVO tipo : listaTiposContrato){
+                 miTipoContrato = tipo;
                  listaNombresTiposContrato.add(miTipoContrato.getDescripcttoTipoContrato());
                  tiposContratosTipoId.put(miTipoContrato.getDescripcttoTipoContrato(), miTipoContrato.getIdTipoContrato());
              }
@@ -136,9 +136,8 @@ public class ControladorAltaContratos {
         cccEncontrados = modeloAC.getClienteCCC(idCliente);
         if (cccEncontrados.size() > 0 && cccEncontrados.get(0).getCcc_inss() != null)
         {
-            for (int i = 0; i < cccEncontrados.size(); i++){
-                
-                miCCCVO = cccEncontrados.get(i);
+            for(ClienteVO ccc : cccEncontrados){
+                miCCCVO = ccc;
                 listaCCC.add(miCCCVO.getCcc_inss());
             }
             
@@ -178,8 +177,8 @@ public class ControladorAltaContratos {
         
         personaEncontrada = modeloAC.getPersona(idTrabajador);
         if(personaEncontrada.size() > 0){
-            for (int i = 0; i < personaEncontrada.size(); i++){
-                miTrabajador = personaEncontrada.get(i);
+            for(PersonaVO persona : personaEncontrada){
+                miTrabajador = persona;
             
                 vistaAC.setEtqNIF(funcion.formatoNIF(miTrabajador.getNifcif()));
                 vistaAC.setEtqNASS(miTrabajador.getNumafss());
@@ -205,8 +204,8 @@ public class ControladorAltaContratos {
            
                 estudiosVO = estudios.readEstudios(Integer.parseInt(miTrabajador.getNivestud().trim()));
                 if(estudiosVO.size() > 0){
-                    for (i = 0; i < estudiosVO.size(); i++)
-                        misEstudiosVO = estudiosVO.get(i);
+                    for (EstudiosVO myestudios: estudiosVO)
+                        misEstudiosVO = myestudios;
                     
                     vistaAC.setEtqNivelEstudios(misEstudiosVO.getDescripEstudios());    
                 }

@@ -55,11 +55,36 @@ public class ControladorVariacionesContratos {
     }
     
     public void clientChanged(){
+        
         if(vistaVC.getComboCliente().getSelectedIndex() == 0){
             vistaVC.getComboTrabajador().removeAllItems();
             vistaVC.componentsClear();
             return;
         }
+
+        int employeesNumber = employeesLoad();
+        
+        if(employeesNumber == 1)
+            dataContractShow();
+        else
+            if (employeesNumber == 0)
+                System.out.println("No se han encontrado contratos en vigor");
+    }
+    
+    public void employeeChanged(){
+        
+        if(vistaVC.getComboTrabajador().getSelectedIndex() == 0){
+            vistaVC.componentsClear();
+            return;}
+        else{
+            ////// Aquí falta código
+            dataContractShow();
+        }
+        
+    }
+    
+    public int employeesLoad(){
+        
         employeesNamesList.clear();
         int idSelectedClient = clientsNameId.get(vistaVC.getClientName());
         List<ContratoVO> listaContratos = modeloVC.getContratosEnVigorCliente(idSelectedClient);
@@ -74,45 +99,9 @@ public class ControladorVariacionesContratos {
             vistaVC.getComboTrabajador().setEnabled(false);
             vistaVC.employeesComboLoad(employeesNamesList);
             vistaVC.getComboTrabajador().setEnabled(true);
-            
-            if(listaContratos.size() == 1)
-                dataContractShow();    
         }
-         else{
-            System.out.println("No se han encontrado contratos en vigor");
-        }
-    }
-    
-    public void employeeChanged(){
         
-        if(vistaVC.getComboTrabajador().getSelectedIndex() == 0){
-            vistaVC.componentsClear();
-            return;
-        }
-    }
-    
-    public void typeContractChange(){
-        
-    }
-    
-    public void cambiadoDuracionContrato(){
-        
-    }
-    
-    public void cambiadoJornada(){
-        
-    }
-    
-    public void cambiadoFechaInicioContrato(){
-        
-    }
-    
-    public void cambiadoFechaFinContrato(){
-        
-    }
-    
-    public void verificaHorasSemana(){
-
+        return listaContratos.size();
     }
     
     public void botonAceptarMouseClicked(){
