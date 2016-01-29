@@ -43,4 +43,13 @@ public class ModeloVariacionesContratos {
         
     }
     
+     public List<ContratoVO> getContractInForceEmployee(int idemployee){
+        
+        ContratoDAO contrato = new ContratoDAO();
+        List <ContratoVO> listaContratos = contrato.readContratcInForceEmployee(idemployee);
+        
+        return listaContratos;
+        
+    }
+    
 }

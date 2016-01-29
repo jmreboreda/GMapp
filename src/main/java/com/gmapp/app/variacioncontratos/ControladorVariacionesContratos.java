@@ -46,12 +46,14 @@ public class ControladorVariacionesContratos {
                 clientsNamesList.add(miContrato.getClientegm_name());
                 clientsNameId.put(miContrato.getClientegm_name(), miContrato.getIdcliente_gm());
             }
+            
+        vistaVC.clientComboLoad(clientsNamesList);
+        vistaVC.getComboCliente().setEnabled(true);
+        
         }
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaVC.clientComboLoad(clientsNamesList);
-        vistaVC.getComboCliente().setEnabled(true);
     }
     
     public void clientChanged(){
@@ -75,9 +77,13 @@ public class ControladorVariacionesContratos {
         
         if(vistaVC.getComboTrabajador().getSelectedIndex() == 0){
             vistaVC.componentsClear();
-            return;}
+            return;
+        }
         else{
-            ////// Aquí falta código
+            int idEmployeeSelected = employeesNameId.get(vistaVC.getEmployeeName());
+            List<ContratoVO> contratoinforce = modeloVC.getContractInForceEmployee(idEmployeeSelected);
+            for(ContratoVO contrato: contratoinforce)
+                miContrato = contrato;
             dataContractShow();
         }
         

@@ -71,8 +71,12 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
         controladorVC.clientChanged();
     }
     
-    public void workerChanged(){
+    public void employeeChanged(){
         controladorVC.employeeChanged();
+    }
+    
+    public String getEmployeeName(){
+        return comboTrabajador.getSelectedItem().toString();
     }
    
     /**
@@ -663,7 +667,7 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void comboTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTrabajadorActionPerformed
-        workerChanged();
+        employeeChanged();
     }//GEN-LAST:event_comboTrabajadorActionPerformed
 
 
