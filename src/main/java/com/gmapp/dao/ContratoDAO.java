@@ -373,9 +373,10 @@ public class ContratoDAO {
         return lista;
     }
     
-    public List<ContratoVO> readContratcInForceEmployee(int idemployee){
+    public List<ContratoVO> readContratcInForceEmployee(int idclient, int idemployee){
          String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE AND"
-                + " idtrabajador = " + idemployee + ";";
+                + " idtrabajador = " + idemployee + " AND"
+                + " idcliente_gm = " + idclient + ";";
         
         ArrayList<ContratoVO> lista = new ArrayList<>();
         BaseDeDatos gmoldes = new BaseDeDatos();
