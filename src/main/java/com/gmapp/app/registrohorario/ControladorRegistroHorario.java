@@ -18,9 +18,10 @@ import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
-public class ControladorRH {
+public class ControladorRegistroHorario {
 
     private ModeloRegistroHorario modeloRH;
 
@@ -36,7 +37,7 @@ public class ControladorRH {
     
 
 
-    public ControladorRH(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
+    public ControladorRegistroHorario(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
         
         this.modeloRH = modelo;
         this.vistaRH = vista;
