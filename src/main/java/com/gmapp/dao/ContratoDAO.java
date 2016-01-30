@@ -5,7 +5,7 @@
  */
 package com.gmapp.dao;
 
-import com.gmapp.utilidades.BaseDeDatos;
+import com.gmapp.utilities.BaseDeDatos;
 import com.gmapp.vo.ContratoVO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -254,9 +254,128 @@ public class ContratoDAO {
         
     }
     
+    public List<ContratoVO> readClientesConContratosEnVigor(){
+        
+        String sqlQuery = "SELECT DISTINCT clientegm_name, idcliente_gm FROM contratoshistorico WHERE envigor = TRUE ORDER BY 1;";
+    
+        List <ContratoVO> lista = new ArrayList<>();
+        
+            BaseDeDatos gmoldes = new BaseDeDatos();
+        
+        try
+        {
+            gmoldes.estableceConexion();
+            ResultSet rs = gmoldes.seleccionarDatosTabla(sqlQuery);
+            while (rs.next()){
+                ContratoVO contrato = new ContratoVO();
+                contrato.setIdcliente_gm(rs.getInt("idcliente_gm"));
+                contrato.setClientegm_name(rs.getString("clientegm_name"));
+                lista.add(contrato);
+            }
+        }
+        catch (Exception e){
+        }
+        
+        gmoldes.cierraConexion();
+        
+        return lista;
+    
+    }
+    
+    public ArrayList<ContratoVO> readAllContratosEnVigor(){
+        
+        String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE;";
+        
+        ArrayList<ContratoVO> lista = new ArrayList<>();
+        BaseDeDatos gmoldes = new BaseDeDatos();
+        
+        try
+        {
+            gmoldes.estableceConexion();
+            ResultSet rs = gmoldes.seleccionarDatosTabla(sqlQuery);
+            while (rs.next()){
+                ContratoVO contrato = new ContratoVO();
+                contrato.setNumcontrato(rs.getInt("numcontrato"));
+                contrato.setNumvariacion(rs.getInt("numvariacion"));
+                contrato.setTipovariacion(rs.getInt("tipovariacion"));
+                contrato.setIdcliente_gm(rs.getInt("idcliente_gm"));
+                contrato.setClientegm_name(rs.getString("clientegm_name"));
+                contrato.setContrato_ccc(rs.getString("contrato_ccc"));
+                contrato.setIdtrabajador(rs.getInt("idtrabajador"));
+                contrato.setTrabajador_name(rs.getString("trabajador_name"));
+                contrato.setCategoria(rs.getString("categoria"));
+                contrato.setJor_trab(rs.getString("jor_trab"));
+                contrato.setJor_trab_dias(rs.getString("jor_trab_dias"));
+                contrato.setJor_tipo(rs.getString("jor_tipo"));
+                contrato.setTipoctto(rs.getString("tipoctto"));
+                contrato.setF_desde(rs.getDate("f_desde"));
+                contrato.setF_hasta(rs.getDate("f_hasta"));
+                contrato.setId_ctto_inem(rs.getString("id_ctto_inem"));
+                contrato.setEnvigor(rs.getBoolean("envigor"));
+                contrato.setNotas_gestor(rs.getString("notas_gestor"));
+                contrato.setNotas_privadas(rs.getString("notas_privadas"));
+                contrato.setDuracion(rs.getString("duracion"));
+                contrato.setSubrogacion(rs.getInt("subrogacion"));                
+                lista.add(contrato);
+            }
+        }
+        catch (Exception e){
+        }
+        
+        gmoldes.cierraConexion();
+        
+        return lista;
+    }
+    
     public ArrayList<ContratoVO> readAllContratosEnVigorCliente(Integer idcliente){
         
-        String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE and idcliente_gm = " + idcliente + ";";
+        String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE AND"
+                + " idcliente_gm = " + idcliente + " ORDER BY trabajador_name;";
+        
+        ArrayList<ContratoVO> lista = new ArrayList<>();
+        BaseDeDatos gmoldes = new BaseDeDatos();
+        
+        try
+        {
+            gmoldes.estableceConexion();
+            ResultSet rs = gmoldes.seleccionarDatosTabla(sqlQuery);
+            while (rs.next()){
+                ContratoVO contrato = new ContratoVO();
+                contrato.setNumcontrato(rs.getInt("numcontrato"));
+                contrato.setNumvariacion(rs.getInt("numvariacion"));
+                contrato.setTipovariacion(rs.getInt("tipovariacion"));
+                contrato.setIdcliente_gm(rs.getInt("idcliente_gm"));
+                contrato.setClientegm_name(rs.getString("clientegm_name"));
+                contrato.setContrato_ccc(rs.getString("contrato_ccc"));
+                contrato.setIdtrabajador(rs.getInt("idtrabajador"));
+                contrato.setTrabajador_name(rs.getString("trabajador_name"));
+                contrato.setCategoria(rs.getString("categoria"));
+                contrato.setJor_trab(rs.getString("jor_trab"));
+                contrato.setJor_trab_dias(rs.getString("jor_trab_dias"));
+                contrato.setJor_tipo(rs.getString("jor_tipo"));
+                contrato.setTipoctto(rs.getString("tipoctto"));
+                contrato.setF_desde(rs.getDate("f_desde"));
+                contrato.setF_hasta(rs.getDate("f_hasta"));
+                contrato.setId_ctto_inem(rs.getString("id_ctto_inem"));
+                contrato.setEnvigor(rs.getBoolean("envigor"));
+                contrato.setNotas_gestor(rs.getString("notas_gestor"));
+                contrato.setNotas_privadas(rs.getString("notas_privadas"));
+                contrato.setDuracion(rs.getString("duracion"));
+                contrato.setSubrogacion(rs.getInt("subrogacion"));                
+                lista.add(contrato);
+            }
+        }
+        catch (Exception e){
+        }
+        
+        gmoldes.cierraConexion();
+        
+        return lista;
+    }
+    
+    public List<ContratoVO> readContratcInForceEmployee(int idemployee){
+         String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE AND"
+                + " idtrabajador = " + idemployee + ";";
         
         ArrayList<ContratoVO> lista = new ArrayList<>();
         BaseDeDatos gmoldes = new BaseDeDatos();

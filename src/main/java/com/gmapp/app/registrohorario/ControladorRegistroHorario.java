@@ -6,8 +6,8 @@
 package com.gmapp.app.registrohorario;
 
 
-import com.gmapp.utilidades.Funciones;
-import com.gmapp.utilidades.MesesAnno;
+import com.gmapp.utilities.Funciones;
+import com.gmapp.utilities.MesesAnno;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;
@@ -21,11 +21,26 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
+<<<<<<< HEAD:src/main/java/com/gmapp/app/registrohorario/ControladorRegistroHorario.java
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+=======
+>>>>>>> master:src/main/java/com/gmapp/app/registrohorario/ControladorRH.java
 
 
-public class ControladorRH {
+public class ControladorRegistroHorario {
 
-    private ModeloRH modeloRH;
+    private ModeloRegistroHorario modeloRH;
 
     private VistaRH vistaRH;
 
@@ -35,7 +50,11 @@ public class ControladorRH {
     private List <Integer> listaIDClientes = new ArrayList();
     
 
+<<<<<<< HEAD:src/main/java/com/gmapp/app/registrohorario/ControladorRegistroHorario.java
+    public ControladorRegistroHorario(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
+=======
     public ControladorRH(ModeloRH modelo, VistaRH vista) {
+>>>>>>> master:src/main/java/com/gmapp/app/registrohorario/ControladorRH.java
         
         this.modeloRH = modelo;
         this.vistaRH = vista;
@@ -74,7 +93,7 @@ public class ControladorRH {
         // ****************************************************
         cargandoClientes = true;
         ClienteVO miCliente;
-        ArrayList <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
+        List <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
         if(listaClientes.size() > 0){
              for (int i = 0; i < listaClientes.size(); i++){
                 miCliente = listaClientes.get(i);
@@ -133,7 +152,7 @@ public class ControladorRH {
             for (int i = 0; i < contratosEncontrados.size(); i++){
                 
                 miContrato = contratosEncontrados.get(i);
-                ComprobarEmisionRegistroHorario comprobar = new ComprobarEmisionRegistroHorario();
+                EmisionRegistroHorario comprobar = new EmisionRegistroHorario();
 
                 if(comprobar.EmisionAtAnnoMes(miContrato.getNumcontrato(),miContrato.getNumvariacion(),
                         annoMesRH)){

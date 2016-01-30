@@ -22,14 +22,18 @@ public class VistaRH extends JPanel {
 
     JButton botonLlamante;
     MenuPrincipal menu;
-    private ControladorRH controlador;
+    private ControladorRegistroHorario controlador;
     final double[][]mDoubleHorasHorario = new double[8][7];
     private DefaultTableModel tablaContratosModelo;
  
+<<<<<<< HEAD:src/main/java/com/gmapp/app/registrohorario/VistaRegistroHorario.java
+    public VistaRegistroHorario(ModeloRegistroHorario modelo) {
+=======
     public VistaRH(ModeloRH modelo) {
+>>>>>>> master:src/main/java/com/gmapp/app/registrohorario/VistaRH.java
         initComponents();
         etqCabecera.setText("<html><p ALIGN=center>Impresión de Registros Horarios</p><p> para contratos de trabajo a tiempo parcial y de formación</p></html>");
-        controlador = new ControladorRH(modelo, this); 
+        controlador = new ControladorRegistroHorario(modelo, this); 
         
         tablaContratosModelo = (DefaultTableModel) tablaContratos.getModel();
         tablaContratos.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD,11));

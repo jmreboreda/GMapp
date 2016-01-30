@@ -6,7 +6,11 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
+<<<<<<< HEAD:src/main/java/com/gmapp/app/altacontratos/VistaAltaContratos.java
+import com.gmapp.utilities.Funciones;
+=======
 import com.gmapp.utilidades.Funciones;
+>>>>>>> master:src/main/java/com/gmapp/app/altacontratos/VistaAC.java
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
@@ -16,33 +20,34 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.showMessageDialog;
 
-public class VistaAC extends JPanel{
+public class VistaAltaContratos extends JPanel{
     
     private JButton botonLlamante;
     private MenuPrincipal menu;
     private Integer iVentanasAbiertas = 0;
-    private ControladorAC controlador;
+    private ControladorAltaContratos controlador;
     final double[][]mDoubleHorasHorario = new double[8][7];
     private DefaultTableModel tablaHorarioModelo;
     
-    public VistaAC(ModeloAC modelo) {
+    public VistaAltaContratos(ModeloAltaContratos modelo) {
 
         initComponents();
         CargaFechaHoraHoy();
  //       CargarTablaHorario();
-        controlador = new ControladorAC(modelo, this); 
+        controlador = new ControladorAltaContratos(modelo, this); 
         controlador.cambiadoTrabajador();
         
         tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();
@@ -285,199 +290,184 @@ public class VistaAC extends JPanel{
         this.comboClienteCCC.removeAllItems();
     }
    
-    public void setEtqNIF(String etqNIF) {
-        this.etqNIF.setText(etqNIF);
+    public void setEtqNIF(String nif) {
+        etqNIF.setText(nif);
     }
     
     
-    public void setEtqNASS(String etqNASS) {
-        this.etqNASS.setText(etqNASS);
-    }
-    
-   
-    public void setEtqFechaNacim(String etqFNacim) {
-        this.etqFNacim.setText(etqFNacim);
+    public void setEtqNASS(String nass) {
+        etqNASS.setText(nass);
     }
     
    
-    public void setEtqEstadoCivil(String etqEstadoCivil) {
-        this.etqEstadoCivil.setText(etqEstadoCivil);
+    public void setEtqFechaNacim(String fNacim) {
+        etqFNacim.setText(fNacim);
     }
     
    
-    public void setEtqNacionalidad(String etqNacion) {
-        this.etqNacion.setText(etqNacion);
+    public void setEtqEstadoCivil(String estadoCivil) {
+        etqEstadoCivil.setText(estadoCivil);
+    }
+    
+   
+    public void setEtqNacionalidad(String nacion) {
+        etqNacion.setText(nacion);
     }
 
 
-    public void setEtqDireccion(String etqDireccion) {
-        this.etqDireccion.setText(etqDireccion);
+    public void setEtqDireccion(String direccion) {
+        etqDireccion.setText(direccion);
     }
     
    
-    public void setEtqNivelEstudios(String etqNivEst) {
-        this.etqNivEst.setText(etqNivEst);
+    public void setEtqNivelEstudios(String nivEst) {
+        etqNivEst.setText(nivEst);
     }
         
    
     public void setTipoContratoOtros(String texto){
-        this.tfTipoContratoOtros.setText(texto);
+        tfTipoContratoOtros.setText(texto);
     }
     
    
     public void setFechaDesde(String texto){
-        this.tfFechaDesde.setText(texto);
+        tfFechaDesde.setText(texto);
     }
     
    
     public void setFechaHasta(String texto){
-        this.tfFechaHasta.setText(texto);
+        tfFechaHasta.setText(texto);
     }
     
    
     public void setDiasContrato(String texto){
-        this.etqDuracionContrato.setText(texto);
+        etqDuracionContrato.setText(texto);
     }
     
    
     public void setHorasSemana(String texto){
-        this.tfHorasSemana.setText(texto);
-    }
-    
-   
-    public void setEtqStringContrato(String texto){
-        this.etqStringContrato.setText(texto);
-    }
-    
-   
-    public void settfFechaHastaEnabled(Boolean  bol){
-        this.tfFechaHasta.setEnabled(bol);
+        tfHorasSemana.setText(texto);
     }
 
-   
+    
+    public void setEtqStringContrato(String texto){
+        etqStringContrato.setText(texto);
+    }
+    
+    
+    public void settfFechaHastaEnabled(Boolean  bol){
+        tfFechaHasta.setEnabled(bol);
+    }
+
+    
     public void setBotonAceptarEnabled(Boolean bol){
-        this.botonAceptar.setEnabled(bol);
+        botonAceptar.setEnabled(bol);
     }
     
    
     public void settfTipoContratoOtrosEnabled(Boolean bol){
-        this.tfTipoContratoOtros.setEnabled(bol);
+        tfTipoContratoOtros.setEnabled(bol);
     }
     
-   
+    
     public void settfHorasSemanaEnabled(Boolean bol){
-        this.tfHorasSemana.setEnabled(bol);
+        tfHorasSemana.setEnabled(bol);
     }
     
-    public int getComboClienteCCCSelectedIndex(){
-        return this.comboClienteCCC.getSelectedIndex();
+    
+    public JComboBox<String> getComboClienteCCC(){
+        return comboClienteCCC;
     }
     
-    public int getComboClienteCCCItemCount(){
-        return this.comboClienteCCC.getItemCount();
+    public String getClientCCC(){
+        return comboCliente.getSelectedItem().toString();
     }
-   
+    
     public String getFechaNotificacion() {
-            return this.tfFechaNotif.getText();
+            return tfFechaNotif.getText();
     }
-
    
+    
     public String getHoraNotificacion() {
-        return this.tfHoraNotif.getText();
+        return tfHoraNotif.getText();
+    }
+    
+    
+    public JComboBox<String> getComboCliente(){
+        return comboCliente;
+    }
+    
+    public String getClientName(){
+        return comboCliente.getSelectedItem().toString();
+    }
+    
+    
+    public JComboBox<String> getComboTrabajador(){
+        return comboTrabajador;
+    }
+    
+   public String getEmployeeName(){
+        return comboTrabajador.getSelectedItem().toString();
     }
 
-    public String getComboClienteCCCSelectedItem(){
-        
-        return this.comboClienteCCC.getSelectedItem().toString();
-    }
-   
-    public String getClienteName() {
-        return this.comboCliente.getSelectedItem().toString();
-    }
     
-   
-    public int getComboClienteSelectedIndex(){
-        return this.comboCliente.getSelectedIndex();
-    }
-    
-    public String getTrabajadorName(){
-        return comboTrabajador.getSelectedItem().toString(); 
-    }
-    
-   
-    public int getComboTrabajadorSelectedIndex() {
-        return comboTrabajador.getSelectedIndex();
-    }
-    
-   
     public String  getTrabajadorNIF(){
-        return this.etqNIF.getText();
+        return etqNIF.getText();
     }
-    
    
+    
     public String getTrabajadorNASS(){
-        return this.etqNASS.getText();
+        return etqNASS.getText();
     }
     
-   
+    
     public String getTrabajadorFNacim(){
-        return this.etqFNacim.getText();
+        return etqFNacim.getText();
     }
    
+    
     public String getTrabajadorEstadoCivil(){
-        return this.etqEstadoCivil.getText();
+        return etqEstadoCivil.getText();
     }
     
-   
+    
     public String getTrabajadorNacionalidad(){
-        return this.etqNacion.getText();
+        return etqNacion.getText();
     }
     
-   
+    
     public String getTrabajadorDireccion(){
-        return this.etqDireccion.getText();
+        return etqDireccion.getText();
     }
     
    
     public String getTrabajadorNivEst(){
-        return this.etqNivEst.getText();
+        return etqNivEst.getText();
     }
     
-   
-    public String getTipoContrato() {
-        return this.comboTiposContrato.getSelectedItem().toString();
+    public String getTypeContract(){
+        return comboTiposContrato.getSelectedItem().toString();
     }
     
-   
-    public int getComboTipoContratoSelectedIndex(){
-        return this.comboTiposContrato.getSelectedIndex();
-    }
     
-   
-    public Object getComboTipoContratoSelectedItem(){
-        return this.comboTiposContrato.getSelectedItem();
-    }
+    public JComboBox<String> getComboTiposContrato(){
+        return comboTiposContrato;
+    }    
+
     
-   
     public String getTipoContratoOtros(){
-        return this.tfTipoContratoOtros.getText();
+        return tfTipoContratoOtros.getText();
     }
     
    
     public String getEtqDuracionContrato() {
-        return this.etqDuracionContrato.getText();
+        return etqDuracionContrato.getText();
     }
 
    
-    public int getComboDuracionContratoSelectedIndex() {
-        return this.comboDuracionContrato.getSelectedIndex();
-    }
-
-   
-    public Object getComboDuracionContratoSelectedItem(){
-        return this.comboDuracionContrato.getSelectedItem();
-    }
-    
+    public JComboBox<String> getComboDuracionContrato() {
+        return comboDuracionContrato;
+    }    
    
     public String getFechaInicioContrato() {
         return this.tfFechaDesde.getText();
@@ -487,17 +477,10 @@ public class VistaAC extends JPanel{
     public String getFechaFinContrato() {
        return this.tfFechaHasta.getText();
     }
-
-   
-    public Object getComboJornadaSelectedItem() {
-        return this.comboJornada.getSelectedItem();
-    }
     
-   
-    public int getComboJornadaSelectedIndex(){
-        return this.comboJornada.getSelectedIndex();
-    }
-      
+    public JComboBox<String> getComboJornada() {
+        return comboJornada;
+    }    
    
     public String getHorasSemana(){
         return this.tfHorasSemana.getText();
@@ -546,15 +529,12 @@ public class VistaAC extends JPanel{
         return lista;
     }
     
-    public Object getTablaHorarioValueAt(int row, int column){
-        return this.tablaHorario.getValueAt(row, column);
-    }
     
-    public int getTablaHorarioRowCount(){
-        return this.tablaHorario.getRowCount();
-    }
-    
+    public JTable getTablaHorario(){
+        return tablaHorario;
+    }  
    
+    
     public String getAreaGestor(){
         return this.taNotasGestor.getText();
     }
@@ -569,13 +549,10 @@ public class VistaAC extends JPanel{
         return this.taCategoria.getText();
     }
 
-   
-    public Boolean botonAceptarIsEnabled(){
-        if(this.botonAceptar.isEnabled())
-            return true;
-        else
-            return false;
+    public JButton getBotonAceptar(){
+        return botonAceptar;
     }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -822,7 +799,6 @@ public class VistaAC extends JPanel{
         jPanel10.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqEstadoCivil.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqEstadoCivil.setForeground(new java.awt.Color(154, 0, 0));
         etqEstadoCivil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqEstadoCivil.setText("#Separado Jud#");
 
@@ -843,7 +819,6 @@ public class VistaAC extends JPanel{
         jPanel9.setPreferredSize(new java.awt.Dimension(100, 50));
 
         etqFNacim.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqFNacim.setForeground(new java.awt.Color(154, 0, 0));
         etqFNacim.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqFNacim.setText("#19-06-1957#");
 
@@ -861,7 +836,6 @@ public class VistaAC extends JPanel{
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estudios completados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
 
         etqNivEst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNivEst.setForeground(new java.awt.Color(154, 0, 0));
         etqNivEst.setText("Licenciatura universitaria");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -886,7 +860,6 @@ public class VistaAC extends JPanel{
         jPanel8.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNASS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNASS.setForeground(new java.awt.Color(154, 0, 0));
         etqNASS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNASS.setText("123456789012");
 
@@ -907,7 +880,6 @@ public class VistaAC extends JPanel{
         jPanel11.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNacion.setForeground(new java.awt.Color(154, 0, 0));
         etqNacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNacion.setText("#Española#");
 
@@ -931,7 +903,6 @@ public class VistaAC extends JPanel{
         jPanel7.setPreferredSize(new java.awt.Dimension(120, 50));
 
         etqNIF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqNIF.setForeground(new java.awt.Color(154, 0, 0));
         etqNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqNIF.setText("#X-36.019.653-C#");
 
@@ -949,7 +920,6 @@ public class VistaAC extends JPanel{
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dirección completa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
 
         etqDireccion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        etqDireccion.setForeground(new java.awt.Color(154, 0, 0));
         etqDireccion.setText("Avenida de Bueu, 32 - 3º A (Edificio Alejandría)  36940  Cangas");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -1379,6 +1349,7 @@ public class VistaAC extends JPanel{
 
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Períodos, jornadas y horarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 204))); // NOI18N
 
+        tablaHorario.setForeground(new java.awt.Color(0, 0, 204));
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -1788,7 +1759,7 @@ class MiRenderFilaTablaVistaContratos extends DefaultTableCellRenderer
        if (table.getValueAt(row,6).toString().contains("-"))
                 celda.setForeground(Color.RED);   
        else
-                celda.setForeground(Color.BLACK);
+                celda.setForeground(Color.BLUE);
        
        if (isSelected)
        {

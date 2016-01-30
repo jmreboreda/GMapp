@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.utilidades;
+package com.gmapp.utilities;
 
 import java.util.ArrayList;
 import java.util.List;

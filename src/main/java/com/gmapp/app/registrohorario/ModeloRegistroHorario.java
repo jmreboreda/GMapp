@@ -14,28 +14,28 @@ import com.gmapp.vo.PersonaVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeloRH {
+public class ModeloRegistroHorario {
 
     private List<String> datosCliente;
     private List<String> datosTrabajador;
 
-    public ModeloRH() {
+    public ModeloRegistroHorario() {
         this.datosTrabajador = new ArrayList();
         this.datosCliente = new ArrayList();
     }
     
-    public ArrayList<ClienteVO> getAllClientes(){
+    public List<ClienteVO> getAllClientes(){
         
         ClienteDAO cliente = new ClienteDAO();
-        ArrayList <ClienteVO> listaClientes = cliente.listAllActivos();
+        List <ClienteVO> listaClientes = cliente.listAllActivos();
         
         return listaClientes;
     }
     
-    public ArrayList<ClienteVO> getAllClientesWithCCC(){
+    public List<ClienteVO> getAllClientesWithCCC(){
         
         ClienteDAO cliente = new ClienteDAO();
-        ArrayList <ClienteVO> listaClientes = cliente.listAllWithCCC();
+        List <ClienteVO> listaClientes = cliente.listAllWithCCC();
         
         return listaClientes;
     }

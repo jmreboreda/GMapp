@@ -6,81 +6,79 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.dao.ClienteDAO;
-import com.gmapp.dao.ClienteWithCCCDAO;
 import com.gmapp.dao.ContratoDAO;
 import com.gmapp.dao.PersonaDAO;
 import com.gmapp.dao.TipoContratoDAO;
 import com.gmapp.vo.ClienteVO;
-import com.gmapp.vo.ClienteWithCCCVO;
 import com.gmapp.vo.PersonaVO;
 import com.gmapp.vo.TipoContratoVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeloAC {
+public class ModeloAltaContratos {
 
     private List<String> datosCliente;
     private List<String> datosTrabajador;
 
-    public ModeloAC() {
+    public ModeloAltaContratos() {
         this.datosTrabajador = new ArrayList();
         this.datosCliente = new ArrayList();
     }
     
-    public ArrayList<ClienteVO> getAllClientes(){
+    public List<ClienteVO> getAllClientes(){
         
         ClienteDAO cliente = new ClienteDAO();
-        ArrayList <ClienteVO> listaClientes = cliente.listAllActivos();
+        List <ClienteVO> listaClientes = cliente.listAllActivos();
         
         return listaClientes;
     }
     
-    public ArrayList<ClienteWithCCCVO> getAllClientesWithCCC(){
+    public List<ClienteVO> getAllClientesWithCCC(){
         
-        ClienteWithCCCDAO cliente = new ClienteWithCCCDAO();
-        ArrayList <ClienteWithCCCVO> listaClientes = cliente.listAllWithCCC();
+        ClienteDAO cliente = new ClienteDAO();
+        List <ClienteVO> listaClientes = cliente.listAllWithCCC();
         
         return listaClientes;
     }
     
-    public ArrayList<ClienteVO> getCliente(int idCliente){
+    public List<ClienteVO> getCliente(int idCliente){
         
-        ArrayList<ClienteVO> lista;
+        List<ClienteVO> lista;
         ClienteDAO cliente = new ClienteDAO();
         lista = cliente.readCliente(idCliente);
         
         return lista;
     }
     
-    public ArrayList <PersonaVO> getAllPersonas(){
+    public List <PersonaVO> getAllPersonas(){
         
         PersonaDAO persona = new PersonaDAO();
-        ArrayList <PersonaVO> listaPersonas = persona.listAll();
+        List <PersonaVO> listaPersonas = persona.listAll();
         
         return listaPersonas;
     }
     
-    public ArrayList<PersonaVO> getPersona(int idPersona){
+    public List<PersonaVO> getPersona(int idPersona){
         
-        ArrayList<PersonaVO> lista;
+        List<PersonaVO> lista;
         PersonaDAO persona = new PersonaDAO();
         lista = persona.readPersona(idPersona);
         
         return lista;
     }
     
-    public ArrayList<ClienteWithCCCVO> getClienteCCC(int idcliente){
+    public List<ClienteVO> getClienteCCC(int idcliente){
         
-        ArrayList<ClienteWithCCCVO> lista;
-        ClienteWithCCCDAO ccc = new ClienteWithCCCDAO();
+        List<ClienteVO> lista;
+        ClienteDAO ccc = new ClienteDAO();
         lista = ccc.readClienteCCC(idcliente);
         return lista;
     }
     
-    public ArrayList<TipoContratoVO> getAllTiposContratos(){
+    public List<TipoContratoVO> getAllTiposContratos(){
         
         TipoContratoDAO tipoContrato = new TipoContratoDAO();
-        ArrayList <TipoContratoVO> lista = new ArrayList<>();
+        List <TipoContratoVO> lista;
         lista = tipoContrato.listAll();
         
         return lista;

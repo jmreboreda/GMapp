@@ -6,17 +6,26 @@
 package com.gmapp.app.registrohorario;
 
 import com.gmapp.dao.ContratoDAO;
+import com.gmapp.utilities.StringUtils;
 import com.gmapp.vo.ContratoVO;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
  * @author jmrb
  */
-public class ComprobarEmisionRegistroHorario {
+public class EmisionRegistroHorario {
     
-    public Boolean Emision(int numcontrato, int numvariacion){
+        private String sFormacion = StringUtils.getString(StringUtils.FORMACION);
+        private String sParcial = StringUtils.getString(StringUtils.PARCIAL);
+        private String sEnILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
+        private String sEnExcedencia = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
+        private String  sMaternidad = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
+    
+        public Boolean Emision(int numcontrato, int numvariacion){
         
         Boolean emisionRH = false;
         
@@ -25,16 +34,16 @@ public class ComprobarEmisionRegistroHorario {
         List <ContratoVO> listaContrato = contrato.readContrato(numcontrato);
         if(listaContrato.size() > 0){
             for (int i = 0; i < listaContrato.size(); i++){
-                 miContrato = listaContrato.get(i);
-                 if (miContrato.getNumvariacion() == numvariacion)
-                 {
-                     if(miContrato.getTipoctto().contains("Formación") ||
-                        miContrato.getJor_tipo().contains("Parcial") &&
-                        miContrato.getTipovariacion() != 300 &&
-                        miContrato.getTipovariacion() != 600 &&
-                        miContrato.getTipovariacion() != 700)
-                         emisionRH = true;
-                 }
+                miContrato = listaContrato.get(i);
+                if (miContrato.getNumvariacion() == numvariacion)
+                {
+                    if(miContrato.getTipoctto().contains(sFormacion) ||
+                        miContrato.getJor_tipo().contains(sParcial) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
+                        miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
+                            emisionRH = true;
+                }
             }
         }   
         else
@@ -61,13 +70,19 @@ public class ComprobarEmisionRegistroHorario {
             miContrato = listaContrato.get(0);
             if (miContrato.getNumvariacion() == numvariacion)
             {
-               if(miContrato.getTipoctto().contains("Formación") ||
-                   miContrato.getJor_tipo().contains("Parcial") &&
-                   miContrato.getTipovariacion() != 300 &&
-                   miContrato.getTipovariacion() != 600 &&
-                   miContrato.getTipovariacion() != 700)
+               if(miContrato.getTipoctto().contains(sFormacion) ||
+                   miContrato.getJor_tipo().contains(sParcial) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
                {
-                    annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
+                    if(miContrato.getF_desde() == null){
+                        String mensaje = "Compruebe las fechas de inicio del contrato número " + numcontrato;
+                        showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
+                    }
+                    else
+                        annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
+                    
                     if(miContrato.getF_hasta() == null)
                         annoMesHasta = 999912;
                     else
