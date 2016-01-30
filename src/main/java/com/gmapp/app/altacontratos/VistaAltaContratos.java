@@ -6,11 +6,9 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
-<<<<<<< HEAD:src/main/java/com/gmapp/app/altacontratos/VistaAltaContratos.java
+
+
 import com.gmapp.utilities.Funciones;
-=======
-import com.gmapp.utilidades.Funciones;
->>>>>>> master:src/main/java/com/gmapp/app/altacontratos/VistaAC.java
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;

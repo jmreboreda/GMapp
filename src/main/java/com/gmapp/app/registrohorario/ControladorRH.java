@@ -18,43 +18,25 @@ import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-<<<<<<< HEAD:src/main/java/com/gmapp/app/registrohorario/ControladorRegistroHorario.java
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-=======
->>>>>>> master:src/main/java/com/gmapp/app/registrohorario/ControladorRH.java
 
 
-public class ControladorRegistroHorario {
+public class ControladorRH {
 
     private ModeloRegistroHorario modeloRH;
 
-    private VistaRH vistaRH;
+    private VistaRegistroHorario vistaRH;
 
     private Boolean cargandoMeses = false;
     private boolean cargandoClientes = false;
 
     private List <Integer> listaIDClientes = new ArrayList();
     
+    
+    
+    
 
-<<<<<<< HEAD:src/main/java/com/gmapp/app/registrohorario/ControladorRegistroHorario.java
-    public ControladorRegistroHorario(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
-=======
-    public ControladorRH(ModeloRH modelo, VistaRH vista) {
->>>>>>> master:src/main/java/com/gmapp/app/registrohorario/ControladorRH.java
+
+    public ControladorRH(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
         
         this.modeloRH = modelo;
         this.vistaRH = vista;
