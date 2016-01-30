@@ -1,5 +1,5 @@
 
-package com.gmapp.utilidades;
+package com.gmapp.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

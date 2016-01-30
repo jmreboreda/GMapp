@@ -6,8 +6,8 @@
 package com.gmapp.app.registrohorario;
 
 
-import com.gmapp.utilidades.Funciones;
-import com.gmapp.utilidades.MesesAnno;
+import com.gmapp.utilities.Funciones;
+import com.gmapp.utilities.MesesAnno;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;
@@ -18,24 +18,25 @@ import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class ControladorRH {
 
-    private ModeloRH modeloRH;
+    private ModeloRegistroHorario modeloRH;
 
-    private VistaRH vistaRH;
+    private VistaRegistroHorario vistaRH;
 
     private Boolean cargandoMeses = false;
     private boolean cargandoClientes = false;
 
     private List <Integer> listaIDClientes = new ArrayList();
     
+    
+    
+    
 
-    public ControladorRH(ModeloRH modelo, VistaRH vista) {
+
+    public ControladorRH(ModeloRegistroHorario modelo, VistaRegistroHorario vista) {
         
         this.modeloRH = modelo;
         this.vistaRH = vista;
@@ -74,7 +75,7 @@ public class ControladorRH {
         // ****************************************************
         cargandoClientes = true;
         ClienteVO miCliente;
-        ArrayList <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
+        List <ClienteVO> listaClientes = modelo.getAllClientesWithCCC();
         if(listaClientes.size() > 0){
              for (int i = 0; i < listaClientes.size(); i++){
                 miCliente = listaClientes.get(i);
@@ -133,7 +134,7 @@ public class ControladorRH {
             for (int i = 0; i < contratosEncontrados.size(); i++){
                 
                 miContrato = contratosEncontrados.get(i);
-                ComprobarEmisionRegistroHorario comprobar = new ComprobarEmisionRegistroHorario();
+                EmisionRegistroHorario comprobar = new EmisionRegistroHorario();
 
                 if(comprobar.EmisionAtAnnoMes(miContrato.getNumcontrato(),miContrato.getNumvariacion(),
                         annoMesRH)){

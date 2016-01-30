@@ -5,8 +5,8 @@
  */
 package com.gmapp.dao;
 
-import com.gmapp.utilidades.BaseDeDatos;
-import com.gmapp.utilidades.Funciones;
+import com.gmapp.utilities.BaseDeDatos;
+import com.gmapp.utilities.Funciones;
 import com.gmapp.vo.HorarioContrlabVO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmapp.comun;
+package com.gmapp.common;
 
 import java.io.IOException;
 /**
  *
  * @author jmrb
  */
-public class CrearPDFWithLibreOffice {
+public class LibreOfficePDFService {
 public String SysOp = System.getProperty("os.name");
 public String userName = System.getProperty("user.name");    
  
     
-    public CrearPDFWithLibreOffice(String libroGuardado) {
+    public LibreOfficePDFService(String libroGuardado) {
         String programa = "";
         // Determinamos Path a LO
         try {

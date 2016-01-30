@@ -13,12 +13,6 @@ import javax.swing.UIManager;
  */
 public class GMapp {
 
- 
-    /**
-     * Crea modelo, vista y visualiza una ventana principal con todo.
-     * 
-     * @param args
-     */
     public static void main(String[] args) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -28,7 +22,6 @@ public class GMapp {
             {
                 try
                 {
-//                   UIManager.setLookAndFeel("org.jvnet.substance.skin.SubstanceOfficeSilver2007LookAndFeel");
                    UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceOfficeSilver2007LookAndFeel");
 
                 }

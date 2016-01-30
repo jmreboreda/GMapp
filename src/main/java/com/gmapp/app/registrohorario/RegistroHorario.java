@@ -5,11 +5,11 @@
  */
 package com.gmapp.app.registrohorario;
 
-import com.gmapp.comun.CrearPDFWithLibreOffice;
-import com.gmapp.comun.ImprimirWithLibreOffice;
-import com.gmapp.comun.LeerPathFromXML;
-import com.gmapp.comun.SaveDocLibreOfficeToTemp;
-import com.gmapp.utilidades.DocODFUtils;
+import com.gmapp.common.LibreOfficePDFService;
+import com.gmapp.common.LibreOfficePrintService;
+import com.gmapp.common.ReadPathFromXML;
+import com.gmapp.common.SaveDocLibreOfficeToTemp;
+import com.gmapp.utilities.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -97,7 +97,7 @@ public final class RegistroHorario{
         String sAnno = hojaRH.getCellByPosition("N5").getStringValue();
 
         nomFileSave = "";
-        LeerPathFromXML path = new LeerPathFromXML();
+        ReadPathFromXML path = new ReadPathFromXML();
         pathToSave = path.cargarXml("PathToTemp");
         String fileName = sClienteGM + "_Registro_Horario_" + sNombreMes + "_" +
                       sAnno + "_" +  sNombreTrabajador + ".ods";
@@ -135,10 +135,10 @@ public final class RegistroHorario{
     }
       
     public void RegistroHorarioToPrinterWithLibreOffice(String pathFile){    
-        ImprimirWithLibreOffice print = new ImprimirWithLibreOffice(pathFile);
+        LibreOfficePrintService print = new LibreOfficePrintService(pathFile);
     }
     
     public void RHtoPDF(String pathFile){    
-        CrearPDFWithLibreOffice pdf = new CrearPDFWithLibreOffice(pathFile);
+        LibreOfficePDFService pdf = new LibreOfficePDFService(pathFile);
     }
 }
