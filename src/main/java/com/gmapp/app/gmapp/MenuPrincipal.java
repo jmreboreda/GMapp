@@ -326,7 +326,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (btVariacionCtto.isEnabled())
         {
             btVariacionCtto.setEnabled(false);
-            //iVentanasAbiertas = iVentanasAbiertas + 1;
+            iVentanasAbiertas = iVentanasAbiertas + 1;
             ModeloVariacionesContratos modeloVC = new ModeloVariacionesContratos();
             VistaVariacionesContratos vista = new VistaVariacionesContratos(modeloVC);
             try{
