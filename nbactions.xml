@@ -10,7 +10,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath com.gmapp.app.gmappv2.GMappV2</exec.args>
+                <exec.args>-classpath %classpath com.gmapp.app.gmapp.GMapp</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>

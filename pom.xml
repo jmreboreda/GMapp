@@ -48,9 +48,6 @@
                 <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-                 <archive>
-                    <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-                </archive>
                 <outputDirectory>${project.build.directory}/lib</outputDirectory>
                 <overWriteReleases>false</overWriteReleases>
                 <overWriteSnapshots>false</overWriteSnapshots>
