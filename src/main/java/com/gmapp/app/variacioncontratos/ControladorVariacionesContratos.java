@@ -59,7 +59,9 @@ public class ControladorVariacionesContratos {
     public void clientChanged(){
         
         if(vistaVC.getComboCliente().getSelectedIndex() == 0){
+            vistaVC.getComboTrabajador().setEnabled(false);
             vistaVC.getComboTrabajador().removeAllItems();
+            vistaVC.getComboTrabajador().setEnabled(true);
             vistaVC.componentsClear();
             return;
         }
@@ -80,8 +82,9 @@ public class ControladorVariacionesContratos {
             return;
         }
         else{
-            int idEmployeeSelected = employeesNameId.get(vistaVC.getEmployeeName());
-            List<ContratoVO> contratoinforce = modeloVC.getContractInForceEmployee(idEmployeeSelected);
+            int idSelectedEmployee = employeesNameId.get(vistaVC.getEmployeeName());
+            int idSelectedClient = clientsNameId.get(vistaVC.getClientName());
+            List<ContratoVO> contratoinforce = modeloVC.getContractInForceEmployee(idSelectedClient, idSelectedEmployee);
             for(ContratoVO contrato: contratoinforce)
                 miContrato = contrato;
             dataContractShow();

@@ -62,9 +62,11 @@ public class VistaVariacionesContratos extends javax.swing.JPanel {
     }
     
     public void employeesComboLoad(List<String> listaTrabajadores){
+        comboTrabajador.setEnabled(false);
         comboTrabajador.removeAllItems();
         for (String nombre: listaTrabajadores)
             comboTrabajador.addItem(nombre);
+        comboTrabajador.setEnabled(true);
     }
     
     public void clientChanged(){

@@ -10,6 +10,7 @@ import com.gmapp.dao.ContratoDAO;
 import com.gmapp.dao.PersonaDAO;
 import com.gmapp.dao.TipoContratoDAO;
 import com.gmapp.vo.ClienteVO;
+import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;
 import com.gmapp.vo.TipoContratoVO;
 import java.util.ArrayList;
@@ -93,7 +94,7 @@ public class ModeloAltaContratos {
         return ultimoNumeroContrato;
     }
     
-    public int saveContrato(List datosContrato){
+    public int saveContrato(ContratoVO datosContrato){
         
         int idcontrato = 0;
         ContratoDAO contrato = new ContratoDAO();

@@ -8,45 +8,43 @@ package com.gmapp.dao;
 import com.gmapp.utilities.BaseDeDatos;
 import com.gmapp.vo.ContratoVO;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author jmrb
- */
+
 public class ContratoDAO {
 
     public ContratoDAO() {
     }
 
     
-    public int createContrato(List datosContrato) {
-       
-        Integer contrato = null;
+    public int createContrato(ContratoVO datosContrato) {
         
-        Integer numcontrato = Integer.parseInt(datosContrato.get(0).toString());
-        Integer numvariacion = Integer.parseInt(datosContrato.get(1).toString());
-        Integer tipovariacion = Integer.parseInt(datosContrato.get(2).toString());
-        Integer idcliente_gm = Integer.parseInt(datosContrato.get(3).toString());        
-        String clientegm_name = datosContrato.get(4).toString();
-        String contrato_ccc = datosContrato.get(5).toString();
-        Integer idtrabajador = Integer.parseInt(datosContrato.get(6).toString());
-        String trabajador_name = datosContrato.get(7).toString();
-        String categoria = datosContrato.get(8).toString();
-        String jor_trab = datosContrato.get(9).toString();
-        String jor_trab_dias = datosContrato.get(10).toString();
-        String jor_tipo = datosContrato.get(11).toString();
-        String tipoctto = datosContrato.get(12).toString();
-        String fechadesde = datosContrato.get(13).toString();
-        String fechahasta = datosContrato.get(14).toString();
-        String id_ctto_inem = datosContrato.get(15).toString();
-        String envigor = datosContrato.get(16).toString();
-        String notas_gestor = datosContrato.get(17).toString();
-        String notas_privadas = datosContrato.get(18).toString();
-        String duracion = datosContrato.get(19).toString();
+        int contrato = 0;
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
         
-        
+        Integer numcontrato = datosContrato.getNumcontrato();
+        Integer numvariacion = datosContrato.getNumvariacion();
+        Integer tipovariacion = datosContrato.getTipovariacion();
+        Integer idcliente_gm = datosContrato.getIdcliente_gm();        
+        String clientegm_name = datosContrato.getClientegm_name();
+        String contrato_ccc = datosContrato.getContrato_ccc();
+        Integer idtrabajador = datosContrato.getIdtrabajador();
+        String trabajador_name = datosContrato.getTrabajador_name();
+        String categoria = datosContrato.getCategoria();
+        String jor_trab = datosContrato.getJor_trab();
+        String jor_trab_dias = datosContrato.getJor_trab_dias();
+        String jor_tipo = datosContrato.getJor_tipo();
+        String tipoctto = datosContrato.getTipoctto();
+        String fechadesde = fecha.format(datosContrato.getF_desde());
+        String fechahasta = fecha.format(datosContrato.getF_hasta());
+        String id_ctto_inem = datosContrato.getId_ctto_inem();
+        String envigor = datosContrato.getEnvigor().toString();
+        String notas_gestor = datosContrato.getNotas_gestor();
+        String notas_privadas = datosContrato.getNotas_privadas();
+        String duracion = datosContrato.getDuracion();
+            
         StringBuilder query = new StringBuilder();
         
         query.append("INSERT INTO contratoshistorico (numcontrato,numvariacion,tipovariacion,idcliente_gm,"
@@ -373,9 +371,10 @@ public class ContratoDAO {
         return lista;
     }
     
-    public List<ContratoVO> readContratcInForceEmployee(int idemployee){
+    public List<ContratoVO> readContratcInForceEmployee(int idclient, int idemployee){
          String sqlQuery = "SELECT * FROM contratoshistorico WHERE envigor = TRUE AND"
-                + " idtrabajador = " + idemployee + ";";
+                + " idtrabajador = " + idemployee + " AND"
+                + " idcliente_gm = " + idclient + ";";
         
         ArrayList<ContratoVO> lista = new ArrayList<>();
         BaseDeDatos gmoldes = new BaseDeDatos();
