@@ -43,7 +43,11 @@ public class CarpetaA3ControlGestor {
         
         SysOper = System.getProperty("os.name");
         userName = System.getProperty("user.name");
-        userHome = System.getProperty("user.home");             
+        userHome = System.getProperty("user.home");    
+        
+        NUEVO_CONTRATO = StringUtils.getString(StringUtils.NUEVO_CONTRATO);
+        TIEMPO_PARCIAL = StringUtils.getString(StringUtils.TIEMPO_PARCIAL);
+        FORMACION = StringUtils.getString(StringUtils.FORMACION);
         
         libroCalcActual = cargaPlantilla();
         rellenarDGM_003(libroCalcActual);
@@ -72,11 +76,7 @@ public class CarpetaA3ControlGestor {
         return libroCalcActual;
     }  
    
-    private void rellenarDGM_003(SpreadsheetDocument libro)
-    {   
-        NUEVO_CONTRATO = StringUtils.getString(StringUtils.NUEVO_CONTRATO);
-        TIEMPO_PARCIAL = StringUtils.getString(StringUtils.TIEMPO_PARCIAL);
-        FORMACION = StringUtils.getString(StringUtils.FORMACION);
+    private void rellenarDGM_003(SpreadsheetDocument libro){
         
         Table calcNC = libro.getSheetByIndex(0);
         calcNC.getCellByPosition("B7").setStringValue(NUEVO_CONTRATO);
