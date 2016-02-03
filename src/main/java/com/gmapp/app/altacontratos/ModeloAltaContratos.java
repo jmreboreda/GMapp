@@ -85,7 +85,7 @@ public class ModeloAltaContratos {
         return lista;
     }
     
-    public Integer getUltimoNumeroContrato(){
+    public Integer getLastContractNumber(){
         
         ContratoDAO contrato = new ContratoDAO();
         

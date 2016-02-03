@@ -32,6 +32,13 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class ControladorAltaContratos {
@@ -392,80 +399,80 @@ public class ControladorAltaContratos {
     
     public void grabarDatosContrato(){
         
-        ContratoVO datosContrato = new ContratoVO();
+        ContratoVO contratoVO = new ContratoVO();
         SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 
-        int ultimoNumeroContrato = modeloAC.getUltimoNumeroContrato();
-        datosContrato.setNumcontrato(ultimoNumeroContrato + 1);
+        int lastContractNumber = modeloAC.getLastContractNumber();
+        contratoVO.setNumcontrato(lastContractNumber + 1);
         // Número de variación: cero, al ser contrato inicial
-        datosContrato.setNumvariacion(0);
+        contratoVO.setNumvariacion(0);
         // Tipo variacion: tipo contrato al ser número de variación = 0
         int idTipoContrato =  tiposContratosTipoId.get(vistaAC.getTypeContract());
-        datosContrato.setTipovariacion(idTipoContrato);
+        contratoVO.setTipovariacion(idTipoContrato);
         // Idcliente GM        
-        datosContrato.setIdcliente_gm(clientesNomId.get(vistaAC.getClientName()));
+        contratoVO.setIdcliente_gm(clientesNomId.get(vistaAC.getClientName()));
         // ClienteGM Nombre
-        datosContrato.setClientegm_name(vistaAC.getClientName());        
+        contratoVO.setClientegm_name(vistaAC.getClientName());        
         // Cliente CCC
-        datosContrato.setContrato_ccc(vistaAC.getClientCCC());
+        contratoVO.setContrato_ccc(vistaAC.getClientCCC());
         // Id y nombre trabajador
-        datosContrato.setIdtrabajador(trabajadoresNomId.get(vistaAC.getEmployeeName()));
-        datosContrato.setTrabajador_name(vistaAC.getEmployeeName());
+        contratoVO.setIdtrabajador(trabajadoresNomId.get(vistaAC.getEmployeeName()));
+        contratoVO.setTrabajador_name(vistaAC.getEmployeeName());
         // Categoria
-        datosContrato.setCategoria(vistaAC.getCategoria());
+        contratoVO.setCategoria(vistaAC.getCategoria());
         // Jornada
         if(vistaAC.getComboJornada().getSelectedItem().toString().equals("Jornada completa"))
-            datosContrato.setJor_trab("Jornada completa");
+            contratoVO.setJor_trab("Jornada completa");
         else
-            datosContrato.setJor_trab(vistaAC.getHorasSemana() + " horas/semana");
+            contratoVO.setJor_trab(vistaAC.getHorasSemana() + " horas/semana");
         // Jornada, días
         String sDiasSemana = "";
         for (int i = 0; i < vistaAC.getDiasSemana().size(); i++)
             sDiasSemana = sDiasSemana + vistaAC.getDiasSemana().get(i).toString();
-        datosContrato.setJor_trab_dias(sDiasSemana);
+        contratoVO.setJor_trab_dias(sDiasSemana);
         // Jornada, tipo
         if(vistaAC.getComboJornada().getSelectedItem().toString().contains("completa"))
-            datosContrato.setJor_tipo("Completa"); 
+            contratoVO.setJor_tipo("Completa"); 
         else
         {
-            datosContrato.setJor_tipo("Parcial");
+            contratoVO.setJor_tipo("Parcial");
 //            emisionRegistroHorario = true;
         }
         // Tipo contrato
-        datosContrato.setTipoctto(vistaAC.getComboTiposContrato().getSelectedItem().toString());
+        contratoVO.setTipoctto(vistaAC.getComboTiposContrato().getSelectedItem().toString());
         
         try {
-            datosContrato.setF_desde(fecha.parse(vistaAC.getFechaInicioContrato()));
+            contratoVO.setF_desde(fecha.parse(vistaAC.getFechaInicioContrato()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
-            datosContrato.setF_hasta(null);
+            contratoVO.setF_hasta(null);
         else
             try {
-                datosContrato.setF_hasta(fecha.parse(vistaAC.getFechaFinContrato()));
+                contratoVO.setF_hasta(fecha.parse(vistaAC.getFechaFinContrato()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Número contrato INEM
-        datosContrato.setId_ctto_inem("Pendiente");
+        contratoVO.setId_ctto_inem("Pendiente");
         // En vigor
-        datosContrato.setEnvigor(true);
+        contratoVO.setEnvigor(true);
         // Notas gestor
-        datosContrato.setNotas_gestor(vistaAC.getAreaGestor());
+        contratoVO.setNotas_gestor(vistaAC.getAreaGestor());
         String notificacion = "[Notificación cliente: " + vistaAC.getFechaNotificacion() +
                 " a las " + vistaAC.getHoraNotificacion() + "]\\n";
         // Notas privadas
-        datosContrato.setNotas_privadas(notificacion + vistaAC.getAreaPrivada());
+        contratoVO.setNotas_privadas(notificacion + vistaAC.getAreaPrivada());
         // Duración
         if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
-            datosContrato.setDuracion("I");
+            contratoVO.setDuracion("I");
         else
-            datosContrato.setDuracion("T");
+            contratoVO.setDuracion("T");
         // 
         //  Grabamos el Contrato
         //
-        int numcontrato = modeloAC.saveContrato(datosContrato);
+        int numcontrato = modeloAC.saveContrato(contratoVO);
         if(numcontrato > 0)
             vistaAC.muestraInfo("El contrato se ha guardado con el número " + numcontrato);
         else {
