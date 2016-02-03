@@ -11,11 +11,13 @@ import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
 import com.gmapp.utilities.Funciones;
 import com.gmapp.vo.ClienteVO;
+import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.EstudiosVO;
 import com.gmapp.vo.PersonaVO;
 import com.gmapp.vo.TipoContratoVO;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +26,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -388,70 +392,76 @@ public class ControladorAltaContratos {
     
     public void grabarDatosContrato(){
         
-        List datosContrato = new ArrayList();
-        Funciones funcion = new Funciones();
+        ContratoVO datosContrato = new ContratoVO();
+        SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 
         int ultimoNumeroContrato = modeloAC.getUltimoNumeroContrato();
-        datosContrato.add(ultimoNumeroContrato + 1);
+        datosContrato.setNumcontrato(ultimoNumeroContrato + 1);
         // Número de variación: cero, al ser contrato inicial
-        datosContrato.add(0);
+        datosContrato.setNumvariacion(0);
         // Tipo variacion: tipo contrato al ser número de variación = 0
         int idTipoContrato =  tiposContratosTipoId.get(vistaAC.getTypeContract());
-        datosContrato.add(idTipoContrato);
+        datosContrato.setTipovariacion(idTipoContrato);
         // Idcliente GM        
-        datosContrato.add(clientesNomId.get(vistaAC.getClientName()));
+        datosContrato.setIdcliente_gm(clientesNomId.get(vistaAC.getClientName()));
         // ClienteGM Nombre
-        datosContrato.add(vistaAC.getClientName());        
+        datosContrato.setClientegm_name(vistaAC.getClientName());        
         // Cliente CCC
-        datosContrato.add(vistaAC.getClientCCC());
+        datosContrato.setContrato_ccc(vistaAC.getClientCCC());
         // Id y nombre trabajador
-        datosContrato.add(trabajadoresNomId.get(vistaAC.getEmployeeName()));
-        datosContrato.add(vistaAC.getEmployeeName());
+        datosContrato.setIdtrabajador(trabajadoresNomId.get(vistaAC.getEmployeeName()));
+        datosContrato.setTrabajador_name(vistaAC.getEmployeeName());
         // Categoria
-        datosContrato.add(vistaAC.getCategoria());
+        datosContrato.setCategoria(vistaAC.getCategoria());
         // Jornada
         if(vistaAC.getComboJornada().getSelectedItem().toString().equals("Jornada completa"))
-            datosContrato.add("Jornada completa");
+            datosContrato.setJor_trab("Jornada completa");
         else
-            datosContrato.add(vistaAC.getHorasSemana() + " horas/semana");
+            datosContrato.setJor_trab(vistaAC.getHorasSemana() + " horas/semana");
         // Jornada, días
         String sDiasSemana = "";
         for (int i = 0; i < vistaAC.getDiasSemana().size(); i++)
             sDiasSemana = sDiasSemana + vistaAC.getDiasSemana().get(i).toString();
-        datosContrato.add(sDiasSemana);
+        datosContrato.setJor_trab_dias(sDiasSemana);
         // Jornada, tipo
         if(vistaAC.getComboJornada().getSelectedItem().toString().contains("completa"))
-            datosContrato.add("Completa"); 
+            datosContrato.setJor_tipo("Completa"); 
         else
         {
-            datosContrato.add("Parcial");
+            datosContrato.setJor_tipo("Parcial");
 //            emisionRegistroHorario = true;
         }
         // Tipo contrato
-        datosContrato.add(vistaAC.getComboTiposContrato().getSelectedItem().toString());
+        datosContrato.setTipoctto(vistaAC.getComboTiposContrato().getSelectedItem().toString());
         
-        // Fecha inicio contrato
-        datosContrato.add(funcion.formatoFecha_us(vistaAC.getFechaInicioContrato()));
-        // Fecha fin contrato
+        try {
+            datosContrato.setF_desde(fecha.parse(vistaAC.getFechaInicioContrato()));
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
-            datosContrato.add("null");
+            datosContrato.setF_hasta(null);
         else
-            datosContrato.add(funcion.formatoFecha_us(vistaAC.getFechaFinContrato()));
+            try {
+                datosContrato.setF_hasta(fecha.parse(vistaAC.getFechaFinContrato()));
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Número contrato INEM
-        datosContrato.add("Pendiente");
+        datosContrato.setId_ctto_inem("Pendiente");
         // En vigor
-        datosContrato.add("TRUE");
+        datosContrato.setEnvigor(true);
         // Notas gestor
-        datosContrato.add(vistaAC.getAreaGestor());
+        datosContrato.setNotas_gestor(vistaAC.getAreaGestor());
         String notificacion = "[Notificación cliente: " + vistaAC.getFechaNotificacion() +
                 " a las " + vistaAC.getHoraNotificacion() + "]\\n";
         // Notas privadas
-        datosContrato.add(notificacion + vistaAC.getAreaPrivada());
+        datosContrato.setNotas_privadas(notificacion + vistaAC.getAreaPrivada());
         // Duración
         if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
-            datosContrato.add("I");
+            datosContrato.setDuracion("I");
         else
-            datosContrato.add("T");
+            datosContrato.setDuracion("T");
         // 
         //  Grabamos el Contrato
         //
