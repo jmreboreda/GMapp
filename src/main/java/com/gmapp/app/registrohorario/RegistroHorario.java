@@ -9,7 +9,7 @@ import com.gmapp.common.LibreOfficePDFService;
 import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
 import com.gmapp.common.SaveDocLibreOfficeToTemp;
-import com.gmapp.utilities.DocODFUtils;
+import com.gmapp.utils.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

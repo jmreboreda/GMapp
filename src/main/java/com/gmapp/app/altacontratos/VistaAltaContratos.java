@@ -8,7 +8,7 @@ package com.gmapp.app.altacontratos;
 import com.gmapp.app.gmapp.MenuPrincipal;
 
 
-import com.gmapp.utilities.Funciones;
+import com.gmapp.utils.Funciones;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;

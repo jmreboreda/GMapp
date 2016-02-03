@@ -5,7 +5,7 @@
  */
 package com.gmapp.common;
 
-import com.gmapp.utilities.StringUtils;
+import com.gmapp.utils.StringUtils;
 import java.io.IOException;
 /**
  *

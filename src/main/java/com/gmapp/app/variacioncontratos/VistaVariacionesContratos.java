@@ -6,7 +6,7 @@
 package com.gmapp.app.variacioncontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
-import com.gmapp.utilities.StringUtils;
+import com.gmapp.utils.StringUtils;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
