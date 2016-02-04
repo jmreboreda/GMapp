@@ -9,6 +9,7 @@ package com.gmapp.app.altacontratos;
 import com.gmapp.app.registrohorario.EmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
+import com.gmapp.utils.ContractUtils;
 import com.gmapp.utils.Funciones;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
@@ -33,12 +34,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class ControladorAltaContratos {
@@ -48,6 +43,7 @@ public class ControladorAltaContratos {
 
 //    private boolean cargandoTrabajadores = false;
 
+    private String INDEFINIDO;
     private List<String> listaItemsNombresClientes = new ArrayList<>();
     private List <String> listaItemsNombresTrabajadores = new ArrayList<>();    
     private List <String> listaNombresTiposContrato = new ArrayList<>();
@@ -251,6 +247,8 @@ public class ControladorAltaContratos {
     }
     
     public void cambiadoDuracionContrato(){
+
+        INDEFINIDO = ContractUtils.getContractUtil(ContractUtils.INDEFINIDO);
         if(vistaAC.getComboDuracionContrato().getSelectedIndex() == 0)
         {
             cambiadoTipoContrato();
@@ -258,7 +256,7 @@ public class ControladorAltaContratos {
             vistaAC.setFechaHasta("");
             vistaAC.setDiasContrato("");
         }
-        else if (vistaAC.getComboDuracionContrato().getSelectedItem().toString().equals("Indefinido"))
+        else if (vistaAC.getContractPermanentOrTemporal().equals(INDEFINIDO))
             vistaAC.settfFechaHastaEnabled(false);
         else
             vistaAC.settfFechaHastaEnabled(true);
@@ -268,12 +266,12 @@ public class ControladorAltaContratos {
         
         Funciones funcion = new Funciones();
         String sFecha = null;
-        if (funcion.validaFechaMascara(vistaAC.getFechaInicioContrato().trim(), "ddMMyyyy") ||
-                funcion.validaFechaMascara(vistaAC.getFechaInicioContrato().trim(), "dd-MM-yyyy"))
+        if (funcion.validaFechaMascara(vistaAC.getContractStartDate().trim(), "ddMMyyyy") ||
+                funcion.validaFechaMascara(vistaAC.getContractStartDate().trim(), "dd-MM-yyyy"))
         {
-            if (vistaAC.getFechaInicioContrato().trim().length() == 8)
+            if (vistaAC.getContractStartDate().trim().length() == 8)
                 {
-                    sFecha = vistaAC.getFechaInicioContrato().trim();
+                    sFecha = vistaAC.getContractStartDate().trim();
                     String sFechaFormated = sFecha.substring(0, 2) + "-" + sFecha.substring(2, 4) + "-" + sFecha.substring(4, 8);
                     vistaAC.setFechaDesde(sFechaFormated);
                 } 
@@ -291,12 +289,12 @@ public class ControladorAltaContratos {
         
         Funciones funcion = new Funciones();
         String sFecha = "";
-        if (funcion.validaFechaMascara(vistaAC.getFechaFinContrato().trim(), "ddMMyyyy") ||
-                funcion.validaFechaMascara(vistaAC.getFechaFinContrato().trim(), "dd-MM-yyyy"))
+        if (funcion.validaFechaMascara(vistaAC.getContractTerminationDate().trim(), "ddMMyyyy") ||
+                funcion.validaFechaMascara(vistaAC.getContractTerminationDate().trim(), "dd-MM-yyyy"))
         {
-            if (vistaAC.getFechaFinContrato().trim().length() == 8)
+            if (vistaAC.getContractTerminationDate().trim().length() == 8)
                 {
-                    sFecha = vistaAC.getFechaFinContrato().trim();
+                    sFecha = vistaAC.getContractTerminationDate().trim();
                     String sFechaFormated = sFecha.substring(0, 2) + "-" + sFecha.substring(2, 4) + "-" + sFecha.substring(4, 8);
                     vistaAC.setFechaHasta(sFechaFormated);
                 } 
@@ -312,8 +310,8 @@ public class ControladorAltaContratos {
     
     public void diasDuracionContrato(){
         
-        if(vistaAC.getFechaInicioContrato().trim().isEmpty() ||
-               vistaAC.getFechaFinContrato().trim().isEmpty())
+        if(vistaAC.getContractStartDate().trim().isEmpty() ||
+               vistaAC.getContractTerminationDate().trim().isEmpty())
                 return;
         
         Funciones funcion = new Funciones();
@@ -326,19 +324,19 @@ public class ControladorAltaContratos {
         int iFechaDesde = 0;
         int iFechaHasta = 0;
 
-        Calendar dFechaD = new GregorianCalendar(Integer.parseInt(vistaAC.getFechaInicioContrato().substring(6, 10)),
-                Integer.parseInt(vistaAC.getFechaInicioContrato().substring(3, 5)) -1,
-                Integer.parseInt(vistaAC.getFechaInicioContrato().substring(0, 2))); 
-        Calendar dFechaH = new GregorianCalendar(Integer.parseInt(vistaAC.getFechaFinContrato().substring(6, 10)),
-                Integer.parseInt(vistaAC.getFechaFinContrato().substring(3, 5)) -1,
-                Integer.parseInt(vistaAC.getFechaFinContrato().substring(0, 2))); 
+        Calendar dFechaD = new GregorianCalendar(Integer.parseInt(vistaAC.getContractStartDate().substring(6, 10)),
+                Integer.parseInt(vistaAC.getContractStartDate().substring(3, 5)) -1,
+                Integer.parseInt(vistaAC.getContractStartDate().substring(0, 2))); 
+        Calendar dFechaH = new GregorianCalendar(Integer.parseInt(vistaAC.getContractTerminationDate().substring(6, 10)),
+                Integer.parseInt(vistaAC.getContractTerminationDate().substring(3, 5)) -1,
+                Integer.parseInt(vistaAC.getContractTerminationDate().substring(0, 2))); 
         
         // Comprobamos que FechaHasta >= FechaDesde
-        sFechaDesde = vistaAC.getFechaInicioContrato();
+        sFechaDesde = vistaAC.getContractStartDate();
         sFechaUS = funcion.formatoFecha_us(sFechaDesde);
         iFechaDesde = Integer.parseInt(sFechaUS.replace("-",""));
         
-        sFechaHasta = vistaAC.getFechaFinContrato();
+        sFechaHasta = vistaAC.getContractTerminationDate();
         sFechaUS = funcion.formatoFecha_us(sFechaHasta);
         iFechaHasta = Integer.parseInt(sFechaUS.replace("-",""));
         
@@ -442,15 +440,15 @@ public class ControladorAltaContratos {
         contratoVO.setTipoctto(vistaAC.getComboTiposContrato().getSelectedItem().toString());
         
         try {
-            contratoVO.setF_desde(fecha.parse(vistaAC.getFechaInicioContrato()));
+            contratoVO.setF_desde(fecha.parse(vistaAC.getContractStartDate()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
+        if(vistaAC.getContractTerminationDate().isEmpty())   // Es un contrato Indefinido
             contratoVO.setF_hasta(null);
         else
             try {
-                contratoVO.setF_hasta(fecha.parse(vistaAC.getFechaFinContrato()));
+                contratoVO.setF_hasta(fecha.parse(vistaAC.getContractTerminationDate()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -465,7 +463,7 @@ public class ControladorAltaContratos {
         // Notas privadas
         contratoVO.setNotas_privadas(notificacion + vistaAC.getAreaPrivada());
         // Duración
-        if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
+        if(vistaAC.getContractTerminationDate().isEmpty())   // Es un contrato Indefinido
             contratoVO.setDuracion("I");
         else
             contratoVO.setDuracion("T");
@@ -500,7 +498,7 @@ public class ControladorAltaContratos {
 
             Date fechaInicioCtto = new Date();
             try{
-                fechaInicioCtto = fechaCompleta.parse(vistaAC.getFechaInicioContrato());
+                fechaInicioCtto = fechaCompleta.parse(vistaAC.getContractStartDate());
             }
             catch(Exception e){
 

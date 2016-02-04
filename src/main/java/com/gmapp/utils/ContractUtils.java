@@ -9,7 +9,7 @@ package com.gmapp.utils;
  *
  * @author jmrb
  */
-public enum ContractType {
+public enum ContractUtils {
     
     NORMAL("Normal"),
     INDEFINIDO_BONIFICADO("Indefinido bonificado"),
@@ -20,15 +20,21 @@ public enum ContractType {
     SUBROGACION("Subrogación de otro empleador"),
     SOCIO_TRABAJADOR("Socio trabajador"),
     SUSTITUCION_EXCEDENCIA("De sustitución por excedencia"),
-    DE_RELEVO("De relevo");
+    DE_RELEVO("De relevo"),
+    
+    INDEFINIDO("Indefinido"),
+    TEMPORAL("Temporal"),
+    
+    J_COMPLETA("Jornada completa"),
+    J_PARCIAL("Parcial");
     
     private final String contratcName;
     
-    ContractType(String contratcName){
+    ContractUtils(String contratcName){
         this.contratcName = contratcName;
     }
     
-    public static String getContractType(ContractType type){
+    public static String getContractUtil(ContractUtils type){
         return type.name();
     }
 }

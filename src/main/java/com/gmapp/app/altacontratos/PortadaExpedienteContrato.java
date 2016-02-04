@@ -79,9 +79,9 @@ public class PortadaExpedienteContrato {
         hojaPEC.getCellByPosition("L11").setStringValue(vistaAC.getTrabajadorNacionalidad());
         hojaPEC.getCellByPosition("L13").setStringValue(vistaAC.getTrabajadorDireccion());
         hojaPEC.getCellByPosition("L16").setStringValue(vistaAC.getTrabajadorNivEst());
-        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getFechaInicioContrato());
+        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getContractStartDate());
         
-        String sDuracionContrato = vistaAC.getEtqDuracionContrato().replace("[", "");
+        String sDuracionContrato = vistaAC.getEtqDiasDuracionContrato().replace("[", "");
         sDuracionContrato = sDuracionContrato.replace("]","").trim();
         hojaPEC.getCellByPosition("P20").setStringValue(sDuracionContrato); // Duración contrato
         
@@ -95,7 +95,7 @@ public class PortadaExpedienteContrato {
         
         if(vistaAC.getComboDuracionContrato().getSelectedItem().equals("Temporal"))
             sTipoContrato = sTipoContrato + ", " + vistaAC.getComboDuracionContrato().getSelectedItem() + " [ hasta "
-                    + vistaAC.getFechaFinContrato() + " ]";
+                    + vistaAC.getContractTerminationDate() + " ]";
         else
             sTipoContrato = sTipoContrato + ", Indefinido";
         

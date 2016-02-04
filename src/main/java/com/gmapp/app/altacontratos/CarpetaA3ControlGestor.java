@@ -18,9 +18,72 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class CarpetaA3ControlGestor {
@@ -94,16 +157,16 @@ public class CarpetaA3ControlGestor {
         calcNC.getCellByPosition("G23").setStringValue(vistaAC.getTrabajadorNivEst());
 
         String tipoCtto = vistaAC.getComboTiposContrato().getSelectedItem().toString();
-        tipoCtto = tipoCtto + ", " + vistaAC.getComboDuracionContrato().getSelectedItem().toString();
+        tipoCtto = tipoCtto + ", " + vistaAC.getContractPermanentOrTemporal();
         tipoCtto = tipoCtto + ", " + vistaAC.getComboJornada().getSelectedItem().toString();
         
         if(vistaAC.getComboJornada().getSelectedItem().toString().equals(TIEMPO_PARCIAL))
             tipoCtto = tipoCtto + " [" + vistaAC.getHorasSemana() + " horas/semana ]";
 
         calcNC.getCellByPosition("B29").setStringValue(tipoCtto); 
-        calcNC.getCellByPosition("H29").setStringValue(vistaAC.getFechaInicioContrato());
-        calcNC.getCellByPosition("I29").setStringValue(vistaAC.getFechaFinContrato()); 
-        String sNumDiasContrato = vistaAC.getEtqDuracionContrato().replace("[","");
+        calcNC.getCellByPosition("H29").setStringValue(vistaAC.getContractStartDate());
+        calcNC.getCellByPosition("I29").setStringValue(vistaAC.getContractTerminationDate()); 
+        String sNumDiasContrato = vistaAC.getEtqDiasDuracionContrato().replace("[","");
         sNumDiasContrato = sNumDiasContrato.replace("]","");
         calcNC.getCellByPosition("J29").setStringValue(sNumDiasContrato);       
 
@@ -199,7 +262,7 @@ public class CarpetaA3ControlGestor {
             
             Date fechaInicioCtto = new Date();
             try{
-                fechaInicioCtto = fechaCompleta.parse(vistaAC.getFechaInicioContrato());
+                fechaInicioCtto = fechaCompleta.parse(vistaAC.getContractStartDate());
             }
             catch(Exception e){   
             }
@@ -263,10 +326,10 @@ public class CarpetaA3ControlGestor {
         
         try {
             if (SysOper.equals("Linux"))
-                nomFileSaveToPDF = myPathToTemp + sCliente + "_Nuevo_Contrato_" + vistaAC.getFechaInicioContrato() + "_" + sTrabajador + ".ods";
+                nomFileSaveToPDF = myPathToTemp + sCliente + "_Nuevo_Contrato_" + vistaAC.getContractStartDate() + "_" + sTrabajador + ".ods";
             else
                 nomFileSaveToPDF = userHome + myPathToTemp + sCliente + "_Nuevo_Contrato_"
-                        + vistaAC.getFechaInicioContrato() + "_" + sTrabajador + ".ods";
+                        + vistaAC.getContractStartDate() + "_" + sTrabajador + ".ods";
                 
         } catch (Exception e) {
                 System.err.println("ERROR: No se ha guardado el archivo.");

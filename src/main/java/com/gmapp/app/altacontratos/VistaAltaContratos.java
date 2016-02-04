@@ -6,8 +6,6 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
-
-
 import com.gmapp.utils.Funciones;
 import java.awt.Color;
 import java.awt.Font;
@@ -458,21 +456,25 @@ public class VistaAltaContratos extends JPanel{
     }
     
    
-    public String getEtqDuracionContrato() {
+    public String getEtqDiasDuracionContrato() {
         return etqDuracionContrato.getText();
     }
 
    
     public JComboBox<String> getComboDuracionContrato() {
         return comboDuracionContrato;
-    }    
+    }
+    
+    public String getContractPermanentOrTemporal(){
+        return comboDuracionContrato.getSelectedItem().toString();
+    }
    
-    public String getFechaInicioContrato() {
+    public String getContractStartDate() {
         return this.tfFechaDesde.getText();
     }
 
    
-    public String getFechaFinContrato() {
+    public String getContractTerminationDate() {
        return this.tfFechaHasta.getText();
     }
     
