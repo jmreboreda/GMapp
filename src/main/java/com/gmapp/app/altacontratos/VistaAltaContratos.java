@@ -44,7 +44,7 @@ public class VistaAltaContratos extends JPanel{
         CargaFechaHoraHoy();
  //       CargarTablaHorario();
         controlador = new ControladorAltaContratos(modelo, this); 
-        controlador.cambiadoTrabajador();
+        controlador.employeeChanged();
         
         tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();
         tablaHorario.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD,11));
@@ -227,11 +227,11 @@ public class VistaAltaContratos extends JPanel{
     }    
     
     public void cambiadoCliente(){
-        controlador.cambiadoCliente();
+        controlador.clientChanged();
     }
     
     public void cambiadoTrabajador(){
-        controlador.cambiadoTrabajador();
+        controlador.employeeChanged();
     }
     
     public void cambiadoTipoContrato(){
@@ -441,7 +441,8 @@ public class VistaAltaContratos extends JPanel{
         return etqNivEst.getText();
     }
     
-    public String getTypeContract(){
+    public String getContractType(){
+        
         return comboTiposContrato.getSelectedItem().toString();
     }
     
@@ -465,9 +466,11 @@ public class VistaAltaContratos extends JPanel{
         return comboDuracionContrato;
     }
     
+    
     public String getContractPermanentOrTemporal(){
         return comboDuracionContrato.getSelectedItem().toString();
     }
+
    
     public String getContractStartDate() {
         return this.tfFechaDesde.getText();
