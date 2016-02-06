@@ -79,22 +79,6 @@ public class VistaAltaContratos extends JPanel{
         tfHoraNotif.setText(sHoraAhora);
     }
     
-     private void CargarTablaHorario(){
-     tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();
-     Object[] datosFila = new Object[7]; 
-     for (int iCont = 0; iCont < 7; iCont++)
-     {
-        datosFila[0] = "";
-        datosFila[1] = "";
-        datosFila[2] = "";
-        datosFila[3] = "";
-        datosFila[4] = "";
-        datosFila[5] = "";
-        datosFila[6] = "";
-        tablaHorarioModelo.addRow(datosFila);
-     } 
-  }
-    
     private double formatHoraToDouble(String sHora){
       if (sHora.trim().length() != 5)
           return 0.00;
@@ -187,7 +171,7 @@ public class VistaAltaContratos extends JPanel{
             comboTiposContrato.addItem(nombre.toString());
     }
     
-    public void cargaDatosPersonalesTrabajador(List<String> lista){
+    public void loadEmployeePersonalData(List<String> lista){
 
         etqNIF.setText(lista.get(0));
         etqNASS.setText(lista.get(1));
@@ -226,11 +210,11 @@ public class VistaAltaContratos extends JPanel{
         botonLlamante = botonOrigen;
     }    
     
-    public void cambiadoCliente(){
+    public void clientChanged(){
         controlador.clientChanged();
     }
     
-    public void cambiadoTrabajador(){
+    public void employeeChanged(){
         controlador.employeeChanged();
     }
     
@@ -416,12 +400,12 @@ public class VistaAltaContratos extends JPanel{
         return comboClienteCCC.getSelectedItem().toString();
     }
     
-    public String getFechaNotificacion() {
+    public String getNotificationDate() {
             return tfFechaNotif.getText();
     }
    
     
-    public String getHoraNotificacion() {
+    public String getNotificationHour() {
         return tfHoraNotif.getText();
     }
     
@@ -522,7 +506,7 @@ public class VistaAltaContratos extends JPanel{
         return comboJornada;
     }    
    
-    public String getHorasSemana(){
+    public String getWeekHours(){
         return this.tfHorasSemana.getText();
     }
 
@@ -1638,7 +1622,7 @@ public class VistaAltaContratos extends JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTrabajadorActionPerformed
-        cambiadoTrabajador();
+        employeeChanged();
     }//GEN-LAST:event_comboTrabajadorActionPerformed
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -1649,7 +1633,7 @@ public class VistaAltaContratos extends JPanel{
     }//GEN-LAST:event_botonSalirMouseClicked
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
-        cambiadoCliente();
+        clientChanged();
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked

@@ -103,7 +103,7 @@ public class PortadaExpedienteContrato {
         hojaPEC.getCellByPosition("D22").setStringValue(sTipoContrato); // Celda Tipo de contrato
         
         hojaPEC.getCellByPosition("D23").setStringValue(vistaAC.getCategoria()); // Categoría laboral
-        hojaPEC.getCellByPosition("L23").setStringValue(vistaAC.getHorasSemana() + " horas/semana"); // Horas/semana
+        hojaPEC.getCellByPosition("L23").setStringValue(vistaAC.getWeekHours() + " horas/semana"); // Horas/semana
         hojaPEC.getCellByPosition("O23").setStringValue("Faltan días jornada"); // Jornada
     }
     

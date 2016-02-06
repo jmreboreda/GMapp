@@ -349,7 +349,7 @@ public class ControladorAltaContratos {
         Double dNumHoras = 0D;
         
         try{
-            dNumHoras = Double.parseDouble(vistaAltaContratos.getHorasSemana());
+            dNumHoras = Double.parseDouble(vistaAltaContratos.getWeekHours());
         }
         catch(Exception e){
             vistaAltaContratos.setHorasSemana("");
@@ -419,7 +419,7 @@ public class ControladorAltaContratos {
         if(vistaAltaContratos.getComboJornada().getSelectedItem().toString().equals("Jornada completa"))
             contratoVO.setJor_trab("Jornada completa");
         else
-            contratoVO.setJor_trab(vistaAltaContratos.getHorasSemana() + " horas/semana");
+            contratoVO.setJor_trab(vistaAltaContratos.getWeekHours() + " horas/semana");
         // Jornada, días
         String sDiasSemana = "";
         for (int i = 0; i < vistaAltaContratos.getDiasSemana().size(); i++)
@@ -455,8 +455,8 @@ public class ControladorAltaContratos {
         contratoVO.setEnvigor(true);
         // Notas gestor
         contratoVO.setNotas_gestor(vistaAltaContratos.getAreaGestor());
-        String notificacion = "[Notificación cliente: " + vistaAltaContratos.getFechaNotificacion() +
-                " a las " + vistaAltaContratos.getHoraNotificacion() + "]\\n";
+        String notificacion = "[Notificación cliente: " + vistaAltaContratos.getNotificationDate() +
+                " a las " + vistaAltaContratos.getNotificationHour() + "]\\n";
         // Notas privadas
         contratoVO.setNotas_privadas(notificacion + vistaAltaContratos.getAreaPrivada());
         // Duración
@@ -511,7 +511,7 @@ public class ControladorAltaContratos {
             RegistroHorario reghor = new RegistroHorario(mesRH, annoRH, 
                     vistaAltaContratos.getComboCliente().getSelectedItem().toString(),
                     vistaAltaContratos.getComboClienteCCC().getSelectedItem().toString(),vistaAltaContratos.getComboTrabajador().getSelectedItem().toString(),
-                    vistaAltaContratos.getTrabajadorNIF(), vistaAltaContratos.getHorasSemana() + " horas/semana");
+                    vistaAltaContratos.getTrabajadorNIF(), vistaAltaContratos.getWeekHours() + " horas/semana");
             String pathFile = reghor.guardarRegistoHorarioParaPDF();
             reghor.RHtoPDF(pathFile);
 

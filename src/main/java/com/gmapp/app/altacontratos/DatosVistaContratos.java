@@ -90,7 +90,7 @@ public class DatosVistaContratos {
             comprobadoOK = false;
         }
         else if (vista.getComboJornada().getSelectedItem().equals("Tiempo parcial") &&
-                vista.getHorasSemana().length() == 0)
+                vista.getWeekHours().length() == 0)
         {
             warningMessage.append("No se han establecido las horas de la jornada.\n");
             comprobadoOK = false;

@@ -21,7 +21,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class CarpetaA3ControlGestor {
@@ -83,8 +82,8 @@ public class CarpetaA3ControlGestor {
         calcNC.getCellByPosition("B7").setStringValue(NUEVO_CONTRATO);
         calcNC.getCellByPosition("B12").setStringValue(vistaAltaContratos.getClientName());
         calcNC.getCellByPosition("B17").setStringValue(vistaAltaContratos.getCCCclient()); 
-        calcNC.getCellByPosition("B21").setStringValue(vistaAltaContratos.getFechaNotificacion());
-        calcNC.getCellByPosition("E21").setStringValue(vistaAltaContratos.getHoraNotificacion());
+        calcNC.getCellByPosition("B21").setStringValue(vistaAltaContratos.getNotificationDate());
+        calcNC.getCellByPosition("E21").setStringValue(vistaAltaContratos.getNotificationHour());
         calcNC.getCellByPosition("G6").setStringValue(vistaAltaContratos.getEmployeeName());
         calcNC.getCellByPosition("G9").setStringValue(vistaAltaContratos.getTrabajadorNIF());
         calcNC.getCellByPosition("I9").setStringValue(vistaAltaContratos.getTrabajadorNASS());
@@ -99,7 +98,7 @@ public class CarpetaA3ControlGestor {
         tipoCtto = tipoCtto + ", " + vistaAltaContratos.getComboJornada().getSelectedItem().toString();
         
         if(vistaAltaContratos.getComboJornada().getSelectedItem().toString().equals(TIEMPO_PARCIAL))
-            tipoCtto = tipoCtto + " [" + vistaAltaContratos.getHorasSemana() + " horas/semana ]";
+            tipoCtto = tipoCtto + " [" + vistaAltaContratos.getWeekHours() + " horas/semana ]";
 
         calcNC.getCellByPosition("B29").setStringValue(tipoCtto); 
         calcNC.getCellByPosition("H29").setStringValue(vistaAltaContratos.getContractStartDate());
@@ -209,7 +208,7 @@ public class CarpetaA3ControlGestor {
             
             calcNC.getCellByPosition("B127").setStringValue(" Registro Horario [emitido para " + 
                     mesRH + "-" + annoRH  + "]");
-            calcNC.getCellByPosition("G126").setStringValue(vistaAltaContratos.getFechaNotificacion());
+            calcNC.getCellByPosition("G126").setStringValue(vistaAltaContratos.getNotificationDate());
         }
     }
     
