@@ -21,13 +21,13 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class VistaAltaContratos extends JPanel{
     
@@ -172,17 +172,17 @@ public class VistaAltaContratos extends JPanel{
         }
     }
     
-    public void cargaComboClientes(List<String> listaClientes){
+    public void loadClientsSelector(List<String> listaClientes){
         for (String nombre: listaClientes)
             comboCliente.addItem(nombre);
     }
     
-    public void cargaComboTrabajadores(List<String> lista){
+    public void loadEmployeesSelector(List<String> lista){
         for (Object nombre: lista)
             comboTrabajador.addItem(nombre.toString());
     }
     
-    public void cargaComboTiposContratos(List<String> lista){
+    public void loadContractTypeSelector(List<String> lista){
         for (Object nombre: lista)
             comboTiposContrato.addItem(nombre.toString());
     }
@@ -281,6 +281,39 @@ public class VistaAltaContratos extends JPanel{
         this.menu = menuP;
     }
     
+    public JComboBox getClientsSelector(){
+        return comboCliente;
+    }
+    
+    public void clientsSelectorDisabled(){
+        comboCliente.setEnabled(false);
+    }
+    
+    public void clientsSelectorEnabled(){
+        comboCliente.setEnabled(true);
+    }
+    
+    public JComboBox getEmployeesSelector(){
+        return comboTrabajador;
+    }
+    
+    public void employeesSelectorDisabled(){
+        comboTrabajador.setEnabled(false);
+    }
+    
+    public void employeesSelectorEnabled(){
+        comboTrabajador.setEnabled(true);
+    }
+    
+    public void contractTypeSelectorDisabled(){
+        comboTiposContrato.setEnabled(false);
+    }
+    
+    public void contractTypeSelectorEnabled(){
+        comboTiposContrato.setEnabled(true);
+    }
+    
+    
     public void comboClienteCCCremoveAllItem(){
         
         this.comboClienteCCC.removeAllItems();
@@ -377,6 +410,10 @@ public class VistaAltaContratos extends JPanel{
     
     public String getClientCCC(){
         return comboCliente.getSelectedItem().toString();
+    }
+    
+    public String getCCCclient(){
+        return comboClienteCCC.getSelectedItem().toString();
     }
     
     public String getFechaNotificacion() {

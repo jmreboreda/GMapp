@@ -95,7 +95,7 @@ public class ContratoDAO {
         query.append("'").append(duracion).append("'");   
         query.append(");");
 
-//        System.out.println("StringBuilder \"query\":\n" + query.toString());
+        System.out.println("StringBuilder \"query\":\n" + query.toString());
         BaseDeDatos gmoldes = new BaseDeDatos();
         
         try

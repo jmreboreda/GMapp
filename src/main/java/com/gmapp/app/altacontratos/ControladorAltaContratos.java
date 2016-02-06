@@ -6,7 +6,6 @@
 package com.gmapp.app.altacontratos;
 
 
-import com.gmapp.app.registrohorario.EmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
 import com.gmapp.utils.ContractUtils;
@@ -47,7 +46,6 @@ public class ControladorAltaContratos {
     private Map<String,Integer> clientesNomId;
     private Map<String, Integer> trabajadoresNomId;
     private Map<String, Integer> tiposContratosTipoId;
-    private String mensajeAviso;
     
     private Boolean tablaHorarioVaciaEsOK = false;
     private Boolean emisionRegistroHorario = false;
@@ -59,7 +57,6 @@ public class ControladorAltaContratos {
         // *******************************************************
         // Pasa a la vistaAltaContratos los items del combo de clientes con CCC
         // *******************************************************
-        vista.getComboCliente().setEnabled(false);
         clientesNomId = new HashMap<>();
         trabajadoresNomId = new HashMap<>();
         ClienteVO miClienteConCCC;
@@ -74,12 +71,12 @@ public class ControladorAltaContratos {
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaAltaContratos.cargaComboClientes(listaItemsNombresClientes);
-        vista.getComboCliente().setEnabled(true);
+        vistaAltaContratos.clientsSelectorDisabled();
+        vistaAltaContratos.loadClientsSelector(listaItemsNombresClientes);
+        vistaAltaContratos.clientsSelectorEnabled();
         // ****************************************************
         // Pasa a la vistaAltaContratos los items del combo de trabajadores.
         // ****************************************************
-        vistaAltaContratos.getComboTrabajador().setEnabled(false);
         PersonaVO miTrabajador;
         List <PersonaVO> listaTrabajadores = modeloAltaContratos.getAllPersonas();
         if(listaTrabajadores.size() > 0){
@@ -96,8 +93,9 @@ public class ControladorAltaContratos {
          else{
             System.out.println("No se ha podido cargar el comboBox de Trabajadores");
         }
-        vista.cargaComboTrabajadores(listaItemsNombresTrabajadores);
-        vistaAltaContratos.getComboTrabajador().setEnabled(true);
+        vistaAltaContratos.employeesSelectorDisabled();
+        vistaAltaContratos.loadEmployeesSelector(listaItemsNombresTrabajadores);
+        vistaAltaContratos.employeesSelectorEnabled();
         // *********************************************************
         // Pasa a la vistaAltaContratos los items del combo de tipos de contratos.
         // *********************************************************
@@ -114,15 +112,17 @@ public class ControladorAltaContratos {
          else{
             System.out.println("No se ha podido cargar el comboBox de Tipos de contratos");
         }
-        vistaAltaContratos.cargaComboTiposContratos(listaNombresTiposContrato);
+        vistaAltaContratos.contractTypeSelectorDisabled();
+        vistaAltaContratos.loadContractTypeSelector(listaNombresTiposContrato);
+        vistaAltaContratos.contractTypeSelectorEnabled();
     }
 
     public void clientChanged(){
               
-        if (vistaAltaContratos.getComboCliente().isEnabled() == false)
+        if (vistaAltaContratos.getClientsSelector().isEnabled() == false)
             return;
         
-        int indexSelected = vistaAltaContratos.getComboCliente().getSelectedIndex();
+        int indexSelected = vistaAltaContratos.getClientsSelector().getSelectedIndex();
         
          if(indexSelected == 0)
          {
@@ -161,10 +161,10 @@ public class ControladorAltaContratos {
 
     public void employeeChanged() {
 
-        if (vistaAltaContratos.getComboTrabajador().isEnabled() == false)
+        if (vistaAltaContratos.getEmployeesSelector().isEnabled() == false)
             return;
         
-        if(vistaAltaContratos.getComboTrabajador().getSelectedIndex() == 0)
+        if(vistaAltaContratos.getEmployeesSelector().getSelectedIndex() == 0)
         {
             vistaAltaContratos.setBotonAceptarEnabled(false);
             limpiarDatosTrabajador();
@@ -409,7 +409,7 @@ public class ControladorAltaContratos {
         // ClienteGM Nombre
         contratoVO.setClientegm_name(vistaAltaContratos.getClientName());        
         // Cliente CCC
-        contratoVO.setContrato_ccc(vistaAltaContratos.getClientCCC());
+        contratoVO.setContrato_ccc(vistaAltaContratos.getCCCclient());
         // Id y nombre trabajador
         contratoVO.setIdtrabajador(trabajadoresNomId.get(vistaAltaContratos.getEmployeeName()));
         contratoVO.setTrabajador_name(vistaAltaContratos.getEmployeeName());
@@ -483,25 +483,30 @@ public class ControladorAltaContratos {
         //************************************
         // Control de emisión Registro Horario
         //************************************
-        EmisionRegistroHorario comprobarRH = new EmisionRegistroHorario();
-        emisionRegistroHorario = comprobarRH.Emision(numcontrato,0);
-        if(emisionRegistroHorario){
         
+        SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");
+        SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat annoInFecha = new SimpleDateFormat("yyyy");
 
+        Date fechaInicioCtto = new Date();
+        try{
+            fechaInicioCtto = fechaCompleta.parse(vistaAltaContratos.getContractStartDate());
+        }
+        catch(Exception e){
 
-            SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");
-            SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
-            SimpleDateFormat annoInFecha = new SimpleDateFormat("yyyy");
-
-            Date fechaInicioCtto = new Date();
-            try{
-                fechaInicioCtto = fechaCompleta.parse(vistaAltaContratos.getContractStartDate());
-            }
-            catch(Exception e){
-
-            }
-            String mesRH = nombreMes.format(fechaInicioCtto);
-            String annoRH = annoInFecha.format(fechaInicioCtto);
+        }
+        String mesRH = nombreMes.format(fechaInicioCtto);
+        String annoRH = annoInFecha.format(fechaInicioCtto);
+        String clienteGM = vistaAltaContratos.getClientName();
+        String CCC = vistaAltaContratos.getClientCCC();
+        String nomEmpleado = vistaAltaContratos.getEmployeeName();
+        String nifEmpleado = vistaAltaContratos.getTrabajadorNIF();
+        String jornada = vistaAltaContratos.getComboJornada().getSelectedItem().toString();
+        
+        RegistroHorario comprobarRH = new RegistroHorario(mesRH, annoRH, clienteGM,
+            CCC, nomEmpleado, nifEmpleado, jornada);
+        emisionRegistroHorario = comprobarRH.comprobarEmision(numcontrato,0);
+        if(emisionRegistroHorario){
             // Creamos el PDF del Registro Horario
             RegistroHorario reghor = new RegistroHorario(mesRH, annoRH, 
                     vistaAltaContratos.getComboCliente().getSelectedItem().toString(),

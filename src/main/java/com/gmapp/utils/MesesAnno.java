@@ -5,8 +5,8 @@
  */
 package com.gmapp.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,46 +14,27 @@ import java.util.List;
  */
 public class MesesAnno {
     
-    private List<String> nombresMesesAnno;
-    private List<Integer> numerosMesesAnno;
+    private Map<Integer, String> mesesAnno;
 
     public MesesAnno() {
         
-        nombresMesesAnno = new ArrayList();
-        nombresMesesAnno.add("enero");
-        nombresMesesAnno.add("febrero");        
-        nombresMesesAnno.add("marzo");        
-        nombresMesesAnno.add("abril");        
-        nombresMesesAnno.add("mayo");        
-        nombresMesesAnno.add("junio");        
-        nombresMesesAnno.add("julio");        
-        nombresMesesAnno.add("agosto");        
-        nombresMesesAnno.add("septiembre");        
-        nombresMesesAnno.add("octubre");        
-        nombresMesesAnno.add("noviembre");        
-        nombresMesesAnno.add("diciembre");
-        
-        numerosMesesAnno = new ArrayList();
-        numerosMesesAnno.add(1);
-        numerosMesesAnno.add(2);
-        numerosMesesAnno.add(3);
-        numerosMesesAnno.add(4);
-        numerosMesesAnno.add(5);
-        numerosMesesAnno.add(6);
-        numerosMesesAnno.add(7);
-        numerosMesesAnno.add(8);
-        numerosMesesAnno.add(9);
-        numerosMesesAnno.add(10);
-        numerosMesesAnno.add(11);
-        numerosMesesAnno.add(12);        
+        mesesAnno = new HashMap();
+        mesesAnno.put(1, "enero");
+        mesesAnno.put(2, "febrero");        
+        mesesAnno.put(3, "marzo");        
+        mesesAnno.put(4, "abril");        
+        mesesAnno.put(5, "mayo");        
+        mesesAnno.put(6, "junio");        
+        mesesAnno.put(7, "julio");        
+        mesesAnno.put(8, "agosto");        
+        mesesAnno.put(9, "septiembre");        
+        mesesAnno.put(10, "octubre");        
+        mesesAnno.put(11, "noviembre");        
+        mesesAnno.put(12, "diciembre");
 
     }
-
-    public List<String> getNombresMesesAnno() {
-        return nombresMesesAnno;
-    }
-
-    public List<Integer> getNumerosMesesAnno() {
-        return numerosMesesAnno;
+    
+    public Map getMesesAnno(){
+        return mesesAnno;
     }
 }
