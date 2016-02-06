@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.gmapp.utilities;
+package com.gmapp.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;

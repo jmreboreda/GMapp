@@ -6,7 +6,7 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.dao.HorarioContratoDAO;
-import com.gmapp.utilities.Funciones;
+import com.gmapp.utils.Funciones;
 import com.gmapp.vo.HorarioContrlabVO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

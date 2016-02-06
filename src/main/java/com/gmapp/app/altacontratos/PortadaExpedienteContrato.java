@@ -7,7 +7,7 @@ package com.gmapp.app.altacontratos;
 
 import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
-import com.gmapp.utilities.DocODFUtils;
+import com.gmapp.utils.DocODFUtils;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -79,9 +79,9 @@ public class PortadaExpedienteContrato {
         hojaPEC.getCellByPosition("L11").setStringValue(vistaAC.getTrabajadorNacionalidad());
         hojaPEC.getCellByPosition("L13").setStringValue(vistaAC.getTrabajadorDireccion());
         hojaPEC.getCellByPosition("L16").setStringValue(vistaAC.getTrabajadorNivEst());
-        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getFechaInicioContrato());
+        hojaPEC.getCellByPosition("D20").setStringValue(vistaAC.getContractStartDate());
         
-        String sDuracionContrato = vistaAC.getEtqDuracionContrato().replace("[", "");
+        String sDuracionContrato = vistaAC.getEtqDiasDuracionContrato().replace("[", "");
         sDuracionContrato = sDuracionContrato.replace("]","").trim();
         hojaPEC.getCellByPosition("P20").setStringValue(sDuracionContrato); // Duración contrato
         
@@ -95,7 +95,7 @@ public class PortadaExpedienteContrato {
         
         if(vistaAC.getComboDuracionContrato().getSelectedItem().equals("Temporal"))
             sTipoContrato = sTipoContrato + ", " + vistaAC.getComboDuracionContrato().getSelectedItem() + " [ hasta "
-                    + vistaAC.getFechaFinContrato() + " ]";
+                    + vistaAC.getContractTerminationDate() + " ]";
         else
             sTipoContrato = sTipoContrato + ", Indefinido";
         
@@ -103,7 +103,7 @@ public class PortadaExpedienteContrato {
         hojaPEC.getCellByPosition("D22").setStringValue(sTipoContrato); // Celda Tipo de contrato
         
         hojaPEC.getCellByPosition("D23").setStringValue(vistaAC.getCategoria()); // Categoría laboral
-        hojaPEC.getCellByPosition("L23").setStringValue(vistaAC.getHorasSemana() + " horas/semana"); // Horas/semana
+        hojaPEC.getCellByPosition("L23").setStringValue(vistaAC.getWeekHours() + " horas/semana"); // Horas/semana
         hojaPEC.getCellByPosition("O23").setStringValue("Faltan días jornada"); // Jornada
     }
     

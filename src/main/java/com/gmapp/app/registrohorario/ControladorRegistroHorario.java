@@ -6,8 +6,8 @@
 package com.gmapp.app.registrohorario;
 
 
-import com.gmapp.utilities.Funciones;
-import com.gmapp.utilities.MesesAnno;
+import com.gmapp.utils.Funciones;
+import com.gmapp.utils.MesesAnno;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.PersonaVO;
@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
-import static javax.swing.JOptionPane.showMessageDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
@@ -46,10 +46,10 @@ public class ControladorRegistroHorario {
         // y fija el combo en mes y año determinados
         // *************************************************
         cargandoMeses = true;
-        MesesAnno mesesAnno = new MesesAnno();
-        List mesesDelAnno = mesesAnno.getNombresMesesAnno();
-            for (int i = 0; i < mesesDelAnno.size(); i++){
-                String mes = mesesDelAnno.get(i).toString();
+        MesesAnno mesesDelAnno = new MesesAnno();
+        Map mesesAnno = mesesDelAnno.getMesesAnno();
+            for (int i = 1; i <= mesesAnno.size(); i++){
+                String mes = mesesAnno.get(i).toString();
                 vista.comboMesesAddItem(mes);
             }
        

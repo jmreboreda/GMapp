@@ -6,7 +6,7 @@
 package com.gmapp.app.registrohorario;
 
 import com.gmapp.dao.ContratoDAO;
-import com.gmapp.utilities.StringUtils;
+import com.gmapp.utils.StringUtils;
 import com.gmapp.vo.ContratoVO;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -19,40 +19,40 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class EmisionRegistroHorario {
     
-        private String sFormacion = StringUtils.getString(StringUtils.FORMACION);
-        private String sParcial = StringUtils.getString(StringUtils.PARCIAL);
-        private String sEnILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
-        private String sEnExcedencia = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
-        private String  sMaternidad = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
-    
-        public Boolean Emision(int numcontrato, int numvariacion){
-        
-        Boolean emisionRH = false;
-        
-        ContratoDAO contrato = new ContratoDAO();
-        ContratoVO miContrato;
-        List <ContratoVO> listaContrato = contrato.readContrato(numcontrato);
-        if(listaContrato.size() > 0){
-            for (int i = 0; i < listaContrato.size(); i++){
-                miContrato = listaContrato.get(i);
-                if (miContrato.getNumvariacion() == numvariacion)
-                {
-                    if(miContrato.getTipoctto().contains(sFormacion) ||
-                        miContrato.getJor_tipo().contains(sParcial) &&
-                        miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
-                        miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
-                        miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
-                            emisionRH = true;
-                }
+    private final String FORMACION = StringUtils.getString(StringUtils.FORMACION);
+    private final String PARCIAL = StringUtils.getString(StringUtils.PARCIAL);
+    private final String ILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
+    private final String EXCEDENCIA = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
+    private final String MATERNIDAD = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
+
+    public Boolean Emision(int numcontrato, int numvariacion){
+
+    Boolean emisionRH = false;
+
+    ContratoDAO contrato = new ContratoDAO();
+    ContratoVO miContrato;
+    List <ContratoVO> listaContrato = contrato.readContrato(numcontrato);
+    if(listaContrato.size() > 0){
+        for (int i = 0; i < listaContrato.size(); i++){
+            miContrato = listaContrato.get(i);
+            if (miContrato.getNumvariacion() == numvariacion)
+            {
+                if(miContrato.getTipoctto().contains(FORMACION) ||
+                    miContrato.getJor_tipo().contains(PARCIAL) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(ILT) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(EXCEDENCIA) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(MATERNIDAD))
+                        emisionRH = true;
             }
-        }   
-        else
-        {
+        }
+    }   
+    else
+    {
 //            String mensaje = "No se ha encontrado ningún contrato con número " + numcontrato;
 //            showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
-        }
-        
-        return emisionRH;
+    }
+
+    return emisionRH;
     }
     
     public Boolean EmisionAtAnnoMes(int numcontrato, int numvariacion, int annoMes){
@@ -70,11 +70,11 @@ public class EmisionRegistroHorario {
             miContrato = listaContrato.get(0);
             if (miContrato.getNumvariacion() == numvariacion)
             {
-               if(miContrato.getTipoctto().contains(sFormacion) ||
-                   miContrato.getJor_tipo().contains(sParcial) &&
-                   miContrato.getTipovariacion() != Integer.parseInt(sEnILT) &&
-                   miContrato.getTipovariacion() != Integer.parseInt(sEnExcedencia) &&
-                   miContrato.getTipovariacion() != Integer.parseInt(sMaternidad))
+               if(miContrato.getTipoctto().contains(FORMACION) ||
+                   miContrato.getJor_tipo().contains(PARCIAL) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(ILT) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(EXCEDENCIA) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(MATERNIDAD))
                {
                     if(miContrato.getF_desde() == null){
                         String mensaje = "Compruebe las fechas de inicio del contrato número " + numcontrato;

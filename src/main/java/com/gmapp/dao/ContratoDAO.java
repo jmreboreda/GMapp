@@ -5,7 +5,7 @@
  */
 package com.gmapp.dao;
 
-import com.gmapp.utilities.BaseDeDatos;
+import com.gmapp.utils.BaseDeDatos;
 import com.gmapp.vo.ContratoVO;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -95,7 +95,7 @@ public class ContratoDAO {
         query.append("'").append(duracion).append("'");   
         query.append(");");
 
-//        System.out.println("StringBuilder \"query\":\n" + query.toString());
+        System.out.println("StringBuilder \"query\":\n" + query.toString());
         BaseDeDatos gmoldes = new BaseDeDatos();
         
         try

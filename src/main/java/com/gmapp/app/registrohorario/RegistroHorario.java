@@ -9,14 +9,20 @@ import com.gmapp.common.LibreOfficePDFService;
 import com.gmapp.common.LibreOfficePrintService;
 import com.gmapp.common.ReadPathFromXML;
 import com.gmapp.common.SaveDocLibreOfficeToTemp;
-import com.gmapp.utilities.DocODFUtils;
+import com.gmapp.dao.ContratoDAO;
+import com.gmapp.utils.DocODFUtils;
+import com.gmapp.utils.StringUtils;
+import com.gmapp.vo.ContratoVO;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.style.StyleTypeDefinitions;
 import org.odftoolkit.simple.table.Table;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -31,16 +37,26 @@ public final class RegistroHorario{
     private String nomFileSave;
     private String pathToSave;
     private InputStream archivoODF;
+    private final String FORMACION;
+    private final String PARCIAL;
+    private final String ILT;
+    private final String EXCEDENCIA;
+    private final String MATERNIDAD;
     
     public RegistroHorario(String mes, String anno, String clienteGM,
             String CCC, String nomEmpleado, String nifEmpleado, String jornada){
         
         SysOper = System.getProperty("os.name");
         userHome = System.getProperty("user.home");
+        FORMACION = StringUtils.getString(StringUtils.FORMACION);
+        PARCIAL = StringUtils.getString(StringUtils.PARCIAL);
+        ILT = StringUtils.getString(StringUtils.TIPOVARIACION_300_ILT_INICIO);
+        EXCEDENCIA = StringUtils.getString(StringUtils.TIPOVARIACION_600_EXCEDENCIA_INICIO);
+        MATERNIDAD = StringUtils.getString(StringUtils.TIPOVARIACION_700_MATERNIDAD_INICIO);
         
         loadRegistroHorario();
         getHojaRH();
-        rellenarRegistroHorarioRH(mes, anno, clienteGM, CCC, nomEmpleado, nifEmpleado, jornada); 
+        rellenarRegistroHorario(mes, anno, clienteGM, CCC, nomEmpleado, nifEmpleado, jornada); 
     }
     
     public SpreadsheetDocument loadRegistroHorario() {
@@ -62,7 +78,7 @@ public final class RegistroHorario{
         return hojaRH;
     }
     
-    public void rellenarRegistroHorarioRH(String mes, String anno, String clienteGM,
+    public void rellenarRegistroHorario(String mes, String anno, String clienteGM,
             String CCC, String nomEmpleado, String nifEmpleado, String jornada){
         
         hojaRH.getCellByPosition("L5").setStringValue(mes);
@@ -81,6 +97,37 @@ public final class RegistroHorario{
         hojaRH.getCellByPosition("L25").setStringValue("Firmado: " + clienteGM); // Cliente GM
         hojaRH.getCellByPosition("L33").setStringValue("Firmado: " + nomEmpleado);
     }    
+    
+    public Boolean comprobarEmision(int numcontrato, int numvariacion){
+
+    Boolean emisionRH = false;
+
+    ContratoDAO contrato = new ContratoDAO();
+    ContratoVO miContrato;
+    List <ContratoVO> listaContrato = contrato.readContrato(numcontrato);
+    if(listaContrato.size() > 0){
+        for (int i = 0; i < listaContrato.size(); i++){
+            miContrato = listaContrato.get(i);
+            if (miContrato.getNumvariacion() == numvariacion)
+            {
+                if(miContrato.getTipoctto().contains(FORMACION) ||
+                    miContrato.getJor_tipo().contains(PARCIAL) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(ILT) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(EXCEDENCIA) &&
+                    miContrato.getTipovariacion() != Integer.parseInt(MATERNIDAD))
+                        emisionRH = true;
+            }
+        }
+    }   
+    else
+    {
+//            String mensaje = "No se ha encontrado ningún contrato con número " + numcontrato;
+//            showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
+    }
+
+    return emisionRH;
+    }
+    
     
     public String guardarRegistoHorarioParaPDF() {
         
@@ -121,6 +168,53 @@ public final class RegistroHorario{
         }
 
         return nomFileSave;
+    }
+    
+    public Boolean EmisionAtAnnoMes(int numcontrato, int numvariacion, int annoMes){
+        
+        Boolean emisionRH = false;
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyyMM");
+        int annoMesDesde = 0;
+        int annoMesHasta = 0;
+        
+        ContratoDAO contrato = new ContratoDAO();
+        ContratoVO miContrato;
+        List <ContratoVO> listaContrato = contrato.readContratoVariacion(numcontrato, numvariacion);
+        if(listaContrato.size() > 0)
+        {
+            miContrato = listaContrato.get(0);
+            if (miContrato.getNumvariacion() == numvariacion)
+            {
+               if(miContrato.getTipoctto().contains(FORMACION) ||
+                   miContrato.getJor_tipo().contains(PARCIAL) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(ILT) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(EXCEDENCIA) &&
+                   miContrato.getTipovariacion() != Integer.parseInt(MATERNIDAD))
+               {
+                    if(miContrato.getF_desde() == null){
+                        String mensaje = "Compruebe las fechas de inicio del contrato número " + numcontrato;
+                        showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
+                    }
+                    else
+                        annoMesDesde = Integer.parseInt(fecha.format(miContrato.getF_desde()));
+                    
+                    if(miContrato.getF_hasta() == null)
+                        annoMesHasta = 999912;
+                    else
+                        annoMesHasta = Integer.parseInt(fecha.format(miContrato.getF_hasta()));
+
+                    if(annoMes >= annoMesDesde && annoMes <= annoMesHasta)
+                        emisionRH = true;
+               }
+           }
+        }   
+        else
+        {
+//            String mensaje = "No se ha encontrado ningún contrato con número " + numcontrato;
+//            showMessageDialog(null, mensaje,"Registro Horario - Errores detectados",WARNING_MESSAGE);
+        }
+        
+        return emisionRH;
     }
     
       public String guardarRegistroHorarioParaImprimir(){

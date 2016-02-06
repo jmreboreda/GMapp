@@ -6,9 +6,7 @@
 package com.gmapp.app.altacontratos;
 
 import com.gmapp.app.gmapp.MenuPrincipal;
-
-
-import com.gmapp.utilities.Funciones;
+import com.gmapp.utils.Funciones;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
@@ -23,13 +21,13 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class VistaAltaContratos extends JPanel{
     
@@ -46,7 +44,7 @@ public class VistaAltaContratos extends JPanel{
         CargaFechaHoraHoy();
  //       CargarTablaHorario();
         controlador = new ControladorAltaContratos(modelo, this); 
-        controlador.cambiadoTrabajador();
+        controlador.employeeChanged();
         
         tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();
         tablaHorario.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD,11));
@@ -80,22 +78,6 @@ public class VistaAltaContratos extends JPanel{
         sHoraAhora = horaHoy.format(fechaHoy) + ":" + minutoHoy.format(fechaHoy);
         tfHoraNotif.setText(sHoraAhora);
     }
-    
-     private void CargarTablaHorario(){
-     tablaHorarioModelo = (DefaultTableModel) tablaHorario.getModel();
-     Object[] datosFila = new Object[7]; 
-     for (int iCont = 0; iCont < 7; iCont++)
-     {
-        datosFila[0] = "";
-        datosFila[1] = "";
-        datosFila[2] = "";
-        datosFila[3] = "";
-        datosFila[4] = "";
-        datosFila[5] = "";
-        datosFila[6] = "";
-        tablaHorarioModelo.addRow(datosFila);
-     } 
-  }
     
     private double formatHoraToDouble(String sHora){
       if (sHora.trim().length() != 5)
@@ -174,22 +156,22 @@ public class VistaAltaContratos extends JPanel{
         }
     }
     
-    public void cargaComboClientes(List<String> listaClientes){
+    public void loadClientsSelector(List<String> listaClientes){
         for (String nombre: listaClientes)
             comboCliente.addItem(nombre);
     }
     
-    public void cargaComboTrabajadores(List<String> lista){
+    public void loadEmployeesSelector(List<String> lista){
         for (Object nombre: lista)
             comboTrabajador.addItem(nombre.toString());
     }
     
-    public void cargaComboTiposContratos(List<String> lista){
+    public void loadContractTypeSelector(List<String> lista){
         for (Object nombre: lista)
             comboTiposContrato.addItem(nombre.toString());
     }
     
-    public void cargaDatosPersonalesTrabajador(List<String> lista){
+    public void loadEmployeePersonalData(List<String> lista){
 
         etqNIF.setText(lista.get(0));
         etqNASS.setText(lista.get(1));
@@ -228,12 +210,12 @@ public class VistaAltaContratos extends JPanel{
         botonLlamante = botonOrigen;
     }    
     
-    public void cambiadoCliente(){
-        controlador.cambiadoCliente();
+    public void clientChanged(){
+        controlador.clientChanged();
     }
     
-    public void cambiadoTrabajador(){
-        controlador.cambiadoTrabajador();
+    public void employeeChanged(){
+        controlador.employeeChanged();
     }
     
     public void cambiadoTipoContrato(){
@@ -282,6 +264,39 @@ public class VistaAltaContratos extends JPanel{
     public void setVentanasAbiertas(MenuPrincipal menuP){
         this.menu = menuP;
     }
+    
+    public JComboBox getClientsSelector(){
+        return comboCliente;
+    }
+    
+    public void clientsSelectorDisabled(){
+        comboCliente.setEnabled(false);
+    }
+    
+    public void clientsSelectorEnabled(){
+        comboCliente.setEnabled(true);
+    }
+    
+    public JComboBox getEmployeesSelector(){
+        return comboTrabajador;
+    }
+    
+    public void employeesSelectorDisabled(){
+        comboTrabajador.setEnabled(false);
+    }
+    
+    public void employeesSelectorEnabled(){
+        comboTrabajador.setEnabled(true);
+    }
+    
+    public void contractTypeSelectorDisabled(){
+        comboTiposContrato.setEnabled(false);
+    }
+    
+    public void contractTypeSelectorEnabled(){
+        comboTiposContrato.setEnabled(true);
+    }
+    
     
     public void comboClienteCCCremoveAllItem(){
         
@@ -381,12 +396,16 @@ public class VistaAltaContratos extends JPanel{
         return comboCliente.getSelectedItem().toString();
     }
     
-    public String getFechaNotificacion() {
+    public String getCCCclient(){
+        return comboClienteCCC.getSelectedItem().toString();
+    }
+    
+    public String getNotificationDate() {
             return tfFechaNotif.getText();
     }
    
     
-    public String getHoraNotificacion() {
+    public String getNotificationHour() {
         return tfHoraNotif.getText();
     }
     
@@ -443,7 +462,8 @@ public class VistaAltaContratos extends JPanel{
         return etqNivEst.getText();
     }
     
-    public String getTypeContract(){
+    public String getContractType(){
+        
         return comboTiposContrato.getSelectedItem().toString();
     }
     
@@ -458,21 +478,27 @@ public class VistaAltaContratos extends JPanel{
     }
     
    
-    public String getEtqDuracionContrato() {
+    public String getEtqDiasDuracionContrato() {
         return etqDuracionContrato.getText();
     }
 
    
     public JComboBox<String> getComboDuracionContrato() {
         return comboDuracionContrato;
-    }    
+    }
+    
+    
+    public String getContractPermanentOrTemporal(){
+        return comboDuracionContrato.getSelectedItem().toString();
+    }
+
    
-    public String getFechaInicioContrato() {
+    public String getContractStartDate() {
         return this.tfFechaDesde.getText();
     }
 
    
-    public String getFechaFinContrato() {
+    public String getContractTerminationDate() {
        return this.tfFechaHasta.getText();
     }
     
@@ -480,7 +506,7 @@ public class VistaAltaContratos extends JPanel{
         return comboJornada;
     }    
    
-    public String getHorasSemana(){
+    public String getWeekHours(){
         return this.tfHorasSemana.getText();
     }
 
@@ -1596,7 +1622,7 @@ public class VistaAltaContratos extends JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTrabajadorActionPerformed
-        cambiadoTrabajador();
+        employeeChanged();
     }//GEN-LAST:event_comboTrabajadorActionPerformed
 
     private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
@@ -1607,7 +1633,7 @@ public class VistaAltaContratos extends JPanel{
     }//GEN-LAST:event_botonSalirMouseClicked
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
-        cambiadoCliente();
+        clientChanged();
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void botonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAceptarMouseClicked

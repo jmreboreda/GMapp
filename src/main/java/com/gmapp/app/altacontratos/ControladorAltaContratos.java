@@ -6,10 +6,10 @@
 package com.gmapp.app.altacontratos;
 
 
-import com.gmapp.app.registrohorario.EmisionRegistroHorario;
 import com.gmapp.app.registrohorario.RegistroHorario;
 import com.gmapp.dao.EstudiosDAO;
-import com.gmapp.utilities.Funciones;
+import com.gmapp.utils.ContractUtils;
+import com.gmapp.utils.Funciones;
 import com.gmapp.vo.ClienteVO;
 import com.gmapp.vo.ContratoVO;
 import com.gmapp.vo.EstudiosVO;
@@ -32,45 +32,35 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class ControladorAltaContratos {
 
-    private ModeloAltaContratos modeloAC;
-    private VistaAltaContratos vistaAC;
+    private ModeloAltaContratos modeloAltaContratos;
+    private VistaAltaContratos vistaAltaContratos;
 
-//    private boolean cargandoTrabajadores = false;
-
+    private String INDEFINIDO;
     private List<String> listaItemsNombresClientes = new ArrayList<>();
     private List <String> listaItemsNombresTrabajadores = new ArrayList<>();    
     private List <String> listaNombresTiposContrato = new ArrayList<>();
     private Map<String,Integer> clientesNomId;
     private Map<String, Integer> trabajadoresNomId;
     private Map<String, Integer> tiposContratosTipoId;
-    private String mensajeAviso;
     
     private Boolean tablaHorarioVaciaEsOK = false;
     private Boolean emisionRegistroHorario = false;
 
     public ControladorAltaContratos(ModeloAltaContratos modelo, VistaAltaContratos vista) {
         
-        this.modeloAC = modelo;
-        this.vistaAC = vista;
+        this.modeloAltaContratos = modelo;
+        this.vistaAltaContratos = vista;
         // *******************************************************
-        // Pasa a la vistaAC los items del combo de clientes con CCC
+        // Pasa a la vistaAltaContratos los items del combo de clientes con CCC
         // *******************************************************
-        vista.getComboCliente().setEnabled(false);
         clientesNomId = new HashMap<>();
         trabajadoresNomId = new HashMap<>();
         ClienteVO miClienteConCCC;
-        List <ClienteVO> listaClientes = modeloAC.getAllClientesWithCCC();
+        List <ClienteVO> listaClientes = modeloAltaContratos.getAllClientesWithCCC();
         if (listaClientes.size() > 0){
             for(ClienteVO cliente : listaClientes){
                 miClienteConCCC = cliente;
@@ -81,14 +71,14 @@ public class ControladorAltaContratos {
         else{
             System.out.println("No se ha podido cargar el comboBox de Clientes");
         }
-        vistaAC.cargaComboClientes(listaItemsNombresClientes);
-        vista.getComboCliente().setEnabled(true);
+        vistaAltaContratos.clientsSelectorDisabled();
+        vistaAltaContratos.loadClientsSelector(listaItemsNombresClientes);
+        vistaAltaContratos.clientsSelectorEnabled();
         // ****************************************************
-        // Pasa a la vistaAC los items del combo de trabajadores.
+        // Pasa a la vistaAltaContratos los items del combo de trabajadores.
         // ****************************************************
-        vistaAC.getComboTrabajador().setEnabled(false);
         PersonaVO miTrabajador;
-        List <PersonaVO> listaTrabajadores = modeloAC.getAllPersonas();
+        List <PersonaVO> listaTrabajadores = modeloAltaContratos.getAllPersonas();
         if(listaTrabajadores.size() > 0){
              for (int i = 0; i < listaTrabajadores.size(); i++){
                  miTrabajador = listaTrabajadores.get(i);
@@ -103,14 +93,15 @@ public class ControladorAltaContratos {
          else{
             System.out.println("No se ha podido cargar el comboBox de Trabajadores");
         }
-        vista.cargaComboTrabajadores(listaItemsNombresTrabajadores);
-        vistaAC.getComboTrabajador().setEnabled(true);
+        vistaAltaContratos.employeesSelectorDisabled();
+        vistaAltaContratos.loadEmployeesSelector(listaItemsNombresTrabajadores);
+        vistaAltaContratos.employeesSelectorEnabled();
         // *********************************************************
-        // Pasa a la vistaAC los items del combo de tipos de contratos.
+        // Pasa a la vistaAltaContratos los items del combo de tipos de contratos.
         // *********************************************************
         tiposContratosTipoId = new HashMap<>();
         TipoContratoVO miTipoContrato;
-        List <TipoContratoVO> listaTiposContrato = modeloAC.getAllTiposContratos();
+        List <TipoContratoVO> listaTiposContrato = modeloAltaContratos.getAllTiposContratos();
         if(listaTiposContrato.size() > 0){
             for(TipoContratoVO tipo : listaTiposContrato){
                  miTipoContrato = tipo;
@@ -121,20 +112,22 @@ public class ControladorAltaContratos {
          else{
             System.out.println("No se ha podido cargar el comboBox de Tipos de contratos");
         }
-        vistaAC.cargaComboTiposContratos(listaNombresTiposContrato);
+        vistaAltaContratos.contractTypeSelectorDisabled();
+        vistaAltaContratos.loadContractTypeSelector(listaNombresTiposContrato);
+        vistaAltaContratos.contractTypeSelectorEnabled();
     }
 
-    public void cambiadoCliente(){
+    public void clientChanged(){
               
-        if (vistaAC.getComboCliente().isEnabled() == false)
+        if (vistaAltaContratos.getClientsSelector().isEnabled() == false)
             return;
         
-        int indexSelected = vistaAC.getComboCliente().getSelectedIndex();
+        int indexSelected = vistaAltaContratos.getClientsSelector().getSelectedIndex();
         
          if(indexSelected == 0)
          {
-            vistaAC.comboClienteCCCremoveAllItem();
-            vistaAC.setBotonAceptarEnabled(false);
+            vistaAltaContratos.comboClienteCCCremoveAllItem();
+            vistaAltaContratos.setBotonAceptarEnabled(false);
             return;
          }
         
@@ -142,9 +135,9 @@ public class ControladorAltaContratos {
         ClienteVO miCCCVO = null;
         List listaCCC = new ArrayList();
         
-        int idCliente = clientesNomId.get(vistaAC.getClientName());
+        int idCliente = clientesNomId.get(vistaAltaContratos.getClientName());
         
-        cccEncontrados = modeloAC.getClienteCCC(idCliente);
+        cccEncontrados = modeloAltaContratos.getClienteCCC(idCliente);
         if (cccEncontrados.size() > 0 && cccEncontrados.get(0).getCcc_inss() != null)
         {
             for(ClienteVO ccc : cccEncontrados){
@@ -152,33 +145,33 @@ public class ControladorAltaContratos {
                 listaCCC.add(miCCCVO.getCcc_inss());
             }
             
-            vistaAC.cargaComboClienteCCC(listaCCC);
+            vistaAltaContratos.cargaComboClienteCCC(listaCCC);
         }
         else
         {   
-            vistaAC.comboClienteCCCremoveAllItem();
+            vistaAltaContratos.comboClienteCCCremoveAllItem();
             String mensaje = "No se ha encontrado ningún CCC para este cliente";
             showMessageDialog(null, mensaje,"Errores detectados",WARNING_MESSAGE);
 
         }
         
-        if(vistaAC.getComboTrabajador().getSelectedIndex() != 0)
-            vistaAC.setBotonAceptarEnabled(true);
+        if(vistaAltaContratos.getComboTrabajador().getSelectedIndex() != 0)
+            vistaAltaContratos.setBotonAceptarEnabled(true);
     }
 
-    public void cambiadoTrabajador() {
+    public void employeeChanged() {
 
-        if (vistaAC.getComboTrabajador().isEnabled() == false)
+        if (vistaAltaContratos.getEmployeesSelector().isEnabled() == false)
             return;
         
-        if(vistaAC.getComboTrabajador().getSelectedIndex() == 0)
+        if(vistaAltaContratos.getEmployeesSelector().getSelectedIndex() == 0)
         {
-            vistaAC.setBotonAceptarEnabled(false);
+            vistaAltaContratos.setBotonAceptarEnabled(false);
             limpiarDatosTrabajador();
             return;
         }
 
-        int idTrabajador = trabajadoresNomId.get(vistaAC.getEmployeeName());
+        int idTrabajador = trabajadoresNomId.get(vistaAltaContratos.getEmployeeName());
 
         List<PersonaVO> personaEncontrada;
         PersonaVO miTrabajador;
@@ -186,28 +179,28 @@ public class ControladorAltaContratos {
         Funciones funcion = new Funciones();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         
-        personaEncontrada = modeloAC.getPersona(idTrabajador);
+        personaEncontrada = modeloAltaContratos.getPersona(idTrabajador);
         if(personaEncontrada.size() > 0){
             for(PersonaVO persona : personaEncontrada){
                 miTrabajador = persona;
             
-                vistaAC.setEtqNIF(funcion.formatoNIF(miTrabajador.getNifcif()));
-                vistaAC.setEtqNASS(miTrabajador.getNumafss());
+                vistaAltaContratos.setEtqNIF(funcion.formatoNIF(miTrabajador.getNifcif()));
+                vistaAltaContratos.setEtqNASS(miTrabajador.getNumafss());
                 if(miTrabajador.getFechanacim() != null)
-                    vistaAC.setEtqFechaNacim(formatoFecha.format(miTrabajador.getFechanacim()));
+                    vistaAltaContratos.setEtqFechaNacim(formatoFecha.format(miTrabajador.getFechanacim()));
                 else
-                    vistaAC.setEtqFechaNacim("");
-                vistaAC.setEtqEstadoCivil(miTrabajador.getEstciv());
-                vistaAC.setEtqNacionalidad(miTrabajador.getNacionalidad());
+                    vistaAltaContratos.setEtqFechaNacim("");
+                vistaAltaContratos.setEtqEstadoCivil(miTrabajador.getEstciv());
+                vistaAltaContratos.setEtqNacionalidad(miTrabajador.getNacionalidad());
                 StringBuilder direccionCompleta = new StringBuilder();
                 if (miTrabajador.getDireccion() == null)
-                    vistaAC.setEtqDireccion("");
+                    vistaAltaContratos.setEtqDireccion("");
                 else
                 {
                     direccionCompleta.append(miTrabajador.getDireccion()).append("  ");
                     direccionCompleta.append(miTrabajador.getCodpostal()).append("  ");
                     direccionCompleta.append(miTrabajador.getLocalidad());                   
-                    vistaAC.setEtqDireccion(direccionCompleta.toString());
+                    vistaAltaContratos.setEtqDireccion(direccionCompleta.toString());
                 }
                 EstudiosDAO estudios = new EstudiosDAO();
                 ArrayList<EstudiosVO> estudiosVO = new ArrayList<>();
@@ -218,70 +211,72 @@ public class ControladorAltaContratos {
                     for (EstudiosVO myestudios: estudiosVO)
                         misEstudiosVO = myestudios;
                     
-                    vistaAC.setEtqNivelEstudios(misEstudiosVO.getDescripEstudios());    
+                    vistaAltaContratos.setEtqNivelEstudios(misEstudiosVO.getDescripEstudios());    
                 }
                 else
                 {
-                vistaAC.muestraError("No se han encontrado estudios para persona con idpersona = " + idTrabajador);
+                vistaAltaContratos.muestraError("No se han encontrado estudios para persona con idpersona = " + idTrabajador);
                 }
             }
         }
         else{
-            vistaAC.muestraError("No se ha encontrado ninguna persona con idpersona = " + idTrabajador);
+            vistaAltaContratos.muestraError("No se ha encontrado ninguna persona con idpersona = " + idTrabajador);
         }
         
-        if(vistaAC.getComboCliente().getSelectedIndex() != 0)
-             vistaAC.setBotonAceptarEnabled(true);
+        if(vistaAltaContratos.getComboCliente().getSelectedIndex() != 0)
+             vistaAltaContratos.setBotonAceptarEnabled(true);
     }
     
     public void cambiadoTipoContrato(){
-        if(vistaAC.getComboTiposContrato().getSelectedIndex() == 0)
+        if(vistaAltaContratos.getComboTiposContrato().getSelectedIndex() == 0)
         {
-            vistaAC.setTipoContratoOtros("");
-            vistaAC.settfTipoContratoOtrosEnabled(false);
+            vistaAltaContratos.setTipoContratoOtros("");
+            vistaAltaContratos.settfTipoContratoOtrosEnabled(false);
         }
         
-        if(vistaAC.getComboTiposContrato().getSelectedItem().toString().equals("Otros tipos"))
-            vistaAC.settfTipoContratoOtrosEnabled(true);
+        if(vistaAltaContratos.getComboTiposContrato().getSelectedItem().toString().equals("Otros tipos"))
+            vistaAltaContratos.settfTipoContratoOtrosEnabled(true);
         else
         {
-            vistaAC.settfTipoContratoOtrosEnabled(false);
-            vistaAC.setTipoContratoOtros("");
+            vistaAltaContratos.settfTipoContratoOtrosEnabled(false);
+            vistaAltaContratos.setTipoContratoOtros("");
         } 
     }
     
     public void cambiadoDuracionContrato(){
-        if(vistaAC.getComboDuracionContrato().getSelectedIndex() == 0)
+
+        INDEFINIDO = ContractUtils.getContractUtil(ContractUtils.INDEFINIDO);
+        if(vistaAltaContratos.getComboDuracionContrato().getSelectedIndex() == 0)
         {
             cambiadoTipoContrato();
-            vistaAC.setFechaDesde("");
-            vistaAC.setFechaHasta("");
-            vistaAC.setDiasContrato("");
+            vistaAltaContratos.setFechaDesde("");
+            vistaAltaContratos.setFechaHasta("");
+            vistaAltaContratos.setDiasContrato("");
         }
-        else if (vistaAC.getComboDuracionContrato().getSelectedItem().toString().equals("Indefinido"))
-            vistaAC.settfFechaHastaEnabled(false);
+        else if (vistaAltaContratos.getContractPermanentOrTemporal().equals(INDEFINIDO))
+            vistaAltaContratos.settfFechaHastaEnabled(false);
         else
-            vistaAC.settfFechaHastaEnabled(true);
+            vistaAltaContratos.settfFechaHastaEnabled(true);
     }
     
     public void cambiadoFechaInicioContrato(){
         
         Funciones funcion = new Funciones();
         String sFecha = null;
-        if (funcion.validaFechaMascara(vistaAC.getFechaInicioContrato().trim(), "ddMMyyyy") ||
-                funcion.validaFechaMascara(vistaAC.getFechaInicioContrato().trim(), "dd-MM-yyyy"))
+        if (funcion.validaFechaMascara(vistaAltaContratos.getContractStartDate().trim(), "ddMMyyyy") ||
+                funcion.validaFechaMascara(vistaAltaContratos.getContractStartDate().trim(), "dd-MM-yyyy"))
         {
-            if (vistaAC.getFechaInicioContrato().trim().length() == 8)
+            if (vistaAltaContratos.getContractStartDate().trim().length() == 8)
                 {
-                    sFecha = vistaAC.getFechaInicioContrato().trim();
+                    sFecha = vistaAltaContratos.getContractStartDate().trim();
                     String sFechaFormated = sFecha.substring(0, 2) + "-" + sFecha.substring(2, 4) + "-" + sFecha.substring(4, 8);
-                    vistaAC.setFechaDesde(sFechaFormated);
+                    vistaAltaContratos.setFechaDesde(sFechaFormated);
                 } 
         }
         else
         {
-           vistaAC.setFechaDesde("");
-           vistaAC.setDiasContrato("");
+           vistaAltaContratos.setFechaDesde("");
+           vistaAltaContratos.setDiasContrato("");
         }
         
         diasDuracionContrato();
@@ -291,20 +286,20 @@ public class ControladorAltaContratos {
         
         Funciones funcion = new Funciones();
         String sFecha = "";
-        if (funcion.validaFechaMascara(vistaAC.getFechaFinContrato().trim(), "ddMMyyyy") ||
-                funcion.validaFechaMascara(vistaAC.getFechaFinContrato().trim(), "dd-MM-yyyy"))
+        if (funcion.validaFechaMascara(vistaAltaContratos.getContractTerminationDate().trim(), "ddMMyyyy") ||
+                funcion.validaFechaMascara(vistaAltaContratos.getContractTerminationDate().trim(), "dd-MM-yyyy"))
         {
-            if (vistaAC.getFechaFinContrato().trim().length() == 8)
+            if (vistaAltaContratos.getContractTerminationDate().trim().length() == 8)
                 {
-                    sFecha = vistaAC.getFechaFinContrato().trim();
+                    sFecha = vistaAltaContratos.getContractTerminationDate().trim();
                     String sFechaFormated = sFecha.substring(0, 2) + "-" + sFecha.substring(2, 4) + "-" + sFecha.substring(4, 8);
-                    vistaAC.setFechaHasta(sFechaFormated);
+                    vistaAltaContratos.setFechaHasta(sFechaFormated);
                 } 
         }
         else
         {
-           vistaAC.setFechaHasta("");
-           vistaAC.setDiasContrato("");
+           vistaAltaContratos.setFechaHasta("");
+           vistaAltaContratos.setDiasContrato("");
         }
         
         diasDuracionContrato();
@@ -312,8 +307,8 @@ public class ControladorAltaContratos {
     
     public void diasDuracionContrato(){
         
-        if(vistaAC.getFechaInicioContrato().trim().isEmpty() ||
-               vistaAC.getFechaFinContrato().trim().isEmpty())
+        if(vistaAltaContratos.getContractStartDate().trim().isEmpty() ||
+               vistaAltaContratos.getContractTerminationDate().trim().isEmpty())
                 return;
         
         Funciones funcion = new Funciones();
@@ -326,26 +321,26 @@ public class ControladorAltaContratos {
         int iFechaDesde = 0;
         int iFechaHasta = 0;
 
-        Calendar dFechaD = new GregorianCalendar(Integer.parseInt(vistaAC.getFechaInicioContrato().substring(6, 10)),
-                Integer.parseInt(vistaAC.getFechaInicioContrato().substring(3, 5)) -1,
-                Integer.parseInt(vistaAC.getFechaInicioContrato().substring(0, 2))); 
-        Calendar dFechaH = new GregorianCalendar(Integer.parseInt(vistaAC.getFechaFinContrato().substring(6, 10)),
-                Integer.parseInt(vistaAC.getFechaFinContrato().substring(3, 5)) -1,
-                Integer.parseInt(vistaAC.getFechaFinContrato().substring(0, 2))); 
+        Calendar dFechaD = new GregorianCalendar(Integer.parseInt(vistaAltaContratos.getContractStartDate().substring(6, 10)),
+                Integer.parseInt(vistaAltaContratos.getContractStartDate().substring(3, 5)) -1,
+                Integer.parseInt(vistaAltaContratos.getContractStartDate().substring(0, 2))); 
+        Calendar dFechaH = new GregorianCalendar(Integer.parseInt(vistaAltaContratos.getContractTerminationDate().substring(6, 10)),
+                Integer.parseInt(vistaAltaContratos.getContractTerminationDate().substring(3, 5)) -1,
+                Integer.parseInt(vistaAltaContratos.getContractTerminationDate().substring(0, 2))); 
         
         // Comprobamos que FechaHasta >= FechaDesde
-        sFechaDesde = vistaAC.getFechaInicioContrato();
+        sFechaDesde = vistaAltaContratos.getContractStartDate();
         sFechaUS = funcion.formatoFecha_us(sFechaDesde);
         iFechaDesde = Integer.parseInt(sFechaUS.replace("-",""));
         
-        sFechaHasta = vistaAC.getFechaFinContrato();
+        sFechaHasta = vistaAltaContratos.getContractTerminationDate();
         sFechaUS = funcion.formatoFecha_us(sFechaHasta);
         iFechaHasta = Integer.parseInt(sFechaUS.replace("-",""));
         
         if(iFechaHasta < iFechaDesde)
-            vistaAC.setFechaDesde("");
+            vistaAltaContratos.setFechaDesde("");
         
-        vistaAC.setDiasContrato("[ " +(dFechaH.getTimeInMillis() - dFechaD.getTimeInMillis() + MILLSECS_PER_DAY)/ MILLSECS_PER_DAY + " días ]");
+        vistaAltaContratos.setDiasContrato("[ " +(dFechaH.getTimeInMillis() - dFechaD.getTimeInMillis() + MILLSECS_PER_DAY)/ MILLSECS_PER_DAY + " días ]");
     }
     
     public void verificaHorasSemana(){
@@ -354,45 +349,45 @@ public class ControladorAltaContratos {
         Double dNumHoras = 0D;
         
         try{
-            dNumHoras = Double.parseDouble(vistaAC.getHorasSemana());
+            dNumHoras = Double.parseDouble(vistaAltaContratos.getWeekHours());
         }
         catch(Exception e){
-            vistaAC.setHorasSemana("");
+            vistaAltaContratos.setHorasSemana("");
             return;
         }
         
         if(dNumHoras >= 39D)
-            vistaAC.setHorasSemana("");
+            vistaAltaContratos.setHorasSemana("");
         else
-            vistaAC.setHorasSemana(fmtHora.format(dNumHoras));
+            vistaAltaContratos.setHorasSemana(fmtHora.format(dNumHoras));
     }
     
     public void cambiadoJornada(){
-        if(vistaAC.getComboJornada().getSelectedIndex() == 0 ||
-                vistaAC.getComboJornada().getSelectedItem().toString().trim().equals("Jornada completa"))
+        if(vistaAltaContratos.getComboJornada().getSelectedIndex() == 0 ||
+                vistaAltaContratos.getComboJornada().getSelectedItem().toString().trim().equals("Jornada completa"))
         {
-            vistaAC.setHorasSemana("");
-            vistaAC.settfHorasSemanaEnabled(false);
+            vistaAltaContratos.setHorasSemana("");
+            vistaAltaContratos.settfHorasSemanaEnabled(false);
         }
         else
-            vistaAC.settfHorasSemanaEnabled(true);
+            vistaAltaContratos.settfHorasSemanaEnabled(true);
     }
         
     private void limpiarDatosTrabajador(){
-        vistaAC.setEtqNIF("");
-        vistaAC.setEtqNASS("");
-        vistaAC.setEtqFechaNacim("");
-        vistaAC.setEtqEstadoCivil("");
-        vistaAC.setEtqNacionalidad("");
-        vistaAC.setEtqDireccion("");
-        vistaAC.setEtqNivelEstudios("");
+        vistaAltaContratos.setEtqNIF("");
+        vistaAltaContratos.setEtqNASS("");
+        vistaAltaContratos.setEtqFechaNacim("");
+        vistaAltaContratos.setEtqEstadoCivil("");
+        vistaAltaContratos.setEtqNacionalidad("");
+        vistaAltaContratos.setEtqDireccion("");
+        vistaAltaContratos.setEtqNivelEstudios("");
     }
         
     private boolean comprobarDatosContrato(){
         
         Boolean comprobadoOK = true;
         DatosVistaContratos comprobacion = new DatosVistaContratos();
-        comprobadoOK = comprobacion.ComprobarDatosVistaContratos(vistaAC);
+        comprobadoOK = comprobacion.ComprobarDatosVistaContratos(vistaAltaContratos);
         
         return comprobadoOK;
     }
@@ -402,36 +397,36 @@ public class ControladorAltaContratos {
         ContratoVO contratoVO = new ContratoVO();
         SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
 
-        int lastContractNumber = modeloAC.getLastContractNumber();
+        int lastContractNumber = modeloAltaContratos.getLastContractNumber();
         contratoVO.setNumcontrato(lastContractNumber + 1);
         // Número de variación: cero, al ser contrato inicial
         contratoVO.setNumvariacion(0);
         // Tipo variacion: tipo contrato al ser número de variación = 0
-        int idTipoContrato =  tiposContratosTipoId.get(vistaAC.getTypeContract());
+        int idTipoContrato =  tiposContratosTipoId.get(vistaAltaContratos.getContractType());
         contratoVO.setTipovariacion(idTipoContrato);
         // Idcliente GM        
-        contratoVO.setIdcliente_gm(clientesNomId.get(vistaAC.getClientName()));
+        contratoVO.setIdcliente_gm(clientesNomId.get(vistaAltaContratos.getClientName()));
         // ClienteGM Nombre
-        contratoVO.setClientegm_name(vistaAC.getClientName());        
+        contratoVO.setClientegm_name(vistaAltaContratos.getClientName());        
         // Cliente CCC
-        contratoVO.setContrato_ccc(vistaAC.getClientCCC());
+        contratoVO.setContrato_ccc(vistaAltaContratos.getCCCclient());
         // Id y nombre trabajador
-        contratoVO.setIdtrabajador(trabajadoresNomId.get(vistaAC.getEmployeeName()));
-        contratoVO.setTrabajador_name(vistaAC.getEmployeeName());
+        contratoVO.setIdtrabajador(trabajadoresNomId.get(vistaAltaContratos.getEmployeeName()));
+        contratoVO.setTrabajador_name(vistaAltaContratos.getEmployeeName());
         // Categoria
-        contratoVO.setCategoria(vistaAC.getCategoria());
+        contratoVO.setCategoria(vistaAltaContratos.getCategoria());
         // Jornada
-        if(vistaAC.getComboJornada().getSelectedItem().toString().equals("Jornada completa"))
+        if(vistaAltaContratos.getComboJornada().getSelectedItem().toString().equals("Jornada completa"))
             contratoVO.setJor_trab("Jornada completa");
         else
-            contratoVO.setJor_trab(vistaAC.getHorasSemana() + " horas/semana");
+            contratoVO.setJor_trab(vistaAltaContratos.getWeekHours() + " horas/semana");
         // Jornada, días
         String sDiasSemana = "";
-        for (int i = 0; i < vistaAC.getDiasSemana().size(); i++)
-            sDiasSemana = sDiasSemana + vistaAC.getDiasSemana().get(i).toString();
+        for (int i = 0; i < vistaAltaContratos.getDiasSemana().size(); i++)
+            sDiasSemana = sDiasSemana + vistaAltaContratos.getDiasSemana().get(i).toString();
         contratoVO.setJor_trab_dias(sDiasSemana);
         // Jornada, tipo
-        if(vistaAC.getComboJornada().getSelectedItem().toString().contains("completa"))
+        if(vistaAltaContratos.getComboJornada().getSelectedItem().toString().contains("completa"))
             contratoVO.setJor_tipo("Completa"); 
         else
         {
@@ -439,18 +434,18 @@ public class ControladorAltaContratos {
 //            emisionRegistroHorario = true;
         }
         // Tipo contrato
-        contratoVO.setTipoctto(vistaAC.getComboTiposContrato().getSelectedItem().toString());
+        contratoVO.setTipoctto(vistaAltaContratos.getComboTiposContrato().getSelectedItem().toString());
         
         try {
-            contratoVO.setF_desde(fecha.parse(vistaAC.getFechaInicioContrato()));
+            contratoVO.setF_desde(fecha.parse(vistaAltaContratos.getContractStartDate()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
+        if(vistaAltaContratos.getContractTerminationDate().isEmpty())   // Es un contrato Indefinido
             contratoVO.setF_hasta(null);
         else
             try {
-                contratoVO.setF_hasta(fecha.parse(vistaAC.getFechaFinContrato()));
+                contratoVO.setF_hasta(fecha.parse(vistaAltaContratos.getContractTerminationDate()));
         } catch (ParseException ex) {
             Logger.getLogger(ControladorAltaContratos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -459,66 +454,71 @@ public class ControladorAltaContratos {
         // En vigor
         contratoVO.setEnvigor(true);
         // Notas gestor
-        contratoVO.setNotas_gestor(vistaAC.getAreaGestor());
-        String notificacion = "[Notificación cliente: " + vistaAC.getFechaNotificacion() +
-                " a las " + vistaAC.getHoraNotificacion() + "]\\n";
+        contratoVO.setNotas_gestor(vistaAltaContratos.getAreaGestor());
+        String notificacion = "[Notificación cliente: " + vistaAltaContratos.getNotificationDate() +
+                " a las " + vistaAltaContratos.getNotificationHour() + "]\\n";
         // Notas privadas
-        contratoVO.setNotas_privadas(notificacion + vistaAC.getAreaPrivada());
+        contratoVO.setNotas_privadas(notificacion + vistaAltaContratos.getAreaPrivada());
         // Duración
-        if(vistaAC.getFechaFinContrato().isEmpty())   // Es un contrato Indefinido
+        if(vistaAltaContratos.getContractTerminationDate().isEmpty())   // Es un contrato Indefinido
             contratoVO.setDuracion("I");
         else
             contratoVO.setDuracion("T");
         // 
         //  Grabamos el Contrato
         //
-        int numcontrato = modeloAC.saveContrato(contratoVO);
+        int numcontrato = modeloAltaContratos.saveContrato(contratoVO);
         if(numcontrato > 0)
-            vistaAC.muestraInfo("El contrato se ha guardado con el número " + numcontrato);
+            vistaAltaContratos.muestraInfo("El contrato se ha guardado con el número " + numcontrato);
         else {
-            vistaAC.muestraError("ERROR: No se ha guardado el contrato");
+            vistaAltaContratos.muestraError("ERROR: No se ha guardado el contrato");
             return;
         }
         // Grabamos el horario, en su caso
-        HorarioContrato horario = new HorarioContrato(numcontrato, vistaAC);
+        HorarioContrato horario = new HorarioContrato(numcontrato, vistaAltaContratos);
         //
         // Imprimimos la Portada Expediente Contrato
         //
-        PortadaExpedienteContrato pec = new PortadaExpedienteContrato(vistaAC);
+        PortadaExpedienteContrato pec = new PortadaExpedienteContrato(vistaAltaContratos);
         //************************************
         // Control de emisión Registro Horario
         //************************************
-        EmisionRegistroHorario comprobarRH = new EmisionRegistroHorario();
-        emisionRegistroHorario = comprobarRH.Emision(numcontrato,0);
-        if(emisionRegistroHorario){
         
+        SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");
+        SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat annoInFecha = new SimpleDateFormat("yyyy");
 
+        Date fechaInicioCtto = new Date();
+        try{
+            fechaInicioCtto = fechaCompleta.parse(vistaAltaContratos.getContractStartDate());
+        }
+        catch(Exception e){
 
-            SimpleDateFormat nombreMes = new SimpleDateFormat("MMMM");
-            SimpleDateFormat fechaCompleta = new SimpleDateFormat("dd-MM-yyyy");
-            SimpleDateFormat annoInFecha = new SimpleDateFormat("yyyy");
-
-            Date fechaInicioCtto = new Date();
-            try{
-                fechaInicioCtto = fechaCompleta.parse(vistaAC.getFechaInicioContrato());
-            }
-            catch(Exception e){
-
-            }
-            String mesRH = nombreMes.format(fechaInicioCtto);
-            String annoRH = annoInFecha.format(fechaInicioCtto);
+        }
+        String mesRH = nombreMes.format(fechaInicioCtto);
+        String annoRH = annoInFecha.format(fechaInicioCtto);
+        String clienteGM = vistaAltaContratos.getClientName();
+        String CCC = vistaAltaContratos.getClientCCC();
+        String nomEmpleado = vistaAltaContratos.getEmployeeName();
+        String nifEmpleado = vistaAltaContratos.getTrabajadorNIF();
+        String jornada = vistaAltaContratos.getComboJornada().getSelectedItem().toString();
+        
+        RegistroHorario comprobarRH = new RegistroHorario(mesRH, annoRH, clienteGM,
+            CCC, nomEmpleado, nifEmpleado, jornada);
+        emisionRegistroHorario = comprobarRH.comprobarEmision(numcontrato,0);
+        if(emisionRegistroHorario){
             // Creamos el PDF del Registro Horario
             RegistroHorario reghor = new RegistroHorario(mesRH, annoRH, 
-                    vistaAC.getComboCliente().getSelectedItem().toString(),
-                    vistaAC.getComboClienteCCC().getSelectedItem().toString(),vistaAC.getComboTrabajador().getSelectedItem().toString(),
-                    vistaAC.getTrabajadorNIF(), vistaAC.getHorasSemana() + " horas/semana");
+                    vistaAltaContratos.getComboCliente().getSelectedItem().toString(),
+                    vistaAltaContratos.getComboClienteCCC().getSelectedItem().toString(),vistaAltaContratos.getComboTrabajador().getSelectedItem().toString(),
+                    vistaAltaContratos.getTrabajadorNIF(), vistaAltaContratos.getWeekHours() + " horas/semana");
             String pathFile = reghor.guardarRegistoHorarioParaPDF();
             reghor.RHtoPDF(pathFile);
 
             // Preguntamos sobre la impresión del Registro Horario
             int respuesta = JOptionPane.showConfirmDialog(null,
             "Se ha creado el PDF del Registro Horario de " + mesRH + "-" + annoRH + " para "
-                    + vistaAC.getComboTrabajador().getSelectedItem().toString() + " en su carpeta \"Borrame\"\n"
+                    + vistaAltaContratos.getComboTrabajador().getSelectedItem().toString() + " en su carpeta \"Borrame\"\n"
                     + "¿Desea imprimir el Registro Horario en papel?",
             "Emisión Registro Horario",
             JOptionPane.YES_NO_OPTION);
@@ -532,7 +532,7 @@ public class ControladorAltaContratos {
         //********************************************************
         // Imprimir la carpetilla A3 de control del gestor laboral
         //********************************************************
-        CarpetaA3ControlGestor a3 = new CarpetaA3ControlGestor(vistaAC);
+        CarpetaA3ControlGestor a3 = new CarpetaA3ControlGestor(vistaAltaContratos);
 
         showMessageDialog(null, "El registro en la base de datos y la emisión de documentación\n"
             + "del nuevo contrato se han realizado correctamente.","Nuevo contrato de trabajo"
@@ -540,10 +540,10 @@ public class ControladorAltaContratos {
     }
     
     public void botonAceptarMouseClicked(){
-        if (vistaAC.getBotonAceptar().isEnabled())
+        if (vistaAltaContratos.getBotonAceptar().isEnabled())
             if(comprobarDatosContrato())
             {
-                vistaAC.getBotonAceptar().setEnabled(false);
+                vistaAltaContratos.getBotonAceptar().setEnabled(false);
                 grabarDatosContrato();
             }
     }
